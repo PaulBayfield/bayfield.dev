@@ -20,6 +20,14 @@ from pathlib import Path
 load_dotenv(dotenv_path=f".env")
 
 
+# Create the directory for the logging and the downloads.
+if not os.path.exists(f"{str(Path(__file__).parent.parent)}/logging"):
+    os.makedirs(f"{str(Path(__file__).parent.parent)}/logging")
+
+if not os.path.exists(f"{str(Path(__file__).parent.parent.parent)}/{environ['DOWNLOAD_PATH']}"):
+    os.makedirs(f"{str(Path(__file__).parent.parent)}/{environ['DOWNLOAD_PATH']}")
+
+
 # Create the app.
 app = API(__name__)
 app.secret_key = str(uuid4())
@@ -53,14 +61,6 @@ app.sch:Schedule = Schedule(
     directory=f"{os.getcwd()}{environ['DOWNLOAD_PATH']}",
     maxSave=int(environ['MAX_SAVE'])
 )
-
-
-# Create the directory for the logging and the downloads.
-if not os.path.exists(f"{str(Path(__file__).parent.parent)}/logging"):
-    os.makedirs(f"{str(Path(__file__).parent.parent)}/logging")
-
-if not os.path.exists(f"{str(Path(__file__).parent.parent)}/{environ['DOWNLOAD_PATH']}"):
-    os.makedirs(f"{str(Path(__file__).parent.parent)}/{environ['DOWNLOAD_PATH']}")
 
 
 """
