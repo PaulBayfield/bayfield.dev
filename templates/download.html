@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="fr">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://youtube.bayfield.dev" />
+    <meta property="og:image" content="https://bayfield.dev/static/images/ytdownloader.png" />
+    <meta name="theme-color" content="#5744ad">
+
+    <title>YT Downloader • Download</title>
+
+    <link href="https://bayfield.dev/static/css/download.css" rel="stylesheet" media="screen">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.progress').hide();
+            $('.go-back').hide();
+            $('form').submit(function () {
+                $('input[type="url"]').hide();
+                $('select').hide();
+                $('.progress').show();
+                $('input[type="submit"]').hide();
+                $('.text').text("Converting your YouTube video...");
+                $('.plus').text("This may take a while!");
+
+                event.preventDefault();
+                
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/download-video?id={{uuid}}',
+                    data: formData
+                });
+
+                this.reset();
+
+                var source = new EventSource("/progress?uuid={{uuid}}");
+                source.onmessage = function (event) {
+                    if (event.data == "") {
+                        $('.progress').hide();
+                        $('.go-back').show();
+                        $('.text').text("Something went wrong!");
+                        $('.plus').text("Please try again later!");
+
+                        source.close()
+                    }
+                    else {
+                        $('.progress-bar').css('width', event.data + '%').attr('aria-valuenow', event.data);
+                        $('.progress-bar-label').text(event.data + '%');
+                        
+                        if (event.data == -1) {
+                            $('.progress').hide();
+                            $('.go-back').show();
+                            $('.text').text("Error! This video does not exist!");
+                            $('.plus').text("Error 404");
+
+                            source.close()
+                        }
+
+                        if (event.data == -100) {
+                            $('.progress').hide();
+                            $('.go-back').show();
+                            $('.text').text("Error! This video is too long! ({{duration}})");
+                            $('.plus').text("Error 403");
+
+                            source.close()
+                        }
+
+                        if (event.data == 99) {
+                            $('.text').text("Finishing...");
+                        }
+
+                        if (event.data == 100) {
+                            source.close()
+                            
+                            window.location.href = '/video?id={{uuid}}';
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Youtube Downloader</h1>
+        <form>
+            <div class="txt_field">
+                <input type="url"
+                    pattern="^((?:https?:)?\/\/)?((?:www|m|music)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
+                    placeholder="Youtube Video URL or ID" name="videolink" value="{{ link }}"
+                    required>
+            </div>
+            <div class="format-menu">
+                <select name="format">
+                    <option value="mp3" selected>MP3</option>
+                    <option value="mp4">MP4</option>
+                </select>
+                <p class="text">Best Audio & Video quality by default!</p>
+                <p class="plus">youtube.bayfield.dev</p>
+            </div>
+            <button class="go-back" onclick="window.location.href='/download'">Go back...</button>
+            <input type="submit" value="Convert...">
+        </form>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                aria-valuemax="100">
+                <span class="progress-bar-label">0%</span>
+            </div>
+        </div>
+    </div>
+    <div class="logout">
+        <button id="logout" onclick="window.location.href='/logout'">Logout</button>
+    </div>
+</body>
+
+</html>

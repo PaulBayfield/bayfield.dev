@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="fr">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://youtube.bayfield.dev" />
+    <meta property="og:image" content="https://bayfield.dev/static/images/ytdownloader.png" />
+    <meta name="theme-color" content="#5744ad">
+
+    <title>YT Downloader • Video</title>
+
+    <link href="https://bayfield.dev/static/css/video.css" rel="stylesheet" media="screen">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#share').click(function() {
+                var currentPageUrl = window.location.href;
+
+                var tempInput = $('<input>');
+                $('body').append(tempInput);
+
+                tempInput.val(currentPageUrl+"&share=true").select();
+                document.execCommand('copy');
+                tempInput.remove();
+                alert('Page URL copied to your clipboard!');
+            });
+        });
+    </script>
+
+    <script>
+        function downloadBlob(blob, filename) {
+            var a = document.createElement('a');
+            a.download = filename;
+            a.href = blob;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }
+
+        function downloadResource() {
+            url = '{{ path }}'
+            //filename = url.split('\\').pop().split('/').pop();
+            filename = '{{ rawTitle }}';
+            fetch(url, {
+                mode: 'no-cors'
+            })
+                .then(response => response.blob())
+                .then(blob => {
+                    let blobUrl = window.URL.createObjectURL(blob);
+                    downloadBlob(blobUrl, filename);
+                })
+                .catch(e => console.error(e));
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Youtube Downloader</h1>
+        <stats>
+            <img src="{{ image }}">
+            <p id="author"><strong>{{ author }}</strong></p>
+            <a href="{{ url }}" target="_blank">
+                <p id="title">{{ title }}</p>
+            </a>
+            <button id="download" onclick="downloadResource()">Download</button>
+            <button id="share">Share</button>
+            <button id="home" onclick="window.location.href='/download'">Go Back</button>
+        </stats>
+    </div>
+    <div class="logout">
+        <button id="logout" onclick="window.location.href='/logout'">Logout</button>
+    </div>
+</body>
+
+</html>
