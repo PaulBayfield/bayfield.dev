@@ -4,7 +4,7 @@
 </div>
 
 
-# 🇫🇷 Français
+# ![fr](/static/images/fr.png) Français
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Utilisation](#utilisation)
@@ -12,7 +12,7 @@
 - [Licence](#licence)
 - [Crédits](#credits)
 
-# 🇬🇧 English
+# ![uk](/static/images/uk.png) English
 - [Introduction](#introduction-1)
 - [Installation](#installation-1)
 - [Usage](#usage)
@@ -22,7 +22,7 @@
 
 
 ---
-# 🇫🇷 Français
+# ![fr](/static/images/fr.png) Français
 
 ## Introduction
 
@@ -120,7 +120,7 @@ Site entièrement réalisé par [Paul Bayfield](https://github.com/PaulBayfield)
 
 ---
 
-# 🇬🇧 English
+# ![uk](/static/images/uk.png) English
 
 ## Introduction
 
