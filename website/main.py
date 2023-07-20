@@ -143,7 +143,7 @@ def saintthibault_home():
 """
 
 
-@app.website_route('/', method=['GET','POST'], subdomain="", log_file="logging/website.log")
+@app.website_route('/', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
 def yt_home():
     """
     Home page of the Youtube Downloader.
@@ -156,7 +156,7 @@ def yt_home():
         return redirect(url_for('download'))
         
 
-@app.website_route('/login', method=['GET','POST'], subdomain="", log_file="logging/website.log")
+@app.website_route('/login', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
 def login():
     """
     Login page of the Youtube Downloader.
@@ -200,7 +200,7 @@ def login():
         return render_template('login.html', error=error)
     
 
-@app.website_route('/logout', method=['GET','POST'], subdomain="", log_file="logging/website.log")
+@app.website_route('/logout', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
 def logout():
     """
     Logout page of the Youtube Downloader.
@@ -213,7 +213,7 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.website_route('/download', method=['GET', 'POST'], subdomain="", log_file="logging/website.log")
+@app.website_route('/download', method=['GET', 'POST'], subdomain="youtube", log_file="logging/website.log")
 def download():
     """
     Download page of the Youtube Downloader.
@@ -239,7 +239,7 @@ def download():
     return render_template('download.html', uuid=uuid, link=request.args.get('link', ''), duration=f"max is {str(timedelta(seconds=int(environ['MAX_DURATION'])))}")
 
 
-@app.website_route('/video', method=['GET'], subdomain="", log_file="logging/website.log")
+@app.website_route('/video', method=['GET'], subdomain="youtube", log_file="logging/website.log")
 def video():
     """
     Video page of the Youtube Downloader.
@@ -261,7 +261,7 @@ def video():
         return render_template('video.html', image=thumbnail, url=link, title=title, rawTitle=title.replace(".", " "), author=author, path=f"/temp/{id}.{format}")
 
 
-@app.website_route('/download-video', method=['GET', 'POST'], subdomain="", log_file="logging/website.log")
+@app.website_route('/download-video', method=['GET', 'POST'], subdomain="youtube", log_file="logging/website.log")
 def download_video():
     """
     Backend endpoint, launches the download of the video.
@@ -335,7 +335,7 @@ def download_video():
         return Response("Error", status=404)
     
 
-@app.website_route('/progress', method=['GET'], subdomain="", log_file="logging/website.log")
+@app.website_route('/progress', method=['GET'], subdomain="youtube", log_file="logging/website.log")
 def progress():
     """
     Backend endpoint, returns the progress of the download.
@@ -353,7 +353,7 @@ def progress():
     return Response(app.tasks.generate(uuid), mimetype='text/event-stream', headers={'Access-Control-Allow-Origin': '*'})
 
 
-@app.website_route('/temp/<path:path>', method=['GET', 'POST'], subdomain="", log_file="logging/website.log")
+@app.website_route('/temp/<path:path>', method=['GET', 'POST'], subdomain="youtube", log_file="logging/website.log")
 def temp(path: str):
     """
     Backend endpoint, returns the video.
