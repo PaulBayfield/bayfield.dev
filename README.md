@@ -61,7 +61,7 @@ nano .env
 > </span></pre>
 > </div>
 > <div style="background-color:#415971">
-> <pre><code>MAX_DURATION = 1800</code><hr><span style="color:#00b300">Durée maximale d'une vidéo en secondes (30 minutes par défaut). 
+> <pre><code>MAX_DURATION = 7200</code><hr><span style="color:#00b300">Durée maximale d'une vidéo en secondes (2 heures par défaut). 
 > </span></pre>
 > </div>
 > <div style="background-color:#415971">
@@ -158,7 +158,7 @@ nano .env
 > </span></pre>
 > </div>
 > <div style="background-color:#415971">
-> <pre><code>MAX_DURATION = 1800</code><hr><span style="color:#00b300">Maximum duration of a video in seconds (30 minutes by default).
+> <pre><code>MAX_DURATION = 7200</code><hr><span style="color:#00b300">Maximum duration of a video in seconds (2 hours by default).
 > </span></pre>
 > </div>
 > <div style="background-color:#415971">

@@ -1,8 +1,9 @@
 from .tools import API
 from .tasks import Tasks
 from .schedule import Schedule
+from .chunk import read_file_chunks
 
-from flask import Response, redirect, url_for, send_from_directory, render_template, request, session
+from flask import Response, redirect, url_for, render_template, stream_with_context, request, session
 from flask_session import Session
 
 
@@ -27,7 +28,7 @@ app.secret_key = str(uuid4())
 
 # Change this depending on your domain name.
 # This is mandatory to able to use subdomains.
-app.config['SERVER_NAME'] = environ['DOMAIN_NAME']
+#app.config['SERVER_NAME'] = environ['DOMAIN_NAME']
 
 
 # Adding the Session to the app.
@@ -142,7 +143,7 @@ def saintthibault_home():
 """
 
 
-@app.website_route('/', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
+@app.website_route('/', method=['GET','POST'], subdomain="", log_file="logging/website.log")
 def yt_home():
     """
     Home page of the Youtube Downloader.
@@ -155,7 +156,7 @@ def yt_home():
         return redirect(url_for('download'))
         
 
-@app.website_route('/login', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
+@app.website_route('/login', method=['GET','POST'], subdomain="", log_file="logging/website.log")
 def login():
     """
     Login page of the Youtube Downloader.
@@ -199,7 +200,7 @@ def login():
         return render_template('login.html', error=error)
     
 
-@app.website_route('/logout', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
+@app.website_route('/logout', method=['GET','POST'], subdomain="", log_file="logging/website.log")
 def logout():
     """
     Logout page of the Youtube Downloader.
@@ -212,7 +213,7 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.website_route('/download', method=['GET', 'POST'], subdomain="youtube", log_file="logging/website.log")
+@app.website_route('/download', method=['GET', 'POST'], subdomain="", log_file="logging/website.log")
 def download():
     """
     Download page of the Youtube Downloader.
@@ -227,13 +228,18 @@ def download():
         uuid = str(uuid4())
 
     app.tasks.tasks[uuid] = {
+        "status": "starting...",
+        "speed": "0MiB/s",
+        "downloaded_bytes": "0MiB",
+        "total_bytes": "0MiB",
         "progress": "0",
+        "eta": 0
     }
     
     return render_template('download.html', uuid=uuid, link=request.args.get('link', ''), duration=f"max is {str(timedelta(seconds=int(environ['MAX_DURATION'])))}")
 
 
-@app.website_route('/video', method=['GET'], subdomain="youtube", log_file="logging/website.log")
+@app.website_route('/video', method=['GET'], subdomain="", log_file="logging/website.log")
 def video():
     """
     Video page of the Youtube Downloader.
@@ -255,7 +261,7 @@ def video():
         return render_template('video.html', image=thumbnail, url=link, title=title, rawTitle=title.replace(".", " "), author=author, path=f"/temp/{id}.{format}")
 
 
-@app.website_route('/download-video', method=['GET', 'POST'], subdomain="youtube", log_file="logging/website.log")
+@app.website_route('/download-video', method=['GET', 'POST'], subdomain="", log_file="logging/website.log")
 def download_video():
     """
     Backend endpoint, launches the download of the video.
@@ -307,7 +313,7 @@ def download_video():
                 'merge_output_format': 'mp4',
                 'noplaylist': True,
                 'no_warnings': True,
-                'progress_hooks': [lambda d: app.tasks.hook(d, uuid)],
+                'progress_hooks': [lambda data: app.tasks.hook(data, uuid)],
                 'quiet': True
             }
         else:
@@ -329,7 +335,7 @@ def download_video():
         return Response("Error", status=404)
     
 
-@app.website_route('/progress', method=['GET'], subdomain="youtube", log_file="logging/website.log")
+@app.website_route('/progress', method=['GET'], subdomain="", log_file="logging/website.log")
 def progress():
     """
     Backend endpoint, returns the progress of the download.
@@ -344,10 +350,10 @@ def progress():
     if uuid not in app.tasks.tasks:
         return redirect(url_for('download'))
 
-    return Response(app.tasks.generate(uuid), mimetype='text/event-stream')
+    return Response(app.tasks.generate(uuid), mimetype='text/event-stream', headers={'Access-Control-Allow-Origin': '*'})
 
 
-@app.website_route('/temp/<path:path>', method=['GET', 'POST'], subdomain="youtube", log_file="logging/website.log")
+@app.website_route('/temp/<path:path>', method=['GET', 'POST'], subdomain="", log_file="logging/website.log")
 def temp(path: str):
     """
     Backend endpoint, returns the video.
@@ -356,6 +362,21 @@ def temp(path: str):
     :return: The video/music file.
     """
     try:
-        return send_from_directory(f"{os.getcwd()}{environ['DOWNLOAD_PATH']}", path)
-    except:
+        print(path)
+
+        if path.endswith('mp3'):
+            mimetype = 'audio/mp3'
+        elif path.endswith('mp4'):
+            mimetype = 'video/mp4'
+        else:
+            raise Exception("Invalid file format")
+
+        return Response(
+            stream_with_context(read_file_chunks(f"{os.getcwd()}{environ['DOWNLOAD_PATH']}/{path}")),
+            headers = {
+                'Content-Disposition': f'attachment'
+            },
+            mimetype=mimetype
+        )
+    except: # File not found or other error
         return redirect(url_for('download'))

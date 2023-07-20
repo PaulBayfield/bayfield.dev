@@ -65,5 +65,10 @@ class Worker(Thread):
             "link": self.link,
             "author": author,
             "duration": duration,
-            "progress": "100" if not error else "-100"
+            "status": "starting...",
+            "speed": "0MiB/s",
+            "downloaded_bytes": "0MiB",
+            "total_bytes": "0MiB",
+            "progress": "100" if not error else "-100",
+            "eta": 0
         }

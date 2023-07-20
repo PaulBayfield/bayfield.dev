@@ -77,6 +77,14 @@ p {
 
 .plus {
     font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.status {
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 input[type=submit], .go-back {

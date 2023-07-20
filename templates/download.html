@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -20,74 +20,146 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
+        function secondsToReadable(seconds) {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+
+            let readableTime = '';
+            if (hours > 0) {
+                readableTime += `${hours} hour`;
+                if (hours > 1) readableTime += 's';
+                readableTime += ' ';
+            }
+
+            if (minutes > 0) {
+                readableTime += `${minutes} minute`;
+                if (minutes > 1) readableTime += 's';
+                readableTime += ' ';
+            }
+
+            if (remainingSeconds > 0 || readableTime === '') {
+                readableTime += `${remainingSeconds} second`;
+                if (remainingSeconds !== 1) readableTime += 's';
+            }
+
+            return readableTime.trim();
+        }
+
+        function removeAnsiEscapeSequences(inputString) {
+            const ansiRegex = /(\x9B|\x1B\[)[0-?]*[ -\/]*[@-~]/g;
+
+            return inputString.replace(ansiRegex, '').trimStart();
+        }
+    </script>
+    <script>
+        var source;
+
         $(document).ready(function () {
             $('.progress').hide();
             $('.go-back').hide();
-            $('form').submit(function () {
+            $('.status').hide();
+            $('form').submit(function (event) {
+                event.preventDefault();
                 $('input[type="url"]').hide();
                 $('select').hide();
                 $('.progress').show();
                 $('input[type="submit"]').hide();
                 $('.text').text("Converting your YouTube video...");
                 $('.plus').text("This may take a while!");
+                $('.status').show();
 
-                event.preventDefault();
-                
                 var formData = $(this).serialize();
 
                 $.ajax({
                     type: 'POST',
                     url: '/download-video?id={{uuid}}',
-                    data: formData
+                    data: formData,
+                    success: function () {
+                        source = new EventSource("/progress?uuid={{uuid}}");
+
+                        source.onmessage = function (event) {
+                            const data = JSON.parse(event.data);
+
+                            if (data.progress == "") {
+                                $('.progress').hide();
+                                $('.go-back').show();
+                                $('.status').hide();
+                                $('.text').text("Something went wrong!");
+                                $('.plus').text("Please try again later!");
+
+                                source.close();
+                            }
+                            else {
+                                $('.progress-bar').css('width', data.progress + '%').attr('aria-valuenow', data.progress);
+                                $('.progress-bar-label').text(data.progress + '%');
+
+                                if (data.progress == -1) {
+                                    $('.progress').hide();
+                                    $('.go-back').show();
+                                    $('.status').hide();
+                                    $('.text').text("Error! This video does not exist!");
+                                    $('.plus').text("Error 404");
+
+                                    source.close();
+                                }
+
+                                if (data.progress == -100) {
+                                    $('.progress').hide();
+                                    $('.go-back').show();
+                                    $('.status').hide();
+                                    $('.text').text("Error! This video is too long! ({{duration}})");
+                                    $('.plus').text("Error 403");
+
+                                    source.close();
+                                }
+
+                                if (data.progress == 99) {
+                                    $('.status').hide();
+                                    $('.text').text("Finishing...");
+                                    $('.plus').text("Hang on, you are almost done!");
+                                }
+
+                                if (data.progress == 100) {
+                                    source.close();
+
+                                    window.location.href = '/video?id={{uuid}}';
+                                }
+                            }
+
+                            $('.status').text('ETA: ' + secondsToReadable(data.eta) + ' - ' + removeAnsiEscapeSequences(data.downloaded_bytes) + '/' + removeAnsiEscapeSequences(data.total_bytes) + ' (' + removeAnsiEscapeSequences(data.speed) + ')');
+                        };
+
+                        source.onerror = function(event) {
+                            $('.progress').hide();
+                            $('.go-back').show();
+                            $('.status').hide();
+                            $('.text').text("Something went wrong!");
+                            $('.plus').text("Please try again later!");
+
+                            source.close();
+                        };
+                    },
+                    error: function () {
+                        $('.progress').hide();
+                        $('.go-back').show();
+                        $('.status').hide();
+                        $('.text').text("Something went wrong!");
+                        $('.plus').text("Please try again later!");
+                    }
                 });
 
                 this.reset();
-
-                var source = new EventSource("/progress?uuid={{uuid}}");
-                source.onmessage = function (event) {
-                    if (event.data == "") {
-                        $('.progress').hide();
-                        $('.go-back').show();
-                        $('.text').text("Something went wrong!");
-                        $('.plus').text("Please try again later!");
-
-                        source.close()
-                    }
-                    else {
-                        $('.progress-bar').css('width', event.data + '%').attr('aria-valuenow', event.data);
-                        $('.progress-bar-label').text(event.data + '%');
-                        
-                        if (event.data == -1) {
-                            $('.progress').hide();
-                            $('.go-back').show();
-                            $('.text').text("Error! This video does not exist!");
-                            $('.plus').text("Error 404");
-
-                            source.close()
-                        }
-
-                        if (event.data == -100) {
-                            $('.progress').hide();
-                            $('.go-back').show();
-                            $('.text').text("Error! This video is too long! ({{duration}})");
-                            $('.plus').text("Error 403");
-
-                            source.close()
-                        }
-
-                        if (event.data == 99) {
-                            $('.text').text("Finishing...");
-                        }
-
-                        if (event.data == 100) {
-                            source.close()
-                            
-                            window.location.href = '/video?id={{uuid}}';
-                        }
-                    }
-                }
             });
         });
+
+        $(window).unload(
+            function() {
+                if (source) {
+                    source.close();
+                }
+            }
+        );
     </script>
 </head>
 
@@ -98,8 +170,7 @@
             <div class="txt_field">
                 <input type="url"
                     pattern="^((?:https?:)?\/\/)?((?:www|m|music)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
-                    placeholder="Youtube Video URL or ID" name="videolink" value="{{ link }}"
-                    required>
+                    placeholder="Youtube Video URL or ID" name="videolink" value="{{ link }}" required autofocus>
             </div>
             <div class="format-menu">
                 <select name="format">
@@ -109,7 +180,7 @@
                 <p class="text">Best Audio & Video quality by default!</p>
                 <p class="plus">youtube.bayfield.dev</p>
             </div>
-            <button class="go-back" onclick="window.location.href='/download'">Go back...</button>
+            <button class="go-back" onclick="window.location.href='/download?link={{ link }}'">Try again...</button>
             <input type="submit" value="Convert...">
         </form>
         <div class="progress">
@@ -118,6 +189,7 @@
                 <span class="progress-bar-label">0%</span>
             </div>
         </div>
+        <p class="status">ETA: 0 seconds - 0MiB/0MiB (0MiB/s)</p>
     </div>
     <div class="logout">
         <button id="logout" onclick="window.location.href='/logout'">Logout</button>
