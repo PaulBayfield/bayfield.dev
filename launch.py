@@ -33,7 +33,6 @@ def run() -> None:
     """
     options = {
         "bind": "0.0.0.0:80",
-        "workers": 4,
         "timeout": 1000,
     }
     StandaloneApplication("website.main:app", options).run()

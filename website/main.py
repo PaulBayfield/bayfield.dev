@@ -228,7 +228,7 @@ def download():
         uuid = str(uuid4())
 
     app.tasks.tasks[uuid] = {
-        "status": "starting...",
+        "status": "starting",
         "speed": "0MiB/s",
         "downloaded_bytes": "0MiB",
         "total_bytes": "0MiB",
@@ -345,7 +345,7 @@ def progress():
     if not session.get("username"):
         return redirect(url_for('login'))
 
-    uuid = request.args.get('uuid')
+    uuid = request.args.get('uuid', '')
 
     if uuid not in app.tasks.tasks:
         return redirect(url_for('download'))
@@ -362,8 +362,6 @@ def temp(path: str):
     :return: The video/music file.
     """
     try:
-        print(path)
-
         if path.endswith('mp3'):
             mimetype = 'audio/mp3'
         elif path.endswith('mp4'):
