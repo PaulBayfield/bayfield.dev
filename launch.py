@@ -32,7 +32,9 @@ def run() -> None:
     A function that runs the Flask application with Gunicorn.
     """
     options = {
-        "bind": "0.0.0.0:80"
+        "bind": "0.0.0.0:80",
+        "workers": 4,
+        "timeout": 1000,
     }
     StandaloneApplication("website.main:app", options).run()
 

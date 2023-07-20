@@ -26,7 +26,7 @@ if not os.path.exists(f"{str(Path(__file__).parent.parent)}/logging"):
     os.makedirs(f"{str(Path(__file__).parent.parent)}/logging")
 
 if not os.path.exists(f"{str(Path(__file__).parent.parent.parent)}/{environ['DOWNLOAD_PATH']}"):
-    os.makedirs(f"{str(Path(__file__).parent.parent)}/{environ['DOWNLOAD_PATH']}")
+    os.makedirs(f"{str(Path(__file__).parent.parent.parent)}/{environ['DOWNLOAD_PATH']}")
 
 
 # Create the app.

@@ -69,6 +69,8 @@
                 $('.plus').text("This may take a while!");
                 $('.status').show();
 
+                $('.go-back').attr('onclick', "window.location.href='/download?link=" + $("input[type='url']").val() + "'");
+
                 var formData = $(this).serialize();
 
                 $.ajax({
