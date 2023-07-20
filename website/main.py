@@ -127,7 +127,7 @@ def saintthibault_home():
 """
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                                                                                                      ┃
-┃                                              - Saint Thibault Routes -                                               ┃
+┃                                            - Youtube Downloader Routes -                                             ┃
 ┃                                                                                                                      ┃
 ┃                                                                                                                      ┃
 ┃  • youtube.bayfield.dev                                                                                              ┃
@@ -136,8 +136,16 @@ def saintthibault_home():
 ┃    > Login page.                                                                                                     ┃
 ┃  • youtube.bayfield.dev/logout                                                                                       ┃
 ┃    > Logout page.                                                                                                    ┃
-┃  • youtube.bayfield.dev                                                                                              ┃
+┃  • youtube.bayfield.dev/download                                                                                     ┃
 ┃    > Download page.                                                                                                  ┃
+┃  • youtube.bayfield.dev/video                                                                                        ┃
+┃    > Video page.                                                                                                     ┃
+┃  • youtube.bayfield.dev/download-video                                                                               ┃
+┃    > (Backend) Start downloading.                                                                                    ┃
+┃  • youtube.bayfield.dev/progress                                                                                     ┃
+┃    > (Backend) Check the progress of a download.                                                                     ┃
+┃  • youtube.bayfield.dev/temp                                                                                         ┃
+┃    > (Backend) Start to download a video or audio file.                                                              ┃
 ┃                                                                                                                      ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 """
