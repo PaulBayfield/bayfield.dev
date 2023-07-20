@@ -36,7 +36,7 @@ app.secret_key = str(uuid4())
 
 # Change this depending on your domain name.
 # This is mandatory to able to use subdomains.
-#app.config['SERVER_NAME'] = environ['DOMAIN_NAME']
+app.config['SERVER_NAME'] = environ['DOMAIN_NAME']
 
 
 # Adding the Session to the app.
