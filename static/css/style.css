@@ -32,11 +32,6 @@ a {
     text-decoration: none;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
 .flex {
     display: flex;
 }
@@ -227,6 +222,7 @@ nav {
     font-size: 1.25rem;
     z-index: 100;
     position: relative;
+    flex-direction: row-reverse;
 }
 
 nav h1 {
@@ -267,8 +263,8 @@ nav .nav-links .container {
 
 nav .nav-links.active {
     visibility: visible;
-    backdrop-filter: blur(4px) brightness(50%);
-    -webkit-backdrop-filter: blur(4px) brightness(50%);
+    backdrop-filter: blur(6px) brightness(20%);
+    -webkit-backdrop-filter: blur(6px) brightness(20%);
     opacity: 1;
 }
 
@@ -544,7 +540,7 @@ footer .bottom .right p {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 805px) {
     .reverse {
         order: 1 !important;
     }
@@ -574,6 +570,10 @@ footer .bottom .right p {
 
     main .projects-section .section-button {
         width: max-content;
+    }
+
+    nav {
+        flex-direction: row;
     }
 
     nav .menu {
