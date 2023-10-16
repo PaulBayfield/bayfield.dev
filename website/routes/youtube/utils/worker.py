@@ -155,7 +155,7 @@ class Worker(Thread):
                 elif progress == 100:
                     progress = 99
 
-                speed = self.remove_ansi_escape_sequences(data['speed'].split(' ')[0])
+                speed = self.remove_ansi_escape_sequences(data['_speed_str'])
                 if speed.startswith('Unknown'):
                     speed = '0 MiB/s'
 
