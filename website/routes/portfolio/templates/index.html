@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    {% include 'components/meta.html' %}
+
+    <title>Paul Bayfield • Home</title>
+
+    <link rel="stylesheet" href="{{ url_for('.static', filename='portfolio/css/style.css') }}">
+
+    <script src="{{ url_for('.static', filename='portfolio/js/script.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("*[lang='fr']").show();
+            $("*[lang='en']").hide();
+            $("html").show();
+
+            $("#switch-lang").click(function () {
+                $("*[lang='fr']").toggle();
+                $("*[lang='en']").toggle();
+                $("html").show();
+
+                if ($("#flag").attr("src") == "{{ url_for('.static', filename='portfolio/images/fr.png') }}")
+                    $("#flag").removeAttr("src").attr("src", "{{ url_for('.static', filename='portfolio/images/uk.png') }}");
+                else
+                    $("#flag").removeAttr("src").attr("src", "{{ url_for('.static', filename='portfolio/images/fr.png') }}");
+            });
+
+            $("#switch-mode").click(function () {
+                if ($("body").css("background-color") == "rgb(71, 82, 99)") {
+                    $("body").css({
+                        "background": "rgb(229, 231, 235)",
+                        "color": "rgb(71, 82, 99)"
+                    });
+
+                    $("p").css({
+                        "color": "rgb(71, 82, 99)"
+                    });
+
+                    $("footer p > a").css({
+                        "color": "rgb(71, 82, 99)"
+                    });
+
+                    $("nav").css({
+                        "background": "rgb(113, 115, 121)"
+                    })
+
+                    $(".darker-grey-bg").css({
+                        "background": "rgb(113, 115, 121)",
+                        "color": "rgb(229, 231, 235)"
+                    })
+
+                    $(".darker-grey-bg").css({
+                        "background": "rgb(113, 115, 121)",
+                        "color": "rgb(229, 231, 235)"
+                    })
+
+                    $(".darker-grey-bg p").css({
+                        "color": "rgb(229, 231, 235)"
+                    })
+                } else {
+                    $("body").css({
+                        "background": "rgb(71, 82, 99)",
+                        "color": "rgb(229, 231, 235)"
+                    });
+
+                    $("p").css({
+                        "color": "rgb(229, 231, 235)"
+                    });
+
+                    $("footer p > a").css({
+                        "color": "rgb(229, 231, 235)"
+                    });
+
+                    $("nav").css({
+                        "background": "rgb(41, 47, 56)"
+                    })
+
+                    $(".darker-grey-bg").css({
+                        "background": "rgb(41, 47, 56)",
+                        "color": "rgb(229, 231, 235)"
+                    })
+
+                    $(".darker-grey-bg p").css({
+                        "color": "rgb(229, 231, 235)"
+                    })
+                }
+
+                if ($("#mode").attr("src") == "{{ url_for('.static', filename='portfolio/images/dark.png') }}")
+                    $("#mode").removeAttr("src").attr("src", "{{ url_for('.static', filename='portfolio/images/light.png') }}");
+                else
+                    $("#mode").removeAttr("src").attr("src", "{{ url_for('.static', filename='portfolio/images/dark.png') }}");
+            });
+        });
+    </script>
+    <script>
+        function addHashToURL(title) {
+            window.location.hash = '';
+            window.location.hash = title;
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="flex space-between vertically-centered">
+        <div class="left menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <a class="nav-logo flex hover-button" href="./">
+            <img src="{{ url_for('static', filename='favicon.png') }}" alt="Paul Bayfield">
+        </a>
+        <div class="left nav-links flex vertically-centered">
+            <div class="container flex">
+                <h1 class="nav-title">Paul Bayfield</h1>
+            </div>
+            <div class="container flex vertically-centered">
+                <!-- Français -->
+                <a class="nav-link hover-underline" href="#a-propos" lang="fr">A propos</a>
+                <a class="nav-link hover-underline" href="#projets" lang="fr">Mes projets</a>
+                <a class="nav-link hover-underline" href="#contact" lang="fr">Me contacter</a>
+
+                <!-- Anglais -->
+                <a class="nav-link hover-underline" href="#about-me" lang="en">About me</a>
+                <a class="nav-link hover-underline" href="#projects" lang="en">My Projects</a>
+                <a class="nav-link hover-underline" href="#contact" lang="en">Contact me</a>
+
+                <button id="switch-lang" class="flex"><img id="flag"
+                        src="{{ url_for('.static', filename='portfolio/images/uk.png') }}" loading="eager" /></button>
+                <button id="switch-mode" class="flex"><img id="mode"
+                        src="{{ url_for('.static', filename='portfolio/images/light.png') }}" loading="eager" /></button>
+            </div>
+        </div>
+    </nav>
+    <main class="body flex col">
+        <div class="flex space-between vertically-centered page-margin">
+            <div class="left flex col horizontally-centered space-between">
+                <header class="flex col">
+                    <!-- Français -->
+                    <h1 lang="fr">Bonjour ! Je suis Paul Bayfield,</h1>
+                    <p lang="fr">
+                        un développeur passionné et expérimenté avec une solide expérience dans le domaine du
+                        développement.
+                        <br><br>
+                        Actuellement, j'étudie l'informatique à l'IUT Reims-Châlons-Charleville à Reims.
+                        <br>
+                        J'ai acquis des compétences approfondies dans plusieurs langages de programmation tels que :
+                        Python, PHP, SQL, HTML & CSS.
+                        <br><br>
+                        En dehors de mes études je consacre du temps pour des projets personnels et publics dont
+                        certains sont utilisés par centaines d'utilisateur chaque jour !
+                        <br>
+                        De plus, sur mon temps libre je pratique l'équitation et l'escalade regulièrement.
+                    </p>
+
+                    <!-- Anglais -->
+                    <h1 lang="en">Hello! I am Paul Bayfield,</h1>
+                    <p lang="en">
+                        a passionate and experienced developer with a strong background in development.
+                        <br><br>
+                        Currently, I am studying computer science at IUT Reims-Châlons-Charleville in Reims.
+                        <br>
+                        I have gained in-depth skills in several programming languages such as: Python, PHP, SQL, HTML &
+                        CSS.
+                        <br><br>
+                        Outside of my studies I have dedicated time to personal and public projects, some of which are
+                        used by hundreds of users every day!
+                        <br>
+                        In addition, in my free time I practice horse riding and climbing regularly.
+                    </p>
+                </header>
+            </div>
+            <img class="logo-big" src="{{ url_for('.static', filename='portfolio/images/me.png') }}"
+                alt="Paul Bayfield">
+        </div>
+        <section class="flex col projects-section" id="features">
+            <svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
+                preserveAspectRatio="none" id="a-propos">
+                <path fill="#ff844f" fill-opacity="1"
+                    d="M0,192L80,186.7C160,181,320,171,480,149.3C640,128,800,96,960,101.3C1120,107,1280,149,1360,170.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+                </path>
+            </svg>
+            <div
+                class="section grid vertically-centered horizontally-centered blurple-bg space-between page-margin with-divider ">
+                <div class="flex col reverse section-header">
+                    <!-- Français -->
+                    <h2 class="section-main-header pointer"  onclick="addHashToURL('a-propos')" lang="fr">A
+                        propos</h2>
+                    <p lang="fr">
+                        Je suis Paul Bayfield, un étudiant franco-britannique de 19 ans.
+                        <br><br>
+                        J'ai commencé la programmation à l'âge de 15 ans, quand j'étais en seconde.
+                        <br>
+                        J'ai commencé par apprendre le Python, le SQL et l'HTML.
+                        <br><br>
+                        J'ai ensuite décidé que je voulais faire de la programmation mon métier.
+                    </p>
+
+                    <!-- Anglais -->
+                    <h2 class="section-main-header pointer" onclick="addHashToURL('about-me')" id="about-me" lang="en">
+                        About me</h2>
+                    <p lang="en">
+                        I am Paul Bayfield, a 19 year old franco-british student.
+                        <br><br>
+                        I started programming at the age of 15, when I was in 10th grade.
+                        <br>
+                        I started by learning Python, SQL and HTML.
+                        <br><br>
+                        I then decided that I wanted to make programming my job.
+                    </p>
+                </div>
+                <div class="right flex horizontally-centered vertically-centered ">
+                </div>
+            </div>
+            <svg class="wave-divider invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
+                preserveAspectRatio="none">
+                <path fill="#ff844f" fill-opacity="1"
+                    d="M0,192L80,186.7C160,181,320,171,480,149.3C640,128,800,96,960,101.3C1120,107,1280,149,1360,170.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
+                </path>
+            </svg>
+        </section>
+        <section class="flex col projects-section">
+            <div class="section grid vertically-centered horizontally-centered space-between page-margin after-divider" id="projets">
+                <div class="flex col section-header">
+                    <!-- Français -->
+                    <h2 class="section-main-header pointer" onclick="addHashToURL('projets')" lang="fr">Mes
+                        projets</h2>
+                    <p lang="fr">En dehors de mes études je consacre du temps pour des projets personnels et publics
+                        dont certains sont utilisés par centaines d'utilisateur chaque jour !</p>
+                    <a lang="fr" target="_blank" href="https://github.com/PaulBayfield"
+                        class="button section-button blurple-bg hover-button"><svg class="svg-down" stroke="white"
+                            fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>Voir mon GitHub</a>
+
+                    <!-- Anglais -->
+                    <h2 class="section-main-header pointer" onclick="addHashToURL('projects')" id="projects" lang="en">
+                        My projects</h2>
+                    <p lang="en">Outside of my studies I have dedicated time for personal and public projects some of
+                        which are used by hundreds of users every day!</p>
+                    <a lang="en" target="_blank" href="https://github.com/PaulBayfield"
+                        class="button section-button blurple-bg hover-button"><svg class="svg-down" stroke="white"
+                            fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>Check my GitHub</a>
+                </div>
+            </div>
+        </section>
+        <section class="flex col projects-section darker-grey-bg">
+            <div class="section grid vertically-centered horizontally-centered space-between page-margin ">
+                <div class="flex col reverse section-header">
+                    <!-- Français -->
+                    <h2 class="section-main-header pointer"
+                        onclick="window.location.href='https://youtube.bayfield.dev'" lang="fr">Youtube Downloader</h2>
+                    <p lang="fr">
+                        C'est un projet que j'ai créé afin de répondre à un problème :
+                        <br>
+                        Comment télécharger une musique ou une vidéo en étant sûr de ne pas avoir de virus et avec la
+                        meilleure qualité audio et vidéo disponible ?
+                        <br><br>
+                        J'ai donc créé mon propre convertisseur YouTube pour télécharger des vidéos présentes sur
+                        YouTube.
+                        <br><br>
+                        Le backend est en Python, réalisé grâce au framework Flask. Ce projet est open source sur mon
+                        GitHub dans le même dépôt que ce site.
+                        <br><br>
+                        Pour l'hébergement, j'ai décidé de l'héberger sur mon Raspberry Pi. Cela a été rendu possible
+                        grâce à un "tunnel Cloudflare", qui me
+                        permet de me connecter à mon petit serveur sans avoir à ouvrir aucun port de ma box.
+                    </p>
+
+                    <!-- Anglais -->
+                    <h2 class="section-main-header pointer"
+                        onclick="window.location.href='https://youtube.bayfield.dev'" lang="en">Youtube Downloader</h2>
+                    <p lang="en">
+                        This is a project that I created to solve a problem:
+                        <br>
+                        How to download a music or a video while being sure to not have any virus and with the best
+                        audio and video quality available ?
+                        <br><br>
+                        So I created my own YouTube converter to download videos from YouTube.
+                        <br><br>
+                        The backend is in Python, made with the Flask framework. This project is open source on my
+                        GitHub in the same repository as this website.
+                        <br><br>
+                        For the hosting, I decided to host it on my Raspberry Pi. This was made possible thanks to a
+                        "Cloudflare tunnel", which allows me to
+                        connect to my little server without having to open any port of my box.
+                    </p>
+
+                    <a target="_blank" href="https://github.com/PaulBayfield/bayfield.dev"
+                        class="button section-button blurple-bg hover-button"><svg class="svg-down" stroke="white"
+                            fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>github.com/PaulBayfield/bayfield.dev</a>
+                </div>
+                <div class="right flex horizontally-centered vertically-centered ">
+                    <img class="transition" src="{{ url_for('.static', filename='portfolio/images/ytdownloader.png') }}"
+                        alt="ytdownloader" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section class="flex col projects-section">
+            <div class="section grid vertically-centered horizontally-centered space-between page-margin ">
+                <div class="flex col section-header">
+                    <!-- Français -->
+                    <h2 class="section-main-header pointer"
+                        onclick="window.location.href='https://saintthibault.bayfield.dev'" lang="fr">Saint Thibault
+                    </h2>
+                    <p lang="fr">
+                        Mon centre équestre avait un site internet mais il n'avait pas été mis à jour depuis une dizaine
+                        d'années.
+                        <br>
+                        J'ai donc proposé de le mettre à jour et de le moderniser.
+                    </p>
+
+                    <!-- Anglais -->
+                    <h2 class="section-main-header pointer"
+                        onclick="window.location.href='https://saintthibault.bayfield.dev'" lang="en">Saint Thibault
+                    </h2>
+                    <p lang="en">
+                        My equestrian center had a website but it had not been updated for about ten years.
+                        <br>
+                        So I offered to update it and modernize it.
+                    </p>
+
+                    <a target="_blank" href="https://saintthibault.bayfield.dev"
+                        class="button section-button blurple-bg hover-button"><svg class="svg-down" stroke="white"
+                            fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>saintthibault.bayfield.dev</a>
+                </div>
+                <div class="right flex horizontally-centered vertically-centered">
+                    <img class="transition"
+                        src="{{ url_for('.static', filename='portfolio/images/saintthibault.png') }}"
+                        alt="Saint Thibault" loading="lazy">
+                </div>
+            </div>
+        </section>
+        <section class="flex col projects-section darker-grey-bg">
+            <div class="section grid vertically-centered horizontally-centered space-between page-margin ">
+                <div class="flex col reverse section-header">
+                    <!-- Français -->
+                    <h2 class="section-main-header pointer"
+                        onclick="window.location.href='https://github.com/PaulBayfield/amaZing'" lang="fr">amaZing</h2>
+                    <p lang="fr">
+                        C'était le projet final pour le premier semestre de ma première année de BUT Informatique.
+                        <br><br>
+                        Après avoir fait toutes les classes et méthodes nécessaires, j'ai développé une interface
+                        graphique en Python.
+                    </p>
+
+                    <!-- Anglais -->
+                    <h2 class="section-main-header pointer"
+                        onclick="window.location.href='https://github.com/PaulBayfield/amaZing'" lang="en">amaZing</h2>
+                    <p lang="en">
+                        This was the final project for the first semester of my first year of BUT Informatique.
+                        <br><br>
+                        After making all the necessary classes and methods, I developed a graphical interface in Python.
+                    </p>
+
+                    <a target="_blank" href="https://github.com/PaulBayfield/amaZing"
+                        class="button section-button blurple-bg hover-button"><svg class="svg-down" stroke="white"
+                            fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                            stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>github.com/PaulBayfield/amaZing</a>
+                </div>
+                <div class="right flex horizontally-centered vertically-centered ">
+                    <img class="transition" src="{{ url_for('.static', filename='portfolio/images/amaZing.png') }}"
+                        alt="amaZing" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!--
+            <section class="flex col projects-section">
+                <div class="section grid vertically-centered horizontally-centered space-between page-margin">
+                    <div class="flex col section-header">
+                    </div>
+                    <div class="right flex horizontally-centered vertically-centered">
+                        <img src="" alt="">
+                    </div>
+                </div>
+            </section>
+            <section class="flex col blurple-bg">
+                <div class="section flex vertically-centered horizontally-centered space-between page-margin call-to-action">
+                    <div class="flex col horizontally-centered vertically-centered">
+                    </div>
+                </div>
+            </section>
+            -->
+    </main>
+    <footer class="flex col">
+        <div class="top flex col space-between">
+            <div class="left flex row space-between">
+                <h2 class="footer-title pointer" onclick="addHashToURL('contact')" id="contact">PAUL BAYFIELD</h2>
+                <!-- Français -->
+                <p lang="fr">Mail : <a style="color: rgb(229, 231, 235);" class="hover-underline"
+                        href="mailto:paul@bayfield.dev">paul@bayfield.dev</a></p>
+
+                <!-- Anglais -->
+                <p lang="en">Email : <a style="color: rgb(229, 231, 235);" class="hover-underline"
+                        href="mailto:paul@bayfield.dev">paul@bayfield.dev</a></p>
+
+                <div class="empty"></div>
+                <div class="footer-socials flex">
+                    <a href="https://github.com/PaulBayfield" target="_blank" class="icon github hover-button">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512"
+                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/paulbayfield" target="_blank" class="icon github hover-button">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 50 50"
+                            height="50px" width="50px" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom flex row vertically-centered">
+            <img src="{{ url_for('static', filename='favicon.png') }}" alt="Paul Bayfield">
+            <div class="right">
+                <p lang="fr">Tous droits réservés &copy;2023 Paul Bayfield.</p>
+                <p lang="en">Copyright &copy;2023 Paul Bayfield, all rights reserved.</p>
+                <p lang="fr">Fait avec ❤️ par Paul Bayfield - <a style="color: rgb(229, 231, 235);"
+                        class="hover-underline" href=".">https://bayfield.dev</a></p>
+                <p lang="en">Made with ❤️ by Paul Bayfield - <a style="color: rgb(229, 231, 235);"
+                        class="hover-underline" href=".">https://bayfield.dev</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

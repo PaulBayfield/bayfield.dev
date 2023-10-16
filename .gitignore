@@ -1,5 +1,18 @@
+# Python temporary files
 __pycache__/
+
+# Environments
+/venv/
+
 .env
+
+# Logs
 logging/
+
+# Server files
 downloads/
 test.py
+
+# IDEs
+.vscode/
+.idea/

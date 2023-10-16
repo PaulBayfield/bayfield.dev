@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ title }} • {{ author }}" />
+    <meta property="og:url" content="https://youtube.bayfield.dev/video?id={{ id }}" />
+    <meta property="og:site_name" content="bayfield.dev">
+    <meta property="og:image" content="{{ image }}">
+    <meta property="og:description" content="">
+    <meta property="og:video:url" content="https://www.youtube.com/embed/{{ id }}">
+    <meta property="og:video:secure_url" content="https://www.youtube.com/embed/{{ id }}">
+    <meta property="og:video:type" content="text/html">
+    <meta property="og:video:width" content="1280">
+    <meta property="og:video:height" content="720">
+
+    <meta content="#ff844f" data-react-helmet="true" name="theme-color" />
+    <meta content="bayfield.dev" data-react-helmet="true" name="author" />
+
+    <meta name="title" content="{{ title }} • {{ author }}">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-title" content="bayfield.dev">
+    <meta name="application-name" content="bayfield.dev">
+    <meta name="msapplication-TileColor" content="#ff844f">
+    <meta name="theme-color" content="#ff844f">
+    <meta name="robots" content="noindex" />
+    <meta name="googlebot" content="noindex" />
+    <meta name="google" content="notranslate" />
+
+    <meta name="twitter:card" content="player">
+    <meta name="twitter:url" content="https://www.youtube.com/watch?v={{ id }}">
+    <meta name="twitter:title" content="{{ title }} • {{ author }}">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="{{ image }}">
+    <meta name="twitter:player" content="https://www.youtube.com/embed/{{ id }}">
+    <meta name="twitter:player:width" content="1280">
+    <meta name="twitter:player:height" content="720">
+
+
+    <title>YT Downloader • Video</title>
+
+    <link href="{{ url_for('.static', filename='youtube/css/video.css') }}" rel="stylesheet" media="screen">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#share').click(function() {
+                var currentPageUrl = window.location.href;
+
+                var tempInput = $('<input>');
+                $('body').append(tempInput);
+
+                tempInput.val(currentPageUrl+"&share=true").select();
+                document.execCommand('copy');
+                tempInput.remove();
+                alert('Page URL copied to your clipboard!');
+            });
+        });
+    </script>
+
+    <script>
+        function downloadBlob(blob, filename) {
+            var a = document.createElement('a');
+            a.download = filename;
+            a.href = blob;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }
+
+
+        function downloadResource() {
+            document.getElementById('download').disabled = true;
+
+            var url = '{{ path }}';
+            var filename = '{{ rawTitle }}';
+
+            fetch(url, {
+                mode: 'no-cors'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        alert('The video/audio file you are trying to download is not available anymore. Please download it again...\n\nNOTE: Files are deleted automatically after {{ delete_period }}!');
+                        window.location.href = '/download?link=https://www.youtube.com/watch?v={{ id }}';
+                        return;
+                    } else {
+                        alert('An error occurred. Please try again later.');
+                        window.location.href = '/download?link=https://www.youtube.com/watch?v={{ id }}';
+                        return;
+                    }
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                let blobUrl = window.URL.createObjectURL(blob);
+                downloadBlob(blobUrl, filename);
+                document.getElementById('download').disabled = false;
+                alert('Started downloading!\nThis can take a while depending on the size of the video/audio file. Be patient please!');
+            })
+            .catch(e => {
+                console.error(e);
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Youtube Downloader</h1>
+        <stats>
+            <img src="{{ image }}">
+            <p id="author"><strong>{{ author }}</strong></p>
+            <a href="{{ url }}" target="_blank">
+                <p id="title">{{ title }}</p>
+            </a>
+            <button id="download" onclick="downloadResource()">Download</button>
+            <button id="share">Share</button>
+            <button id="home" onclick="window.location.href='/download'">Go Back</button>
+        </stats>
+    </div>
+    <div class="logout">
+        <button id="logout" onclick="window.location.href='/logout'">Logout</button>
+    </div>
+</body>
+
+</html>

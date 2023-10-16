@@ -1,28 +1,26 @@
 <div align="center">
-    <img src="static/images/favicon.png" alt="favicon">
+    <img src="website/static/favicon.png" alt="Paul Bayfield">
     <h1><a href="https://bayfield.dev">bayfield.dev</a></h1>
 </div>
 
 
-# ![fr](/static/images/fr.png) Français
+# ![fr](/website/routes/portfolio/static/portfolio/images/fr.png) Français
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Utilisation](#utilisation)
-- [Contributions](#contributions)
 - [Licence](#licence)
 - [Crédits](#credits)
 
-# ![uk](/static/images/uk.png) English
+# ![uk](/website/routes/portfolio/static/portfolio/images/uk.png) English
 - [Introduction](#introduction-1)
 - [Installation](#installation-1)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 - [Credits](#credits-1)
 
 
 ---
-# ![fr](/static/images/fr.png) Français
+# ![fr](/website/routes/portfolio/static/portfolio/images/fr.png) Français
 
 ## Introduction
 
@@ -94,11 +92,6 @@ Le site est composé de plusieurs pages :
 - [saintthibault.bayfield.dev](https://saintthibault.bayfield.dev) : Site du centre équestre de Saint-Thibault.
 
 
-## Contributions
-
-Les contributions sont les bienvenues, n'hésitez pas à ouvrir une `issue` ou une `pull request` si vous souhaitez contribuer au projet.
-
-
 ## Licence
 
 Le projet est sous licence [MIT](https://github.com/PaulBayfield/bayfield.dev/blob/main/LICENSE).
@@ -106,13 +99,12 @@ Le projet est sous licence [MIT](https://github.com/PaulBayfield/bayfield.dev/bl
 
 ## Credits
 
-- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
-- [Flask-Session](https://flask-session.readthedocs.io/en/latest/)
+- [Quart](https://pgjones.gitlab.io/quart/)
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
 - [gunicorn](https://gunicorn.org/)
-- [psycopg2](https://www.psycopg.org/)
-- [flask_sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
+- [asyncpg](https://github.com/MagicStack/asyncpg)
+- [psycopg](https://www.psycopg.org/)
 - [apscheduler](https://apscheduler.readthedocs.io/en/stable/)
 
 Site entièrement réalisé par [Paul Bayfield](https://github.com/PaulBayfield).
@@ -120,7 +112,7 @@ Site entièrement réalisé par [Paul Bayfield](https://github.com/PaulBayfield)
 
 ---
 
-# ![uk](/static/images/uk.png) English
+# ![uk](website/routes/portfolio/static/portfolio/images/uk.png) English
 
 ## Introduction
 
@@ -191,11 +183,6 @@ The website is composed of several pages:
 - [saintthibault.bayfield.dev](https://saintthibault.bayfield.dev) : Website of the Saint-Thibault equestrian center.
 
 
-## Contributing
-
-Contributions are welcome, feel free to open an `issue` or a `pull request` if you want to contribute to the project.
-
-
 ## License
 
 The project is under the [MIT](https://github.com/PaulBayfield/bayfield.dev/blob/main/LICENSE) license.
@@ -203,13 +190,12 @@ The project is under the [MIT](https://github.com/PaulBayfield/bayfield.dev/blob
 
 ## Credits
 
-- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
-- [Flask-Session](https://flask-session.readthedocs.io/en/latest/)
+- [Quart](https://pgjones.gitlab.io/quart/)
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
 - [gunicorn](https://gunicorn.org/)
-- [psycopg2](https://www.psycopg.org/)
-- [flask_sqlalchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
+- [asyncpg](https://github.com/MagicStack/asyncpg)
+- [psycopg](https://www.psycopg.org/)
 - [apscheduler](https://apscheduler.readthedocs.io/en/stable/)
 
 Website entirely made by [Paul Bayfield](https://github.com/PaulBayfield).
