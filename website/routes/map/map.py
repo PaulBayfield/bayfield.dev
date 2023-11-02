@@ -91,7 +91,7 @@ def init(app):
             "type": "ville",
         }
 
-        return Respond.html(await render_template("index.html", markers=markers, last=last, edit=getBoolean(session.get("admin", False)), API_KEY=getEnvironKey("GOOGLE_API_KEY")))
+        return Respond.html(await render_template("map.html", markers=markers, last=last, edit=getBoolean(session.get("admin", False)), API_KEY=getEnvironKey("GOOGLE_API_KEY")))
 
 
     @blueprint.path(app, uri='/login', method=['GET','POST'], subdomain="map", log_file="logging/website.log")
@@ -117,7 +117,7 @@ def init(app):
                 if not data:
                     error = "Invalid credentials. Please try again."
 
-                    return Respond.html(await render_template('login.html', error=error))
+                    return Respond.html(await render_template('map_login.html', error=error))
                 else:
                     session['username'] = username
                     session['admin'] = data["admin"]
@@ -126,7 +126,7 @@ def init(app):
             else:
                 return Respond.redirect(url_for('map.login'))
         else:
-            return Respond.html(await render_template('login.html', error=error))
+            return Respond.html(await render_template('map_login.html', error=error))
         
 
     @blueprint.path(app, uri='/logout', method=['GET','POST'], subdomain="map", log_file="logging/website.log")
