@@ -74,7 +74,7 @@ def init(app):
         else:
             authentified = False
 
-        with open(f"{blueprint.static_folder.replace('static', '')}{blueprint._static_url_path}/json/data.json", "r+", encoding="utf-8") as f:
+        with open(f"data.json", "r+", encoding="utf-8") as f:
             markers_data: list = loads(f.read())
 
         markers = []
@@ -152,7 +152,7 @@ def init(app):
         if not session.get("username") or not session.get("admin"):
             return Respond.html("Vous n'êtes pas autorisé à effectuer cette action.", status_code=403)
 
-        with open(f"{blueprint.static_folder.replace('static', '')}{blueprint._static_url_path}/json/data.json", "r+", encoding="utf-8") as f:
+        with open(f"data.json", "r+", encoding="utf-8") as f:
             data: list = loads(f.read())
 
         form_data = await request.form
@@ -167,7 +167,7 @@ def init(app):
                 }
             )
 
-            with open(f"{blueprint.static_folder.replace('static', '')}{blueprint._static_url_path}/json/data.json", "w+", encoding="utf-8") as f:
+            with open(f"data.json", "w+", encoding="utf-8") as f:
                 f.write(dumps(data, indent=4))
 
             return Respond.json({"status": "OK"})
