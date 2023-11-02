@@ -41,6 +41,16 @@ def init(app):
         return await send_from_directory(f"{app.path}/website/static", 'favicon.ico', mimetype='image/x-icon')
     
 
+    @blueprint.path(app, uri='/favicon.ico', method=['GET','POST'], subdomain="map", log_file="logging/website.log")
+    async def map_favicon():
+        """
+        The favicon of the website.
+
+        :return: The favicon.
+        """
+        return await send_from_directory(f"{app.path}/website/static", 'favicon.ico', mimetype='image/x-icon')
+
+
     @blueprint.path(app, uri='/ping', method=['GET','POST'], log_file="logging/website.log")
     async def ping():
         """

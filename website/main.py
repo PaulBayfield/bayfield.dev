@@ -20,8 +20,8 @@ from asyncpg import create_pool
 if not os.path.exists(f"{str(Path(__file__).parent.parent)}/logging"):
     os.makedirs(f"{str(Path(__file__).parent.parent)}/logging")
 
-if not os.path.exists(f"{str(Path(__file__).parent.parent.parent)}/{getEnvironKey('DOWNLOAD_PATH')}"):
-    os.makedirs(f"{str(Path(__file__).parent.parent.parent)}/{getEnvironKey('DOWNLOAD_PATH')}")
+if not os.path.exists(f"{str(Path(__file__).parent.parent)}/{getEnvironKey('DOWNLOAD_PATH')}"):
+    os.makedirs(f"{str(Path(__file__).parent.parent)}/{getEnvironKey('DOWNLOAD_PATH')}")
 
 
 app = Website(__name__)
@@ -36,6 +36,7 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = False
 
 # Register blueprints
 app.register_blueprint(Route_Internal(app))
+app.register_blueprint(Route_Map(app))
 app.register_blueprint(Route_Portfolio(app))
 app.register_blueprint(Route_SaintThibault(app))
 app.register_blueprint(Route_YouTube(app))

@@ -1,0 +1,90 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    color: black;
+    box-sizing: border-box;
+}
+
+#map {
+    width: 100%;
+    height: 84%;
+}
+
+.controls,
+.filter {
+    font-family: Arial;
+    border-radius: 15px;
+    border: 0px;
+    background-color: white;
+    height: 40px;
+    padding: 10px;
+    color: black;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-size: 15px;
+    font-weight: 300;
+    width: 180px;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter>select {
+    font-family: Arial;
+    background-color: white;
+    height: 30px;
+    color: black;
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 2px;
+    width: 80%;
+}
+
+.btn {
+    font-family: Arial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    border: 0px;
+    background-color: white;
+    height: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    color: black;
+    font-size: 15px;
+    width: 40px;
+}
+
+.btn:hover {
+    background-color: rgb(219, 219, 219);
+}
+
+.controls {
+    text-overflow: ellipsis;
+    padding: 0 11px 0 13px;
+    outline: none;
+}
+
+.filter>select:focus,
+.controls:focus {
+    outline: none;
+}
+
+.title {
+    font-weight: bold;
+}
+
+#infowindow-content {
+    display: none;
+}
+
+#map #infowindow-content {
+    display: inline;
+}
