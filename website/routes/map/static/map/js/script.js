@@ -54,7 +54,7 @@ function initMap(lat, lng, edit) {
             var infowindowContent = document.getElementById("infowindow-content").cloneNode(true);
             var marker = new google.maps.Marker({
                 map: map,
-                icon: `/static/map/map/images/tout.svg`,
+                icon: 'https://bayfield.dev/static/map/map/images/tout.svg',
             });
             marker.setPlace({
                 placeId: place.place_id,
@@ -114,7 +114,7 @@ function placeMarker(map, location) {
         var marker = new google.maps.Marker({
             position: location,
             map: map,
-            icon: `/static/map/map/images/${type}.svg`,
+            icon: `https://bayfield.dev/static/map/map/images/${type}.svg`,
         });
 
         marker.type = type;
@@ -181,7 +181,7 @@ function addInfoWindow(map, marker, message) {
 
 // Fonction qui filtre les marqueurs
 function filterMarkers(category) {
-    document.getElementById('filter-image').src = '/static/map/map/images/' + category + '.svg';
+    document.getElementById('filter-image').src = 'https://bayfield.dev/static/map/map/images/' + category + '.svg';
 
     var visible = [];
     for (let i = 0; i < markers.length; i++) {
@@ -245,9 +245,9 @@ function toggleEdit() {
         let editImg = document.getElementById('edit-img');
 
         if (editMode) {
-            editImg.src = '/static/map/map/images/person.png';
+            editImg.src = 'https://bayfield.dev/static/map/map/images/person.png';
         } else {
-            editImg.src = '/static/map/map/images/edit.png';
+            editImg.src = 'https://bayfield.dev/static/map/map/images/edit.png';
         }
     } else  {
         if (window.confirm("Vous n'êtes pas autorisé à effectuer cette action.\n\nSe connecter ?")) {

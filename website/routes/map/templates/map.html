@@ -10,26 +10,26 @@
     <meta property="og:url" content="http://map.bayfield.dev/" />
 
     <link rel="stylesheet" href="{{ url_for('.static', filename='map/css/style.css') }}">
-    <link rel="stylesheet" href="/static/portfolio/portfolio/css/style.css">
+    <link rel="stylesheet" href="https://bayfield.dev/static/portfolio/portfolio/css/style.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="{{ url_for('.static', filename='map/js/script.js') }}"></script>
-    <script src="/static/portfolio/portfolio/js/script.js" defer></script>
+    <script src="https://bayfield.dev/static/portfolio/portfolio/js/script.js" defer></script>
 
-    <link rel="preload" href="/static/map/map/images/tout.svg" as="image">
-    <link rel="preload" href="/static/map/map/images/monument.svg" as="image">
-    <link rel="preload" href="/static/map/map/images/maison.svg" as="image">
-    <link rel="preload" href="/static/map/map/images/musee.svg" as="image">
-    <link rel="preload" href="/static/map/map/images/zoo.svg" as="image">
-    <link rel="preload" href="/static/map/map/images/parc.svg" as="image">
-    <link rel="preload" href="/static/map/map/images/ville.svg" as="image">
-    <link rel="preload" href="/static/map/map/images/gite.svg" as="image">
-    <link rel="preload" href="/static/map/map/images/restaurant.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/tout.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/monument.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/maison.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/musee.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/zoo.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/parc.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/ville.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/gite.svg" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/restaurant.svg" as="image">
 
-    <link rel="preload" href="/static/map/map/images/edit.png" as="image">
-    <link rel="preload" href="/static/map/map/images/person.png" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/edit.png" as="image">
+    <link rel="preload" href="https://bayfield.dev/static/map/map/images/person.png" as="image">
 </head>
 <body>
     <nav class="flex space-between vertically-centered">
@@ -39,7 +39,7 @@
             <span class="bar"></span>
         </div>
         <a class="nav-logo flex hover-button" href="./">
-            <img src="/static/favicon.png" alt="Paul Bayfield">
+            <img src="https://bayfield.dev/static/favicon.png" alt="Paul Bayfield">
         </a>
         <div class="left nav-links flex vertically-centered">
             <div class="container flex">
@@ -49,7 +49,7 @@
                 <input id="pac-input" class="controls" type="text" placeholder="Entrer un Lieu"/>
 
                 <div class="filter">
-                    <img id="filter-image" src="/static/map/map/images/tout.svg" width="24" height="24" loading="lazy">
+                    <img id="filter-image" src="https://bayfield.dev/static/map/map/images/tout.svg" width="24" height="24" loading="lazy">
 
                     <select id="type" onchange="filterMarkers(this.value);">
                         <option value="tout" selected>Tout</option>
@@ -66,9 +66,9 @@
                 
                 <button class="btn" id="edit-btn" onclick="toggleEdit();" value={{ edit }}>
                     {% if edit == "true" %}
-                    <img id="edit-img" src="/static/map/map/images/person.png" loading="lazy">
+                    <img id="edit-img" src="https://bayfield.dev/static/map/map/images/person.png" loading="lazy">
                     {% else %}
-                    <img id="edit-img" src="/static/map/map/images/edit.png" loading="lazy">
+                    <img id="edit-img" src="https://bayfield.dev/static/map/map/images/edit.png" loading="lazy">
                     {% endif %}
                 </button>
             </div>
@@ -87,7 +87,7 @@
         
             {% for marker in markers %}
             var iconType = "{{ marker['type'] }}";
-            var iconPath = '/static/map/map/images/' + iconType + '.svg';
+            var iconPath = 'https://bayfield.dev/static/map/map/images/' + iconType + '.svg';
         
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng({{ marker['lat'] }}, {{ marker['lon'] }}),

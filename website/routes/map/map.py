@@ -62,7 +62,7 @@ def init(app):
     """
 
 
-    @blueprint.path(app, uri='/map', method=['GET','POST'], subdomain="map", log_file="logging/website.log")
+    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="map", log_file="logging/website.log")
     async def map():
         """
         The home page of the website.
