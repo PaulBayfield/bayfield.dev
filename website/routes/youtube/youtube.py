@@ -4,6 +4,7 @@ from ...components.blueprints import Bp
 from ...components.respond import Respond
 
 from ...utils.environ import getEnvironKey
+from ...utils.db import getUser
 
 from .utils.db import *
 from .utils.worker import Worker
