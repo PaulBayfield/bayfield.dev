@@ -4,6 +4,7 @@ from ...components.blueprints import Bp
 from ...components.respond import Respond
 
 from ...utils.db import getUser
+from ...utils.environ import getEnvironKey
 
 
 from json import loads, dumps
@@ -90,7 +91,7 @@ def init(app):
             "type": "ville",
         }
 
-        return Respond.html(await render_template("index.html", markers=markers, last=last, edit=getBoolean(session.get("admin", False))))
+        return Respond.html(await render_template("index.html", markers=markers, last=last, edit=getBoolean(session.get("admin", False)), API_KEY=getEnvironKey("GOOGLE_API_KEY")))
 
 
     @blueprint.path(app, uri='/login', method=['GET','POST'], subdomain="map", log_file="logging/website.log")
