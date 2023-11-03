@@ -199,7 +199,7 @@ function filterMarkers(category) {
     cluster.clearMarkers();
     cluster.addMarkers(visible);
 
-    if (!editable && visible.length === 0 && (category == 'maison' || category == 'gite')) {
+    if (!editable && visible.length === 0 && (category == 'maison' || category == 'gite' || category == 'restaurant')) {
         if (window.confirm("Cette catégorie est privée. Connectez-vous pour y accéder.\n\nSe connecter ?")) {
             window.location.href='/login';
         };

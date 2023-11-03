@@ -54,13 +54,17 @@
                     <select id="type" onchange="filterMarkers(this.value);">
                         <option value="tout" selected>Tout</option>
                         <option value="monument">Monuments</option>
+                        {% if edit == "true" %}
                         <option value="maison">Maisons</option>
+                        {% endif %}
                         <option value="musee">Musées</option>
                         <option value="zoo">Zoos</option>
                         <option value="parc">Parcs</option>
                         <option value="ville">Villes</option>
+                        {% if edit == "true" %}
                         <option value="gite">Gîtes</option>
                         <option value="restaurant">Restaurants</option>
+                        {% endif %}
                     </select>
                 </div>
                 

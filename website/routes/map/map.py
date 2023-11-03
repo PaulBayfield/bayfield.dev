@@ -79,7 +79,7 @@ def init(app):
 
         markers = []
         for marker in markers_data:
-            if marker["type"] in ['maison', 'gite'] and not authentified:
+            if marker["type"] in ['maison', 'gite', 'restaurant'] and not authentified:
                 continue
 
             markers.append(marker)
