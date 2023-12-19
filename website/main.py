@@ -37,6 +37,7 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = False
 # Register blueprints
 app.register_blueprint(Route_Internal(app))
 app.register_blueprint(Route_Map(app))
+app.register_blueprint(Route_Media(app))
 app.register_blueprint(Route_Portfolio(app))
 app.register_blueprint(Route_SaintThibault(app))
 app.register_blueprint(Route_YouTube(app))
