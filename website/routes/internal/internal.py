@@ -11,27 +11,27 @@ def init(app):
     )
 
 
-    @blueprint.api_endpoint(app, uri="/<path:path>", method=['GET','POST'], log_file="/logging/website.log")
+    @blueprint.path(app, uri="/<path:path>", method=['GET','POST'], log_file="/logging/website.log")
     async def catch_all(path):
         return Respond.invalid(key="cause", data=f"Route {path} not found!", success=False)
     
 
-    @blueprint.api_endpoint(app, uri="/<path:path>", method=['GET','POST'], subdomain="saintthibault", log_file="/logging/website.log")
+    @blueprint.path(app, uri="/<path:path>", method=['GET','POST'], subdomain="saintthibault", log_file="/logging/website.log")
     async def catch_all_saintthibault(path):
         return Respond.invalid(key="cause", data=f"Route {path} not found!", success=False)
 
 
-    @blueprint.api_endpoint(app, uri="/<path:path>", method=['GET','POST'], subdomain="youtube", log_file="/logging/website.log")
+    @blueprint.path(app, uri="/<path:path>", method=['GET','POST'], subdomain="youtube", log_file="/logging/website.log")
     async def catch_all_youtube(path):
         return Respond.invalid(key="cause", data=f"Route {path} not found!", success=False)
 
 
-    @blueprint.api_endpoint(app, uri="/<path:path>", method=['GET','POST'], subdomain="map", log_file="/logging/website.log")
+    @blueprint.path(app, uri="/<path:path>", method=['GET','POST'], subdomain="map", log_file="/logging/website.log")
     async def catch_all_map(path):
         return Respond.invalid(key="cause", data=f"Route {path} not found!", success=False)
 
 
-    @blueprint.api_endpoint(app, uri="/<path:path>", method=['GET','POST'], subdomain="media", log_file="/logging/website.log")
+    @blueprint.path(app, uri="/<path:path>", method=['GET','POST'], subdomain="media", log_file="/logging/website.log")
     async def catch_all_media(path):
         return Respond.invalid(key="cause", data=f"Route {path} not found!", success=False)
 
