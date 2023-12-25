@@ -30,7 +30,7 @@ app = Website(__name__)
 app.config['SERVER_NAME'] = getEnvironKey('DOMAIN_NAME')
 app.config['SECRET_KEY'] = getEnvironKey('FLASK_SECRET_KEY', str(uuid4()))
 app.config['SESSION_COOKIE_DOMAIN'] = getEnvironKey('SESSION_COOKIE_DOMAIN')
-app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # 10 Mb limit
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024 # 100 MB limit
 app.config['EXPLAIN_TEMPLATE_LOADING'] = False
 
 
@@ -38,6 +38,7 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = False
 app.register_blueprint(Route_Internal(app))
 app.register_blueprint(Route_Map(app))
 app.register_blueprint(Route_Media(app))
+app.register_blueprint(Route_PDF(app))
 app.register_blueprint(Route_Portfolio(app))
 app.register_blueprint(Route_SaintThibault(app))
 app.register_blueprint(Route_YouTube(app))
