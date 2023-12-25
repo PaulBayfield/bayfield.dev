@@ -10,7 +10,7 @@ import functools
 from typing import Coroutine
 
 
-def APIRoute(self, app, uri, method: str or list = "GET", log_file: str = None, subdomain: str = None):
+def APIRoute(self, app, uri, method: list = ["GET"], log_file: str = None, subdomain: str = None):
     """
     Decorator for Web routes
 
@@ -22,7 +22,7 @@ def APIRoute(self, app, uri, method: str or list = "GET", log_file: str = None, 
     :param subdomain: The subdomain to use for the endpoint
     """
     def decorator(func):
-        @self.route(rule=uri, methods=list(method), subdomain=subdomain)
+        @self.route(rule=uri, methods=method, subdomain=subdomain)
         @functools.wraps(func)
         async def decorated_function(*args, **kwargs):
             receive_time = time.time()

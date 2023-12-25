@@ -36,7 +36,7 @@ class Website(Quart):
             return Respond.redirect(redirect_url=url_for('portfolio.home'))
 
 
-    def route(self, path, method: str or list = "GET", log_file: str = None, subdomain: str = None):
+    def route(self, path, method: list = ["GET"], log_file: str = None, subdomain: str = None):
         """
         Decorator for Web routes
 

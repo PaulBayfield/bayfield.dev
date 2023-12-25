@@ -22,7 +22,7 @@ class Bp(Blueprint):
         Blueprint.__init__(self, name=name, import_name=import_name, template_folder=template_folder, static_folder=static_folder, static_url_path=static_url_path)
 
 
-    def path(self, app, uri, method: str or list = "GET", log_file: str = None, subdomain: str = None):
+    def path(self, app, uri, method: list = ["GET"], log_file: str = None, subdomain: str = None):
         """
         Decorator for Web routes
 
