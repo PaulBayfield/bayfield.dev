@@ -45,7 +45,7 @@ app.register_blueprint(Route_YouTube(app))
 
 
 # Create the instance for the Schedule.
-app.sch: Schedule = Schedule(
+app.sch = Schedule(
     directory=f"{os.getcwd()}{getEnvironKey('DOWNLOAD_PATH')}",
     maxSave=int(getEnvironKey('MAX_SAVE'))
 )

@@ -8,15 +8,7 @@
 
     <meta property="og:title" content="Paul Bayfield • Carte" />
     <meta property="og:url" content="http://map.bayfield.dev/" />
-
-    <link rel="stylesheet" href="{{ url_for('.static', filename='map/css/style.css') }}">
-    <link rel="stylesheet" href="https://bayfield.dev/static/portfolio/portfolio/css/style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="{{ url_for('.static', filename='map/js/script.js') }}"></script>
-    <script src="https://bayfield.dev/static/portfolio/portfolio/js/script.js" defer></script>
+    <meta property="og:description" content="Carte interactive des lieux visités par Paul Bayfield." />
 
     <link rel="preload" href="https://bayfield.dev/static/map/map/images/tout.svg" as="image">
     <link rel="preload" href="https://bayfield.dev/static/map/map/images/monument.svg" as="image">
@@ -28,66 +20,188 @@
     <link rel="preload" href="https://bayfield.dev/static/map/map/images/gite.svg" as="image">
     <link rel="preload" href="https://bayfield.dev/static/map/map/images/restaurant.svg" as="image">
 
-    <link rel="preload" href="https://bayfield.dev/static/map/map/images/edit.png" as="image">
-    <link rel="preload" href="https://bayfield.dev/static/map/map/images/person.png" as="image">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='map/css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet">
+
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="{{ url_for('.static', filename='map/js/script.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("*[lang='fr']").show();
+            $("*[lang='en']").hide();
+            $("html").show();
+
+            $("*[id='mode-dark']").show();
+            $("*[id='mode-light']").hide();
+
+            $("#switch-lang").click(function () {
+                $("*[lang='fr']").toggle();
+                $("*[lang='en']").toggle();
+                $("html").show();
+            });
+
+            $("#switch-mode").click(function () {
+                $("*[id='mode-dark']").toggle();
+                $("*[id='mode-light']").toggle();
+
+                if (document.documentElement.getAttribute('data-theme') == 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    $("#mode").removeAttr("src").attr("src", "light.png");
+                    toggleStyle(window.map, 'light');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    $("#mode").removeAttr("src").attr("src", "dark.png");
+                    toggleStyle(window.map, 'dark');
+                }
+            });
+
+            const hamburger = $(".hamburger");
+            const year = $("#annee");
+            const header = $("#header");
+
+            var isOpen = false;
+
+            hamburger.on("click", function() {
+                if (!isOpen) {
+                    $("body").addClass('noscroll');
+                } else {
+                    $("body").removeClass('noscroll');
+                }
+                isOpen = !isOpen;
+                header.toggleClass("active");
+            });
+
+            $(".links > *").on("click", function() {
+                if (!$(event.target).is("select") && !$(event.target).is("input")) {
+                    $("body").removeClass('noscroll');
+                    isOpen = false;
+                    header.removeClass("active");
+                }
+            });
+            
+            $(window).on("load", function() {
+                year.text(new Date().getFullYear());
+            });
+
+            toggleEdit(true);
+            toggleEdit(true);
+        });
+    </script>
 </head>
 <body>
-    <nav class="flex space-between vertically-centered">
-        <div class="left menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <a class="nav-logo flex hover-button" href="./">
-            <img src="https://bayfield.dev/static/favicon.png" alt="Paul Bayfield">
-        </a>
-        <div class="left nav-links flex vertically-centered">
-            <div class="container flex">
-                <h1 class="nav-title">Paul Bayfield</h1>
-            </div>
-            <div class="container flex vertically-centered">
-                <input id="pac-input" class="controls" type="text" placeholder="Entrer un Lieu"/>
+    <header id="header">
+        <nav>
+            <a href="https://bayfield.dev" class="logo" >
+                <img src="{{ url_for('static', filename='favicon.png') }}">
+            </a>
 
-                <div class="filter">
-                    <img id="filter-image" src="https://bayfield.dev/static/map/map/images/tout.svg" width="24" height="24" loading="lazy">
+            <div class="links">
+                <div class="row">
+                    <!-- Français -->
+                    <input id="pac-input" class="controls" type="text" placeholder="Entrer un lieu" lang="fr"/>
 
-                    <select id="type" onchange="filterMarkers(this.value);">
-                        <option value="tout" selected>Tout</option>
-                        <option value="monument">Monuments</option>
-                        {% if edit == "true" %}
-                        <option value="maison">Maisons</option>
-                        {% endif %}
-                        <option value="musee">Musées</option>
-                        <option value="zoo">Zoos</option>
-                        <option value="parc">Parcs</option>
-                        <option value="ville">Villes</option>
-                        {% if edit == "true" %}
-                        <option value="gite">Gîtes</option>
-                        <option value="restaurant">Restaurants</option>
-                        {% endif %}
-                    </select>
+                    <!-- English -->
+                    <input id="pac-input" class="controls" type="text" placeholder="Enter a location" lang="en"/>
+
+                    <div class="filter">
+                        <label for="type" class="sr-only">
+                            <img id="filter-image" src="https://bayfield.dev/static/map/map/images/tout.svg" width="24" height="24" loading="lazy">
+                        </label>
+
+                        <!-- Français -->
+                        <select id="type" onchange="filterMarkers(this.value);" lang="fr">
+                            <option value="tout" selected>Tout</option>
+                            <option value="monument">Monuments</option>
+                            {% if edit == "true" %}
+                            <option value="maison">Maisons</option>
+                            {% endif %}
+                            <option value="musee">Musées</option>
+                            <option value="zoo">Zoos</option>
+                            <option value="parc">Parcs</option>
+                            <option value="ville">Villes</option>
+                            {% if edit == "true" %}
+                            <option value="gite">Gîtes</option>
+                            <option value="restaurant">Restaurants</option>
+                            {% endif %}
+                        </select>
+
+                        <!-- English -->
+                        <select id="type" onchange="filterMarkers(this.value);" lang="en">
+                            <option value="tout" selected>All</option>
+                            <option value="monument">Monuments</option>
+                            {% if edit == "true" %}
+                            <option value="maison">Houses</option>
+                            {% endif %}
+                            <option value="musee">Museums</option>
+                            <option value="zoo">Zoos</option>
+                            <option value="parc">Parks</option>
+                            <option value="ville">Cities</option>
+                            {% if edit == "true" %}
+                            <option value="gite">Cottages</option>
+                            <option value="restaurant">Restaurants</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    
+                    <button class="edit" id="edit-btn" onclick="toggleEdit();" value={{ edit }}>
+                        <svg id="edit-img-person" width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 15C13.625 15 12.4479 14.5104 11.4688 13.5312C10.4896 12.5521 10 11.375 10 10C10 8.625 10.4896 7.44792 11.4688 6.46875C12.4479 5.48958 13.625 5 15 5C16.375 5 17.5521 5.48958 18.5312 6.46875C19.5104 7.44792 20 8.625 20 10C20 11.375 19.5104 12.5521 18.5312 13.5312C17.5521 14.5104 16.375 15 15 15ZM5 25V21.5C5 20.7917 5.1825 20.1404 5.5475 19.5463C5.9125 18.9521 6.39667 18.4992 7 18.1875C8.29167 17.5417 9.60417 17.0571 10.9375 16.7338C12.2708 16.4104 13.625 16.2492 15 16.25C16.375 16.25 17.7292 16.4117 19.0625 16.735C20.3958 17.0583 21.7083 17.5425 23 18.1875C23.6042 18.5 24.0887 18.9533 24.4538 19.5475C24.8188 20.1417 25.0008 20.7925 25 21.5V25H5Z"/>
+                        </svg>     
+                       
+                        <div id="edit-img-person-text">
+                            <!-- Français -->
+                            <span lang="fr">Voir</span>
+
+                            <!-- English -->
+                            <span lang="en">View</span>
+                        </div>
+
+                        <svg id="edit-img-edit" width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.75 21.8251V25.6251C3.75 25.9751 4.025 26.2501 4.375 26.2501H8.175C8.3375 26.2501 8.5 26.1876 8.6125 26.0626L22.2625 12.4251L17.575 7.73763L3.9375 21.3751C3.8125 21.5001 3.75 21.6501 3.75 21.8251ZM25.8875 8.80013C26.0034 8.68448 26.0953 8.54712 26.158 8.39591C26.2208 8.24469 26.2531 8.08259 26.2531 7.91888C26.2531 7.75517 26.2208 7.59306 26.158 7.44185C26.0953 7.29063 26.0034 7.15327 25.8875 7.03763L22.9625 4.11263C22.8469 3.99675 22.7095 3.90481 22.5583 3.84208C22.4071 3.77936 22.245 3.74707 22.0813 3.74707C21.9175 3.74707 21.7554 3.77936 21.6042 3.84208C21.453 3.90481 21.3156 3.99675 21.2 4.11263L18.9125 6.40013L23.6 11.0876L25.8875 8.80013Z"/>
+                        </svg>
+
+                        <div id="edit-img-edit-text">
+                            <!-- Français -->
+                            <span lang="fr">Editer</span>
+
+                            <!-- English -->
+                            <span lang="en">Edit</span>
+                        </div>
+                    </button>
                 </div>
-                
-                <button class="btn" id="edit-btn" onclick="toggleEdit();" value={{ edit }}>
-                    {% if edit == "true" %}
-                    <img id="edit-img" src="https://bayfield.dev/static/map/map/images/person.png" loading="lazy">
-                    {% else %}
-                    <img id="edit-img" src="https://bayfield.dev/static/map/map/images/edit.png" loading="lazy">
-                    {% endif %}
-                </button>
+                <div class="small-row">
+                    <button class="btn" id="switch-lang">
+                        <img src="{{ url_for('static', filename='images/uk.png') }}" lang="en">
+                        <img src="{{ url_for('static', filename='images/fr.png') }}" lang="fr">
+                    </button>
+                    <div class="divider"></div>
+                    <button class="btn" id="switch-mode">
+                        <img src="{{ url_for('static', filename='images/light.png') }}" id="mode-dark">
+                        <img src="{{ url_for('static', filename='images/dark.png') }}" id="mode-light">
+                    </button>
+                </div>
             </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <section class="map">
+        <div id="infowindow-content-default">
+            <span id="place-name" class="title"></span><br>
+            <span id="place-address"></span>
         </div>
-    </nav>
-
-    <div id="map"></div>
-    <div id="infowindow-content">
-        <span id="place-name" class="title"></span><br>
-        <span id="place-address"></span>
-    </div>
+        <div id="map"></div>
+    </section>
 
     <script>
         function loadMap() {
-            var map = initMap({{ last['lat'] }}, {{ last['lon'] }}, {{ edit }});
+            const map = initMap({{ last['lat'] }}, {{ last['lon'] }}, {{ edit }});
+            window.map = map;
         
             {% for marker in markers %}
             var iconType = "{{ marker['type'] }}";
@@ -110,7 +224,7 @@
     </script>
 
     <script
-        src="https://maps.googleapis.com/maps/api/js?key={{ API_KEY }}&callback=loadMap&libraries=places&v=weekly"
+        src="https://maps.googleapis.com/maps/api/js?key={{ API_KEY }}&callback=loadMap&libraries=places&v=weekly&loading=async"
         defer
     ></script>
 </body>

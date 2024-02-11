@@ -16,3 +16,6 @@ test.py
 # IDEs
 .vscode/
 .idea/
+
+# Tests
+tests/

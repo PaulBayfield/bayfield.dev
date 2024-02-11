@@ -47,11 +47,15 @@ function initMap(lat, lng, edit) {
             openInfoWindow.close();
         }
 
+        closeMenu();
+
         geocoder.geocode({ placeId: place.place_id })
         .then(({ results }) => {
             // Création du marqueur
             var infoWindow = new google.maps.InfoWindow();
-            var infowindowContent = document.getElementById("infowindow-content").cloneNode(true);
+            var infowindowContent = document.getElementById("infowindow-content-default").cloneNode(true);
+            // Changement de l'ID
+            infowindowContent.id = "infowindow-content";
             var marker = new google.maps.Marker({
                 map: map,
                 icon: 'https://bayfield.dev/static/map/map/images/tout.svg',
@@ -198,12 +202,21 @@ function filterMarkers(category) {
 
     cluster.clearMarkers();
     cluster.addMarkers(visible);
+    closeMenu();
 
     if (!editable && visible.length === 0 && (category == 'maison' || category == 'gite' || category == 'restaurant')) {
         if (window.confirm("Cette catégorie est privée. Connectez-vous pour y accéder.\n\nSe connecter ?")) {
             window.location.href='/login';
         };
     }
+}
+
+// Fermeture du menu
+function closeMenu() {
+    const header = $("#header");
+    $("body").removeClass('noscroll');
+    isOpen = false;
+    header.removeClass("active");
 }
 
 // Fonction qui crée un cluster
@@ -238,23 +251,142 @@ function createCluster(map, markers) {
 }
 
 // Fonction qui active/désactive le mode édition
-function toggleEdit() {
-    if (editable) {
-        editMode = !editMode;
+function toggleEdit(check = false) {
+    if (editable || check) {
+        if (!check) {
+            editMode = !editMode;
+        }
 
-        let editImg = document.getElementById('edit-img');
+        const editImgPerson = document.getElementById('edit-img-person');
+        const editImgEdit = document.getElementById('edit-img-edit');
+
+        const editImgPersonText = document.getElementById('edit-img-person-text');
+        const editImgEditText = document.getElementById('edit-img-edit-text');
 
         if (editMode) {
-            editImg.src = 'https://bayfield.dev/static/map/map/images/person.png';
+            editImgPerson.style.display = '';
+            editImgEdit.style.display = 'none';
+
+            editImgPersonText.style.display = '';
+            editImgEditText.style.display = 'none';
         } else {
-            editImg.src = 'https://bayfield.dev/static/map/map/images/edit.png';
+            editImgPerson.style.display = 'none';
+            editImgEdit.style.display = '';
+
+            editImgPersonText.style.display = 'none';
+            editImgEditText.style.display = '';
         }
     } else  {
-        if (window.confirm("Vous n'êtes pas autorisé à effectuer cette action.\n\nSe connecter ?")) {
-            window.location.href='/login';
+        if (window.confirm("Vous n'êtes pas autorisé à effectuer cette action. Unique les administrateurs peuvent ajouter des marqueurs.\n\nSe connecter ?")) {
+            window.location.href='http://localhost/login?redirect=map';
         };
     }
 }
+
+// Changement du style de la carte
+function toggleStyle(map, mode) {
+    if (mode === 'dark') {
+        map.setOptions({ styles: [
+            { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+            { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+            {
+                featureType: "administrative.locality",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#d59563" }],
+            },
+            {
+                featureType: "poi",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#d59563" }],
+            },
+            {
+                featureType: "poi.park",
+                elementType: "geometry",
+                stylers: [{ color: "#263c3f" }],
+            },
+            {
+                featureType: "poi.park",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#6b9a76" }],
+            },
+            {
+                featureType: "road",
+                elementType: "geometry",
+                stylers: [{ color: "#38414e" }],
+            },
+            {
+                featureType: "road",
+                elementType: "geometry.stroke",
+                stylers: [{ color: "#212a37" }],
+            },
+            {
+                featureType: "road",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#9ca5b3" }],
+            },
+            {
+                featureType: "road.highway",
+                elementType: "geometry",
+                stylers: [{ color: "#746855" }],
+            },
+            {
+                featureType: "road.highway",
+                elementType: "geometry.stroke",
+                stylers: [{ color: "#1f2835" }],
+            },
+            {
+                featureType: "road.highway",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#f3d19c" }],
+            },
+            {
+                featureType: "transit",
+                elementType: "geometry",
+                stylers: [{ color: "#2f3948" }],
+            },
+            {
+                featureType: "transit.station",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#d59563" }],
+            },
+            {
+                featureType: "water",
+                elementType: "geometry",
+                stylers: [{ color: "#17263c" }],
+            },
+            {
+                featureType: "water",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#515c6d" }],
+            },
+            {
+                featureType: "water",
+                elementType: "labels.text.stroke",
+                stylers: [{ color: "#17263c" }],
+            },
+            {
+                featureType: "administrative",
+                elementType: "geometry",
+                stylers: [{ color: "#2f3948" }],
+            },
+            {
+                featureType: "administrative",
+                elementType: "labels.text.fill",
+                stylers: [{ color: "#d59563" }],
+            },
+            {
+                featureType: "administrative",
+                elementType: "labels.text.stroke",
+                stylers: [{ color: "#17263c" }],
+            },
+          ] 
+        });
+    } else {
+        map.setOptions({ styles: [] });
+    }
+}
+
 
 window.markers = markers;
 window.initMap = initMap;

@@ -1,9 +1,8 @@
-from quart import render_template, url_for, request, session
+from quart import render_template, request, session
 
 from ...components.blueprints import Bp
 from ...components.respond import Respond
 
-from ...utils.db import getUser
 from ...utils.environ import getEnvironKey
 
 
@@ -51,10 +50,6 @@ def init(app):
     ┃                                                                                                                      ┃
     ┃  • map.bayfield.dev                                                                                                  ┃
     ┃    > Places I've visited                                                                                             ┃
-    ┃  • map.bayfield.dev/login                                                                                            ┃
-    ┃    > Login                                                                                                           ┃
-    ┃  • map.bayfield.dev/logout                                                                                           ┃
-    ┃    > Logout                                                                                                          ┃
     ┃  • map.bayfield.dev/add                                                                                              ┃
     ┃    > (Backend) Add a marker                                                                                          ┃
     ┃                                                                                                                      ┃
@@ -94,54 +89,6 @@ def init(app):
         return Respond.html(await render_template("map.html", markers=markers, last=last, edit=getBoolean(session.get("admin", False)), API_KEY=getEnvironKey("GOOGLE_API_KEY")))
 
 
-    @blueprint.path(app, uri='/login', method=['GET','POST'], subdomain="map", log_file="logging/website.log")
-    async def login():
-        """
-        Login page.
-        
-        :return: The rendered template.
-        """
-        if session.get("username"):
-            return Respond.redirect(url_for('map.map'))
-
-        error = None
-        if request.method == 'POST':
-            form_data = await request.form
-
-            if form_data.get('username', None) and form_data.get('password', None):
-                username = form_data.get('username')
-                password = form_data.get('password')
-
-                data = await getUser(app.pool, username, password)
-
-                if not data:
-                    error = "Invalid credentials. Please try again."
-
-                    return Respond.html(await render_template('map_login.html', error=error))
-                else:
-                    session['username'] = username
-                    session['admin'] = data["admin"]
-
-                    return Respond.redirect(url_for('map.map'))
-            else:
-                return Respond.redirect(url_for('map.login'))
-        else:
-            return Respond.html(await render_template('map_login.html', error=error))
-        
-
-    @blueprint.path(app, uri='/logout', method=['GET','POST'], subdomain="map", log_file="logging/website.log")
-    async def logout():
-        """
-        Logout page.
-        
-        :return: The rendered template.
-        """
-        if session.get("username"):
-            session.clear()
-
-        return Respond.redirect(url_for('map.map'))
-    
-
     @blueprint.path(app, uri='/add', method=['POST'], subdomain="map", log_file="logging/website.log")
     async def add():
         """
@@ -173,6 +120,6 @@ def init(app):
             return Respond.json({"status": "OK"})
         else:
             return Respond.html(f"Le type \"{form_data['type'].lower()}\" n'existe pas.", status_code=400)
-    
+
 
     return blueprint

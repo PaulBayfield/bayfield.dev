@@ -4,7 +4,7 @@ from .db import *
 
 import asyncio
 
-from typing import Literal
+from typing import Literal, AsyncGenerator
 from json import dumps
 
 
@@ -13,7 +13,7 @@ class Tasks:
         self.app = app
 
 
-    async def generate(self, uuid: str) -> str:
+    async def generate(self, uuid: str) -> AsyncGenerator[str, None]:
         """
         A function that generates the progress of the download.
         
@@ -55,7 +55,7 @@ class Tasks:
                 run = False
             else:
                 # WARNING: DO NOT REMOVE THE LINE BELOW OR THE SERVER WILL SEND THOUSANDS OF REQUESTS PER SECOND!
-                await asyncio.sleep(0.9)
+                await asyncio.sleep(0.6)
 
 
     def getWorker(self, link: str, ydl_opts: dict, uuid: str, format: Literal["mp3", "mp4", "wav"], admin: bool, max_duration:int, path: str) -> Worker:

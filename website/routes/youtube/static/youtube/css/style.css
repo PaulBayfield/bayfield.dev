@@ -1,0 +1,614 @@
+:root {
+    color-scheme: light;
+    --primary: #ffffff;
+    --secondary: #ffffff40;
+    --text: #111827;
+    --gradient-1: #F3F3F3;
+    --gradient-2: #4B5563;
+    --background-1: #0000001a;
+    --background-2: #F3F4F6;
+    --background-3: #F9FAFB;
+    --extra-1: #BEBEBE;
+    --extra-2: #EBEAF0;
+    --extra-3: #00000042;
+    --border: #DDDDDD;
+    --brightness: 90%;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --primary: #23272a;
+    --secondary: #211e1e40;
+    --text: #ffffff;
+    --gradient-1: #2c2f33;
+    --gradient-2: #d6d6d6;
+    --background-1: #ffffff1a;
+    --background-2: #434546;
+    --background-3: #1f2124;
+    --extra-1: #3f3f3f;
+    --extra-2: #626262;
+    --extra-3: #ffffff42;
+    --border: #000000;
+    --brightness: 10%;
+}
+
+
+:root::-webkit-scrollbar {
+    width: 10px;
+}
+
+:root::-webkit-scrollbar-thumb {
+    background-color: var(--extra-1);
+}
+
+:root::-webkit-scrollbar-track {
+    background-color: var(--extra-2);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    border: 0 solid;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: Inter;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+    transition: all 0.3s ease-in-out;
+}
+
+body.noscroll {
+    overflow-y: hidden;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    padding: 16px 10px;
+    align-items: center;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    border-radius: 0 0 15px 15px;
+    border-bottom: 1px solid var(--border);
+    background: var(--secondary);
+    backdrop-filter: blur(10px);
+}
+
+header.active {
+    backdrop-filter: unset;
+}
+
+header > nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+header > nav > .logo {
+    z-index: 3;
+}
+
+header > nav > .logo > img {
+    width: 60px;
+    height: 60px;
+}
+
+header > nav > .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.25s;
+    position: fixed;
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+    transition: none;
+}
+
+header > nav > .links > * {
+    z-index: 2;
+}
+
+header > nav > .links > *:not(:last-child) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text);
+    text-decoration: none;
+}
+
+header.active > nav > .links {
+    visibility: visible;
+    backdrop-filter: blur(20px) brightness(var(--brightness));
+    opacity: 1;
+}
+
+header > nav > .links > .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+header.active > nav > .links > .row {
+    display: flex;
+    flex-direction: column;
+}
+
+header > nav > .links > .row > a {
+    color: var(--text);
+
+    font-size: 16px;
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+header > nav > .links > .small-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
+
+header > nav >.links > .small-row > .divider {
+    width: 2px;
+    height: 24px;
+    background: var(--extra-3);
+}
+
+header > nav > .hamburger {
+    display: block;
+    cursor: pointer;
+    z-index: 2;
+}
+
+header > nav > .hamburger > * {
+    display: block;
+    width: 48px;
+    height: 3px;
+    margin: 7.5px auto;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--text);
+}
+
+header.active > nav > .hamburger .bar:nth-child(2) {
+    opacity: 0;
+}
+
+header.active > nav > .hamburger .bar:nth-child(1) {
+    transform: translateY(10.5px) rotate(45deg);
+}
+
+header.active > nav > .hamburger .bar:nth-child(3) {
+    transform: translateY(-10.5px) rotate(-45deg);
+}
+
+header .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-duration: .15s;
+    cursor: pointer;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    background-color: transparent;
+    background-image: none;
+    text-transform: none;
+}
+
+header .btn:hover {
+    background-color: var(--gradient-1);
+}
+
+header .btn:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 100px 10px;
+    width: 100%;
+    height: 100vh;
+    background: var(--background);
+}
+
+section > .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+    padding: 50px 10px;
+    border-radius: 20px;
+    background: var(--primary);
+    box-shadow: 0px 4px 6px var(--background-1);
+}
+
+section > .container > h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+section > .container > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+section > .container > form > input[type="url"] {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: var(--background-2);
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    background-color: var(--background-3);
+    border: 2px solid var(--extra-1);
+    outline: none;
+}
+
+section > .container > form > input[type="url"]:hover,
+section > .container > form > input[type="url"]:focus, 
+section > .container > form > input[type="url"]:focus-visible {
+    background-color: var(--extra-1);
+    border: 2px solid var(--background-3);
+}
+
+section > .container > form > select {
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    background-color: var(--background-3);
+    border: 2px solid var(--extra-1);
+    outline: none;
+}
+
+section > .container > form > select:hover,
+section > .container > form > select:focus,
+section > .container > form > select:focus-visible {
+    background-color: var(--extra-1);
+    border: 2px solid var(--background-3);
+}
+
+section > .container > form > .additional {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+section > .container > form > input[type="submit"],
+section > .container > form > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    height: 40px;
+    width: 80%;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-duration: .15s;
+    background-color: var(--background-3);
+    border: 2px solid var(--extra-1);
+    outline: none;
+}
+
+section > .container > form > input[type="submit"]:hover,
+section > .container > form > input[type="submit"]:focus,
+section > .container > form > input[type="submit"]:focus-visible,
+section > .container > form > button:hover,
+section > .container > form > button:focus,
+section > .container > form > button:focus-visible {
+    background-color: var(--extra-1);
+    border: 2px solid var(--background-3);
+}
+
+section > .container > .video {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+section > .container > .video > img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    border-radius: 20px;
+    background: var(--background-2);
+    box-shadow: 0px 4px 6px var(--background-1);
+    transition: all 0.25s ease-in-out;
+}
+
+section > .container > .video > img:hover {
+    transform: scale(1.02);
+}
+
+section > .container > .video > .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+section > .container > .video > .title > .author {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+section > .container > .video > .title > .name {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+section > .container > .video > .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+section > .container > .video > .buttons > .primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    height: 40px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-duration: .15s;
+    background-color: var(--extra-1);
+    border: 2px solid var(--background-3);
+    outline: none;
+}
+
+section > .container > .video > .buttons > .primary:hover,
+section > .container > .video > .buttons > .primary:focus,
+section > .container > .video > .buttons > .primary:focus-visible {
+    background-color: var(--background-3);
+    border: 2px solid var(--extra-1);
+}
+
+section > .container > .video > .buttons > .secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    height: 40px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-duration: .15s;
+    background-color: var(--background-3);
+    border: 2px solid var(--extra-1);
+    outline: none;
+}
+
+section > .container > .video > .buttons > .secondary:hover,
+section > .container > .video > .buttons > .secondary:focus,
+section > .container > .video > .buttons > .secondary:focus-visible {
+    background-color: var(--extra-1);
+    border: 2px solid var(--background-3);
+}
+
+progress-bar-stripes {
+    from {
+        background-position: 40px 0
+    }
+
+    to {
+        background-position: 0 0
+    }
+}
+
+@-o-keyframes progress-bar-stripes {
+    from {
+        background-position: 40px 0
+    }
+
+    to {
+        background-position: 0 0
+    }
+}
+
+@keyframes progress-bar-stripes {
+    from {
+        background-position: 40px 0
+    }
+
+    to {
+        background-position: 0 0
+    }
+}
+
+.progress {
+    height: 20px;
+    width: 80%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1)
+}
+
+.progress-bar {
+    float: left;
+    width: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    background-color: #428bca;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+    -webkit-transition: width .6s ease;
+    -o-transition: width .6s ease;
+    transition: width .6s ease
+}
+
+.progress-bar,
+.progress-bar-striped {
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    -webkit-background-size: 40px 40px;
+    background-size: 40px 40px
+}
+
+.progress.active .progress-bar,
+.progress-bar.active {
+    -webkit-animation: progress-bar-stripes 2s linear infinite;
+    -o-animation: progress-bar-stripes 2s linear infinite;
+    animation: progress-bar-stripes 2s linear infinite
+}
+
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"] {
+    min-width: 30px
+}
+
+.progress-bar[aria-valuenow="0"] {
+    min-width: 30px;
+    color: #777;
+    background-color: transparent;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.progress-striped {
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)
+}
+
+@media (min-width: 500px) {
+    header > nav {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (min-width: 1000px) {
+    header > nav {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    header > nav > .links {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        visibility: visible;
+        position: unset;
+        text-align: unset;
+        width: 100%;
+        height: 100%;
+        margin-left: unset;
+        opacity: 100%;
+    }
+
+    header > nav > .hamburger {
+        display: none;
+    }
+
+    header {
+        padding: 16px 50px;
+    }
+
+    section > .container {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1100px) {
+    header {
+        padding: 16px 100px;
+    }
+}
+
+@media (min-width: 1300px) {
+    header {
+        padding: 16px 200px;
+    }
+}
+
+@media (min-width: 1600px) {
+    header {
+        padding: 16px 250px;
+    }
+}
+
+@media (min-width: 1920px) {
+    header {
+        padding: 16px 300px;
+    }
+}
+
+
+@media (min-width: 2000px) {
+    header {
+        padding: 16px 20%;
+    }
+}

@@ -1,4 +1,10 @@
-def format_seconds(seconds):
+def format_seconds(seconds: int) -> str:
+    """
+    Formats seconds into a human readable string
+    
+    :param seconds: The number of seconds to format
+    :return: A human readable string
+    """
     days, remainder = divmod(seconds, 86400)
     hours, remainder = divmod(remainder, 3600)
     minutes, seconds = divmod(remainder, 60)

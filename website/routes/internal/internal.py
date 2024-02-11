@@ -1,7 +1,9 @@
-from quart import send_from_directory, url_for
+from quart import send_from_directory, render_template, url_for, request, session
 
 from ...components.blueprints import Bp
 from ...components.respond import Respond
+
+from ...utils.db import getUser
 
 
 def init(app):
@@ -9,6 +11,67 @@ def init(app):
         name='internal',
         import_name=__name__,
     )
+
+
+    @blueprint.path(app, uri='/login', method=['GET','POST'], log_file="logging/website.log")
+    async def login():
+        """
+        Login page.
+        
+        :return: The rendered template.
+        """
+        args = request.args
+        if args.get("redirect", None):
+            if args.get("redirect") == "home":
+                redirect = url_for('portfolio.home')
+            elif args.get("redirect") == "map":
+                redirect = url_for('map.map')
+            elif args.get("redirect") == "youtube":
+                redirect = url_for('youtube.home')
+        else:
+            redirect = url_for('portfolio.home')
+
+        if session.get("username"):
+            return Respond.redirect(redirect)
+
+        error_fr = None
+        error_en = None
+        if request.method == 'POST':
+            form_data = await request.form
+
+            if form_data.get('username', None) and form_data.get('password', None):
+                username = form_data.get('username')
+                password = form_data.get('password')
+
+                data = await getUser(app.pool, username, password)
+
+                if not data:
+                    error_fr = "Identifiants invalides. Veuillez réessayer."
+                    error_en = "Invalid credentials. Please try again."
+
+                    return Respond.html(await render_template('login.html', error_fr=error_fr, error_en=error_en))
+                else:
+                    session['username'] = username
+                    session['admin'] = data["admin"]
+
+                    return Respond.redirect(redirect)
+            else:
+                return Respond.redirect(url_for('internal.login'))
+        else:
+            return Respond.html(await render_template('login.html', error_fr=error_fr, error_en=error_en))
+        
+
+    @blueprint.path(app, uri='/logout', method=['GET','POST'], log_file="logging/website.log")
+    async def logout():
+        """
+        Logout page.
+        
+        :return: The rendered template.
+        """
+        if session.get("username"):
+            session.clear()
+
+        return Respond.redirect(url_for('portfolio.home'))
 
 
     @blueprint.path(app, uri="/<path:path>", method=['GET','POST'], log_file="/logging/website.log")

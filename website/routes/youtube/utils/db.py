@@ -80,7 +80,7 @@ async def insertTask(pool: asyncpg.Pool, uuid: str, video: str, format: int, sta
 async def checkIfTaskExists(pool: asyncpg.Pool, uuid: str) -> bool:
     """
     A function that checks if a task exists in the database.
-    
+
     :param pool: The connection Pool to the database.
     :param uuid: The uuid of the task.
     :return: True if the task exists, False otherwise.
@@ -214,3 +214,4 @@ def slowUpdateTask(conn: psycopg.Connection, uuid: str, status: str, speed: str,
     :param eta: The eta of the task.
     """
     conn.execute("UPDATE downloads SET status = %s, speed = %s, downloaded = %s, total = %s, progress = %s, eta = %s WHERE uuid = %s", (status, speed, downloaded, total, progress, eta, uuid))
+    conn.commit()

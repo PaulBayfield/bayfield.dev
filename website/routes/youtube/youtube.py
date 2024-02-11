@@ -4,7 +4,6 @@ from ...components.blueprints import Bp
 from ...components.respond import Respond
 
 from ...utils.environ import getEnvironKey
-from ...utils.db import getUser
 
 from .utils.db import *
 from .utils.worker import Worker
@@ -35,10 +34,6 @@ def init(app):
     ┃                                                                                                                      ┃
     ┃  • youtube.bayfield.dev                                                                                              ┃
     ┃    > Home page of the Youtube Downloader.                                                                            ┃
-    ┃  • youtube.bayfield.dev/login                                                                                        ┃
-    ┃    > Login page.                                                                                                     ┃
-    ┃  • youtube.bayfield.dev/logout                                                                                       ┃
-    ┃    > Logout page.                                                                                                    ┃
     ┃  • youtube.bayfield.dev/download                                                                                     ┃
     ┃    > Download page.                                                                                                  ┃
     ┃  • youtube.bayfield.dev/video                                                                                        ┃
@@ -46,7 +41,7 @@ def init(app):
     ┃  • youtube.bayfield.dev/download-video                                                                               ┃
     ┃    > (Backend) Start downloading.                                                                                    ┃
     ┃  • youtube.bayfield.dev/progress                                                                                     ┃
-    ┃    > (Backend) Check the progress of a download.                                                                     ┃
+    ┃    > (Backend) Check the progress of a download. (Websocket)                                                         ┃
     ┃  • youtube.bayfield.dev/temp                                                                                         ┃
     ┃    > (Backend) Start to download a video or audio file.                                                              ┃
     ┃                                                                                                                      ┃
@@ -61,60 +56,12 @@ def init(app):
         :return: The rendered template.
         """
         if not session.get("username"):
-            return Respond.redirect(url_for('youtube.login'))
+            return Respond.redirect(url_for('internal.login', redirect='youtube'))
         else:
             return Respond.redirect(url_for('youtube.download'))
-        
-
-    @blueprint.path(app, uri='/login', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
-    async def login():
-        """
-        Login page of the Youtube Downloader.
-        
-        :return: The rendered template.
-        """
-        if session.get("username"):
-            return Respond.redirect(url_for('youtube.download'))
-
-        error = None
-        if request.method == 'POST':
-            form_data = await request.form
-
-            if form_data.get('username', None) and form_data.get('password', None):
-                username = form_data.get('username')
-                password = form_data.get('password')
-
-                data = await getUser(app.pool, username, password)
-
-                if not data:
-                    error = "Invalid credentials. Please try again."
-
-                    return Respond.html(await render_template('login.html', error=error))
-                else:
-                    session['username'] = username
-                    session['admin'] = data["admin"]
-
-                    return Respond.redirect(url_for('youtube.download'))
-            else:
-                return Respond.redirect(url_for('youtube.login'))
-        else:
-            return Respond.html(await render_template('login.html', error=error))
-    
-    
-    @blueprint.path(app, uri='/logout', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
-    async def logout():
-        """
-        Logout page of the Youtube Downloader.
-        
-        :return: The rendered template.
-        """
-        if session.get("username"):
-            session.clear()
-
-        return Respond.redirect(url_for('youtube.login'))
 
 
-    @blueprint.path(app, uri='/download', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
+    @blueprint.path(app, uri='/download', subdomain="youtube", method=['GET','POST'], log_file="logging/website.log")
     async def download():
         """
         Download page of the Youtube Downloader.
@@ -122,21 +69,18 @@ def init(app):
         :return: The rendered template.
         """
         if not session.get("username"):
-            return Respond.redirect(url_for('youtube.login'))
+            return Respond.redirect(url_for('internal.login', redirect='youtube'))
 
         if getEnvironKey('ADMIN_ONLY') and not session['admin']:
             if session.get("username"):
                 session.clear()
 
-            line1 = "This page is only accessible by administrators."
-            line2 = "Please contact an administrator to access this page or try again later..."
-
-            return Respond.html(await render_template('error.html', line1=line1, line2=line2))
+            return Respond.redirect(url_for('internal.login', redirect='youtube'))
 
         return Respond.html(await render_template('download.html', link=request.args.get('link', ''), duration=f"max is {str(timedelta(seconds=int(getEnvironKey('MAX_DURATION'))))}"))
 
 
-    @blueprint.path(app, uri='/download-video', method=['POST'], subdomain="youtube", log_file="logging/website.log")
+    @blueprint.path(app, uri='/download-video', subdomain="youtube", method=['POST'], log_file="logging/website.log")
     async def download_video():
         """
         Backend endpoint, launches the download of the video.
@@ -144,7 +88,7 @@ def init(app):
         :return: The rendered template.
         """
         if not session.get("username"):
-            return Respond.redirect(url_for('youtube.login'))
+            return Respond.redirect(url_for('internal.login', redirect='youtube'))
         else:
             uuid = str(uuid4())
             while await checkIfTaskExists(app.pool, uuid):
@@ -222,7 +166,7 @@ def init(app):
             return Respond.json({"uuid": uuid})
 
 
-    @blueprint.path(app, uri='/progress', method=['GET'], subdomain="youtube", log_file="logging/website.log")
+    @blueprint.path(app, uri='/progress', subdomain="youtube", method=['GET'], log_file="logging/website.log")
     async def progress():
         """
         Backend endpoint, returns the progress of the download.
@@ -230,7 +174,7 @@ def init(app):
         :return: The rendered template.
         """
         if not session.get("username"):
-            return Respond.redirect(url_for('youtube.login'))
+            return Respond.redirect(url_for('internal.login', redirect='youtube'))
 
         uuid = request.args.get('uuid', None)
 
@@ -240,7 +184,7 @@ def init(app):
             return Respond.event_stream(app.tasks.generate(uuid))
 
 
-    @blueprint.path(app, uri='/video', method=['GET'], subdomain="youtube", log_file="logging/website.log")
+    @blueprint.path(app, uri='/video', subdomain="youtube", method=['GET'], log_file="logging/website.log")
     async def video():
         """
         Video page of the Youtube Downloader.
@@ -260,7 +204,7 @@ def init(app):
                 return Respond.html(await render_template('video.html', image=video['thumbnail'], url=video['link'], title=video['title'], rawTitle=video['title'].replace(".", " "), author=video['author'], path=f"/temp/{video['id']}.{format}", id=video['id'], delete_period=format_seconds(int(getEnvironKey('MAX_SAVE')))))
 
 
-    @blueprint.path(app, uri='/temp/<path:file>', method=['GET'], subdomain="youtube", log_file="logging/website.log")
+    @blueprint.path(app, uri='/temp/<path:file>', subdomain="youtube", method=['GET'], log_file="logging/website.log")
     async def temp(file: str):
         """
         Backend endpoint, returns the video.

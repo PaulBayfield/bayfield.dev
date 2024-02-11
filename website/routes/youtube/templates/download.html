@@ -3,22 +3,74 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Language" content="fr">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'components/meta.html' %}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://youtube.bayfield.dev" />
     <meta property="og:image" content="{{ url_for('.static', filename='youtube/images/ytdownloader.png') }}" />
     <meta name="theme-color" content="#5744ad">
 
-    <title>YT Downloader • Download</title>
+    <title>Paul Bayfield • Download</title>
 
-    <link href="{{ url_for('.static', filename='youtube/css/download.css') }}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='youtube/css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("*[lang='fr']").show();
+            $("*[lang='en']").hide();
+            $("html").show();
+
+            $("*[id='mode-dark']").show();
+            $("*[id='mode-light']").hide();
+
+            $("#switch-lang").click(function () {
+                $("*[lang='fr']").toggle();
+                $("*[lang='en']").toggle();
+                $("html").show();
+            });
+
+            $("#switch-mode").click(function () {
+                $("*[id='mode-dark']").toggle();
+                $("*[id='mode-light']").toggle();
+
+                if (document.documentElement.getAttribute('data-theme') == 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    $("#mode").removeAttr("src").attr("src", "light.png");
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    $("#mode").removeAttr("src").attr("src", "dark.png");
+                }
+            });
+
+            const hamburger = $(".hamburger");
+            const year = $("#annee");
+            const header = $("#header");
+
+            var isOpen = false;
+
+            hamburger.on("click", function() {
+                if (!isOpen) {
+                    $("body").addClass('noscroll');
+                } else {
+                    $("body").removeClass('noscroll');
+                }
+                isOpen = !isOpen;
+                header.toggleClass("active");
+            });
+
+            $(".links > *").on("click", function() {
+                $("body").removeClass('noscroll');
+                isOpen = false;
+                header.removeClass("active");
+            });
+
+            $(window).on("load", function() {
+                year.text(new Date().getFullYear());
+            });
+        });
+    </script>
     <script>
         function secondsToReadable(seconds) {
             const hours = Math.floor(seconds / 3600);
@@ -59,8 +111,14 @@
                 $('select').hide();
                 $('.progress').show();
                 $('input[type="submit"]').hide();
-                $('.text').text("Converting your YouTube video...");
-                $('.plus').text("This may take a while!");
+
+                if ($("*[lang='en']").is(":hidden")) {
+                    $('.text').text("Conversion de votre vidéo YouTube...");
+                    $('.plus').text("Cela peut prendre un certain temps !");
+                } else {
+                    $('.text').text("Converting your YouTube video...");
+                    $('.plus').text("This may take a while!");
+                }
                 $('.status').show();
 
                 $('.go-back').attr('onclick', "window.location.href='/download?link=" + $("input[type='url']").val() + "'");
@@ -82,8 +140,14 @@
                                 $('.progress').hide();
                                 $('.go-back').show();
                                 $('.status').hide();
-                                $('.text').text("Something went wrong!");
-                                $('.plus').text("Please try again later!");
+
+                                if ($("*[lang='en']").is(":hidden")) {
+                                    $('.text').text("Quelque chose s'est mal passé !");
+                                    $('.plus').text("Veuillez réessayer plus tard !");
+                                } else {
+                                    $('.text').text("Something went wrong!");
+                                    $('.plus').text("Please try again later!");
+                                }
 
                                 source.close();
                             }
@@ -95,32 +159,56 @@
                                     $('.progress').hide();
                                     $('.go-back').show();
                                     $('.status').hide();
-                                    $('.text').text("Error! This video does not exist!");
-                                    $('.plus').text("Error 404");
+
+                                    if ($("*[lang='en']").is(":hidden")) {
+                                        $('.text').text("Erreur ! Cette vidéo n'existe pas !");
+                                        $('.plus').text("Erreur 404");
+                                    } else {
+                                        $('.text').text("Error! This video does not exist!");
+                                        $('.plus').text("Error 404");
+                                    }
 
                                     source.close();
-                                }
-
-                                if (data.progress == -100) {
+                                } else if (data.progress == -100) {
                                     $('.progress').hide();
                                     $('.go-back').show();
                                     $('.status').hide();
-                                    $('.text').text("Error! This video is too long! ({{duration}})");
-                                    $('.plus').text("Error 403");
+
+                                    if ($("*[lang='en']").is(":hidden")) {
+                                        $('.text').text("Erreur ! Cette vidéo est trop longue! ({{duration}})");
+                                        $('.plus').text("Erreur 403");
+                                    } else {
+                                        $('.text').text("Error! This video is too long! ({{duration}})");
+                                        $('.plus').text("Error 403");
+                                    }
 
                                     source.close();
-                                }
-
-                                if (data.progress == 99) {
+                                } else if (data.progress == 99) {
                                     $('.status').hide();
-                                    $('.text').text("Finishing...");
-                                    $('.plus').text("Hang on, you are almost done!");
-                                }
 
-                                if (data.progress == 100) {
+                                    if ($("*[lang='en']").is(":hidden")) {
+                                        $('.text').text("Finition...");
+                                        $('.plus').text("Presque terminé !");
+                                    } else {
+                                        $('.text').text("Finishing...");
+                                        $('.plus').text("Hang on, you are almost done!");
+                                    }
+                                } else if (data.progress == 100) {
                                     source.close();
 
                                     window.location.href = '/video?id=' + uuid;
+                                } else {
+                                    $('.progress').show();
+                                    $('.go-back').hide();
+                                    $('.status').show();
+
+                                    if ($("*[lang='en']").is(":hidden")) {
+                                        $('.text').text("Conversion de votre vidéo YouTube...");
+                                        $('.plus').text("Cela peut prendre un certain temps !");
+                                    } else {
+                                        $('.text').text("Converting your YouTube video...");
+                                        $('.plus').text("This may take a while!");
+                                    }
                                 }
                             }
 
@@ -131,8 +219,14 @@
                             $('.progress').hide();
                             $('.go-back').show();
                             $('.status').hide();
-                            $('.text').text("Something went wrong!");
-                            $('.plus').text("Please try again later!");
+
+                            if ($("*[lang='en']").is(":hidden")) {
+                                $('.text').text("Quelque chose s'est mal passé !");
+                                $('.plus').text("Veuillez réessayer plus tard !");
+                            } else {
+                                $('.text').text("Something went wrong!");
+                                $('.plus').text("Please try again later!");
+                            }
 
                             source.close();
                         };
@@ -141,8 +235,14 @@
                         $('.progress').hide();
                         $('.go-back').show();
                         $('.status').hide();
-                        $('.text').text("Something went wrong!");
-                        $('.plus').text("Please try again later!");
+
+                        if ($("*[lang='en']").is(":hidden")) {
+                            $('.text').text("Quelque chose s'est mal passé !");
+                            $('.plus').text("Veuillez réessayer plus tard !");
+                        } else {
+                            $('.text').text("Something went wrong!");
+                            $('.plus').text("Please try again later!");
+                        }
                     }
                 });
 
@@ -161,37 +261,96 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Youtube Downloader</h1>
-        <form>
-            <div class="txt_field">
+    <header id="header">
+        <nav>
+            <a href="#" class="logo" >
+                <img src="{{ url_for('static', filename='favicon.png') }}">
+            </a>
+
+            <div class="links">
+                <div class="row">
+                    <!-- Français -->
+                    <a class="btn" href="/" lang="fr">Accueil</a>
+
+                    <!-- English -->
+                    <a class="btn" href="/" lang="en">Home</a>
+                </div>
+                <div class="small-row">
+                    <button class="btn" id="switch-lang">
+                        <img src="{{ url_for('static', filename='images/uk.png') }}" lang="en">
+                        <img src="{{ url_for('static', filename='images/fr.png') }}" lang="fr">
+                    </button>
+                    <div class="divider"></div>
+                    <button class="btn" id="switch-mode">
+                        <img src="{{ url_for('static', filename='images/light.png') }}" id="mode-dark">
+                        <img src="{{ url_for('static', filename='images/dark.png') }}" id="mode-light">
+                    </button>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <!-- Français -->
+        <div class="container" lang="fr">
+            <h1>Convertisseur Youtube</h1>
+            <form>
                 <input type="url"
                     pattern="^((?:https?:)?\/\/)?((?:www|m|music)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
-                    placeholder="Youtube Video URL or ID" name="videolink" value="{{ link }}" required autofocus>
-            </div>
-            <div class="format-menu">
+                    placeholder="URL ou ID de la vidéo Youtube" name="videolink" value="{{ link }}" required autofocus>
                 <select name="format">
                     <option value="mp3" selected>MP3</option>
                     <option value="mp4">MP4</option>
                     <option value="wav">WAV</option>
                 </select>
-                <p class="text">Best Audio & Video quality by default!</p>
-                <p class="plus">youtube.bayfield.dev</p>
+                <div class="additional">
+                    <p class="text">Meilleure qualité audio & vidéo par défaut !</p>
+                    <p class="plus">youtube.bayfield.dev</p>
+                </div>
+                <button class="go-back" onclick="window.location.href='/download?link={{ link }}'">Réessayer...</button>
+                <input type="submit" value="Convert...">
+            </form>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100">
+                    <span class="progress-bar-label">0%</span>
+                </div>
             </div>
-            <button class="go-back" onclick="window.location.href='/download?link={{ link }}'">Try again...</button>
-            <input type="submit" value="Convert...">
-        </form>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                aria-valuemax="100">
-                <span class="progress-bar-label">0%</span>
-            </div>
+            <p class="status">ETA: 0 secondes - 0MiB/0MiB (0MiB/s)</p>
         </div>
-        <p class="status">ETA: 0 seconds - 0MiB/0MiB (0MiB/s)</p>
-    </div>
-    <div class="logout">
-        <button id="logout" onclick="window.location.href='/logout'">Logout</button>
-    </div>
+
+        <!-- English -->
+        <div class="container" lang="en">
+            <h1>Youtube Downloader</h1>
+            <form>
+                <input type="url"
+                    pattern="^((?:https?:)?\/\/)?((?:www|m|music)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
+                    placeholder="Youtube Video URL or ID" name="videolink" value="{{ link }}" required autofocus>
+                <select name="format">
+                    <option value="mp3" selected>MP3</option>
+                    <option value="mp4">MP4</option>
+                    <option value="wav">WAV</option>
+                </select>
+                <div class="additional">
+                    <p class="text">Best Audio & Video quality by default!</p>
+                    <p class="plus">youtube.bayfield.dev</p>
+                </div>
+                <button class="go-back" onclick="window.location.href='/download?link={{ link }}'">Try again...</button>
+                <input type="submit" value="Convert...">
+            </form>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100">
+                    <span class="progress-bar-label">0%</span>
+                </div>
+            </div>
+            <p class="status">ETA: 0 seconds - 0MiB/0MiB (0MiB/s)</p>
+        </div>
+    </section>
 </body>
 
 </html>

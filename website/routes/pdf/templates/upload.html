@@ -1,26 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Paul Bayfield • Merge PDF</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Merge PDF</title>
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Merge PDF</h1>
-        <form id="mergeForm" action="{{ url_for('pdf.internal_merge') }}" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="fileInput">Choose PDF files (up to 50 files):</label>
-                <input type="file" class="form-control-file" id="fileInput" name="uploaded_file" accept=".pdf" required multiple>
-            </div>
-            <div class="form-group">
-                <label for="fileName">File Name:</label>
-                <input type="text" class="form-control" id="fileName" name="file_name" required>
-            </div>
-            <button type="button" id="mergeButton" class="btn btn-primary" onclick="submitForm()">Merge</button>
-        </form>
-    </div>
 
     <script>
         async function submitForm() {
@@ -28,8 +15,8 @@
             var fileNameInput = document.getElementById('fileName');
             var files = fileInput.files;
     
-            if (files.length > 50) {
-                alert('You can only upload up to 50 files.');
+            if (files.length > 80) {
+                alert('You can only upload up to 80 files.');
                 return;
             }
     
@@ -85,6 +72,21 @@
             }
         }
     </script>
-    
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Merge PDF</h1>
+        <form id="mergeForm" action="{{ url_for('pdf.internal_merge') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="fileInput">Choose PDF files (up to 80 files):</label>
+                <input type="file" class="form-control-file" id="fileInput" name="uploaded_file" accept=".pdf" required multiple>
+            </div>
+            <div class="form-group">
+                <label for="fileName">File Name:</label>
+                <input type="text" class="form-control" id="fileName" name="file_name" required>
+            </div>
+            <button type="button" id="mergeButton" class="btn btn-primary" onclick="submitForm()">Merge</button>
+        </form>
+    </div>
 </body>
 </html>

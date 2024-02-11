@@ -15,7 +15,7 @@ from asyncpg import create_pool
 
 
 class Worker(Thread):
-    def __init__(self, link, ydl_opts, uuid, format, admin, max_duration, path):
+    def __init__(self, link: str, ydl_opts: dict, uuid: str, format: str, admin: bool, max_duration: int, path: str):
         Thread.__init__(self)
         self.link = link
         self.ydl_opts = ydl_opts
@@ -38,7 +38,7 @@ class Worker(Thread):
             autocommit=True
         )
 
-    
+
     def run(self):
         asyncio.run(self._run())
 
@@ -52,14 +52,37 @@ class Worker(Thread):
             user=getEnvironKey('POSTGRES_USER'),
             password=getEnvironKey('POSTGRES_PASSWORD'),
             host=getEnvironKey('POSTGRES_HOST'),
-            port=getEnvironKey('POSTGRES_PORT')
+            port=getEnvironKey('POSTGRES_PORT'),
         )
 
         with yt_dlp.YoutubeDL(self.ydl_opts) as ydl:
             try:
                 info_dict = ydl.extract_info(self.link, download=False)
             except:
-                return await updateProgress(self.pool, self.uuid, -1)
+                id = self.link.split('v=')[1]
+
+                await insertVideo(
+                    pool=self.pool,
+                    id=id,
+                    thumbnail="",
+                    title="",
+                    link=self.link,
+                    author="",
+                    duration=0
+                )
+
+                return await insertTask(
+                    pool=self.pool,
+                    uuid=self.uuid,
+                    video=id,
+                    format=self.format,
+                    status="error",
+                    speed="0MiB/s",
+                    downloaded="0MiB",
+                    total="0MiB",
+                    progress=-1,
+                    eta=0
+                )
             else:
                 id = info_dict["id"]
                 thumbnail = info_dict.get('thumbnail', '')
@@ -96,7 +119,6 @@ class Worker(Thread):
                     progress=1,
                     eta=0
                 )
-
 
             error = False
             if duration > self.max_duration:
@@ -149,7 +171,29 @@ class Worker(Thread):
             self.update = time()
 
             try:
-                progress = round(float(data['downloaded_bytes'])/float(data['total_bytes']) * 100)
+                total_bytes = data['total_bytes']
+                total_bytes_str = data['_total_bytes_str']
+
+                try:
+                    progress = round(float(data['downloaded_bytes'])/float(total_bytes) * 100)
+                except ZeroDivisionError:
+                    progress = 1
+            except:
+                if data.get('total_bytes_estimate', None):
+                    total_bytes = data['total_bytes_estimate']
+                    total_bytes_str = data['_total_bytes_estimate_str']
+
+                    try:
+                        progress = round(float(data['downloaded_bytes'])/float(total_bytes) * 100)
+                    except ZeroDivisionError:
+                        progress = 1
+                else:
+                    total_bytes = 0
+                    total_bytes_str = "0MiB"
+
+                    progress = 1
+
+            try:
                 if progress == 0:
                     progress = 1
                 elif progress == 100:
@@ -169,11 +213,10 @@ class Worker(Thread):
                     status=data['status'],
                     speed=speed,
                     downloaded=self.remove_ansi_escape_sequences(data['_downloaded_bytes_str']),
-                    total=self.remove_ansi_escape_sequences(data['_total_bytes_str']),
+                    total=self.remove_ansi_escape_sequences(total_bytes_str),
                     progress=progress,
                     eta=eta
                 )
-
             except Exception:
                 # Task does not exist anymore
                 pass
