@@ -278,7 +278,7 @@ function toggleEdit(check = false) {
         }
     } else  {
         if (window.confirm("Vous n'êtes pas autorisé à effectuer cette action. Unique les administrateurs peuvent ajouter des marqueurs.\n\nSe connecter ?")) {
-            window.location.href='http://localhost/login?redirect=map';
+            window.location.href='http://bayfield.dev/login?redirect=map';
         };
     }
 }
