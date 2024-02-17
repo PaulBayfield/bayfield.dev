@@ -40,6 +40,8 @@ function addRow(form) {
 
     cell4.innerHTML = '<input value="' + taux + '" type="number" name="taux" placeholder="Taux" required min="0" step="0.01"> %';
 
+    calculerBenefices()
+
     return false;
 }
 
