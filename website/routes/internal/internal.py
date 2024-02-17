@@ -152,6 +152,16 @@ def init(app):
         :return: A pong.
         """
         return Respond.json(data={"ping": "pong"})
+    
+
+    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="paul", log_file="logging/website.log")
+    async def paul():
+        """
+        A function that redirects to LinkedIn.
+        
+        :return: A pong.
+        """
+        return Respond.redirect(redirect_url="https://linkedin.com/in/PaulBayfield")
 
 
     return blueprint

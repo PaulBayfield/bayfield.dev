@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    {% include 'components/meta.html' %}
+
+    <title>Paul Bayfield • Intérêts</title>
+
+    <link rel="stylesheet" href="{{ url_for('.static', filename='miscellaneous/css/interets.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="{{ url_for('.static', filename='miscellaneous/js/interets.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("*[id='mode-dark']").show();
+            $("*[id='mode-light']").hide();
+
+            $("#switch-mode").click(function () {
+                $("*[id='mode-dark']").toggle();
+                $("*[id='mode-light']").toggle();
+
+                if (document.documentElement.getAttribute('data-theme') == 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    $("#mode").removeAttr("src").attr("src", "light.png");
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    $("#mode").removeAttr("src").attr("src", "dark.png");
+                }
+            });
+
+            const hamburger = $(".hamburger");
+            const year = $("#annee");
+            const header = $("#header");
+
+            var isOpen = false;
+
+            hamburger.on("click", function() {
+                if (!isOpen) {
+                    $("body").addClass('noscroll');
+                } else {
+                    $("body").removeClass('noscroll');
+                }
+                isOpen = !isOpen;
+                header.toggleClass("active");
+            });
+
+            $(".links > *").on("click", function() {
+                $("body").removeClass('noscroll');
+                isOpen = false;
+                header.removeClass("active");
+            });
+
+            $(window).on("load", function() {
+                year.text(new Date().getFullYear());
+            });
+        });
+    </script>
+    <script>
+        function isInt(value) {
+            return !isNaN(value) && 
+                parseInt(Number(value)) == value && 
+                !isNaN(parseInt(value, 10));
+        }
+
+        function isIntOrFloat(value) {
+            return !isNaN(value) && 
+                parseFloat(value) == value && 
+                !isNaN(parseFloat(value, 10));
+        }
+
+        window.onload = function() {
+            let solde = window.prompt("Votre solde actuel : ");
+            while (solde == null || solde < 0 || !isInt(solde)) {
+                solde = window.prompt("Votre solde actuel : ");
+            }
+
+            document.getElementById('soldeInitial').innerHTML = solde + " €";
+
+            let interet = window.prompt("Le taux d'intérêt : ");
+            while (interet == null || interet < 0 || !isIntOrFloat(interet)) {
+                interet = window.prompt("Le taux d'intérêt : ");
+            }
+
+            document.getElementById('interet').value = interet;
+        };
+    </script>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="#" class="logo" >
+                <img src="{{ url_for('static', filename='favicon.png') }}">
+            </a>
+
+            <div class="links">
+                <div class="row">
+                    <a href="#" class="btn">MR4.11 - Calcul des intérêts</a>
+                </div>
+                <div class="small-row">
+                    <button class="btn" id="switch-mode">
+                        <img src="{{ url_for('static', filename='images/light.png') }}" id="mode-dark">
+                        <img src="{{ url_for('static', filename='images/dark.png') }}" id="mode-light">
+                    </button>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <section class="summary" id="summary">
+        <div class="column">
+            <h1>Calcul des intérêts 🧮</h1>
+            <form onsubmit="addRow(this); return false;">
+                <label for="date">
+                    Date
+                    <input id="date" type="date" name="date" placeholder="Date" required>
+                </label>
+                <label for="operation">Opération
+                    <select id="operation" name="operation" required>
+                        <option value="Retrait">Retrait</option>
+                        <option value="Dépot" selected>Dépot</option>
+                    </select>
+                </label>
+                <label for="montant">Montant (en €)
+                    <input id="montant" type="number" name="montant" placeholder="Montant" required min="0" value="0">
+                </label>
+                <input type="submit" value="Ajouter">
+            </form>
+        </div>
+    </section>
+    <section class="calcul" id="calcul">
+        <div class="column">
+            <div class="column">
+                <h2>Historique des opérations</h2>
+                <div class="table">
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Opération</th>
+                                <th>Montant</th>
+                                <th>Taux</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/01/2024</td>
+                                <td>Initial</td>
+                                <td id="soldeInitial">0 €</td>
+                                <td>
+                                    <input id="interet" value="1" type="number" name="taux" placeholder="Taux" required min="0" step="0.01"> %
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="column">
+                <h2>Résultats</h2>
+                <div class="table">
+                    <table id="final">
+                        <thead>
+                            <tr>
+                                <th>Solde Final</th>
+                                <th>Bénéfices</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="soldeFinal">0 €</td>
+                                <td id="benefices">0 €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button class="calc" onclick="calculerBenefices()">Calculer les bénéfices</button>
+        </div>
+    </section>
+</body>
+</html>
