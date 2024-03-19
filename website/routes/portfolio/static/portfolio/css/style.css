@@ -718,6 +718,7 @@ section {
 .projects > .list > .container > .text > .description {
     color: var(--gradient-2);
     font-size: 16px;
+    text-align: justify;
 }
 
 .projects > .list > .container > .text > .technologies {

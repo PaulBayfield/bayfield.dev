@@ -20,14 +20,28 @@ def init(app):
     ┃                                               - Miscellaneous Routes -                                               ┃
     ┃                                                                                                                      ┃
     ┃                                                                                                                      ┃
-    ┃  • interets.bayfield.dev                                                                                             ┃
+    ┃  • compta.bayfield.dev/                                                                                              ┃
+    ┃    > Home page.                                                                                                      ┃
+    ┃  • compta.bayfield.dev/interets                                                                                      ┃
     ┃    > Calculates the interest on a given amount of money. (Uni project)                                               ┃
+    ┃  • compta.bayfield.dev/emprunt                                                                                       ┃
+    ┃    > Calculates the monthly payments on a loan. (Uni project)                                                        ┃
     ┃                                                                                                                      ┃
     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     """
 
 
-    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="interets", log_file="logging/website.log")
+    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="compta", log_file="logging/website.log")
+    async def compta_home():
+        """
+        Home page
+        
+        :return: The rendered template.
+        """
+        return Respond.html(await render_template('home.html'))
+
+
+    @blueprint.path(app, uri='/interets', method=['GET','POST'], subdomain="compta", log_file="logging/website.log")
     async def interets():
         """
         Interest calculator.
@@ -35,6 +49,16 @@ def init(app):
         :return: The rendered template.
         """
         return Respond.html(await render_template('interets.html'))
+    
+
+    @blueprint.path(app, uri='/emprunt', method=['GET','POST'], subdomain="compta", log_file="logging/website.log")
+    async def emprunt():
+        """
+        Emprunt calculator.
+        
+        :return: The rendered template.
+        """
+        return Respond.html(await render_template('emprunt.html'))
 
 
     return blueprint

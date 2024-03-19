@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    {% include 'components/meta.html' %}
+
+    <title>Paul Bayfield • Emprunt</title>
+
+    <link rel="stylesheet" href="{{ url_for('.static', filename='miscellaneous/css/interets.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="{{ url_for('.static', filename='miscellaneous/js/emprunt.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("*[id='mode-dark']").show();
+            $("*[id='mode-light']").hide();
+
+            $("#switch-mode").click(function () {
+                $("*[id='mode-dark']").toggle();
+                $("*[id='mode-light']").toggle();
+
+                if (document.documentElement.getAttribute('data-theme') == 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    $("#mode").removeAttr("src").attr("src", "light.png");
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    $("#mode").removeAttr("src").attr("src", "dark.png");
+                }
+            });
+
+            const hamburger = $(".hamburger");
+            const year = $("#annee");
+            const header = $("#header");
+
+            var isOpen = false;
+
+            hamburger.on("click", function() {
+                if (!isOpen) {
+                    $("body").addClass('noscroll');
+                } else {
+                    $("body").removeClass('noscroll');
+                }
+                isOpen = !isOpen;
+                header.toggleClass("active");
+            });
+
+            $(".links > *").on("click", function() {
+                $("body").removeClass('noscroll');
+                isOpen = false;
+                header.removeClass("active");
+            });
+
+            $(window).on("load", function() {
+                year.text(new Date().getFullYear());
+
+                form = document.getElementById("form");
+                calcul(form);
+            });
+        });
+    </script>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="#" class="logo" >
+                <img src="{{ url_for('static', filename='favicon.png') }}">
+            </a>
+
+            <div class="links">
+                <div class="row">
+                    <a href="/" class="btn">MR4.11 - Emprunt</a>
+                </div>
+                <div class="small-row">
+                    <button class="btn" id="switch-mode">
+                        <img src="{{ url_for('static', filename='images/light.png') }}" id="mode-dark">
+                        <img src="{{ url_for('static', filename='images/dark.png') }}" id="mode-light">
+                    </button>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <section class="summary" id="summary">
+        <div class="column">
+            <h1>Calcul d'un emprunt 🧮</h1>
+            <form onchange="calcul(this);" id="form">
+                <label for="type">Type
+                    <select id="type" name="Type" required>
+                        <option value="1" selected>Amortissement constant</option>
+                        <option value="2">Annuité constante</option>
+                    </select>
+                </label>
+                <label for="montant">Montant (en €)
+                    <input id="montant" type="number" name="montant" placeholder="Montant" required min="0" value="100000">
+                </label>
+                <label for="taux">Taux (en %)
+                    <input id="taux" type="number" name="taux" placeholder="Taux" required min="0" step="0.01" value="12">
+                </label>
+                <label for="duree">Durée de l'emprunt
+                    <select id="duree" name="Durée" required>
+                        <option value="1">1 année</option>
+                        <option value="2">2 années</option>
+                        <option value="3">3 années</option>
+                        <option value="4">4 années</option>
+                        <option value="5" selected>5 années</option>
+                        <option value="6">6 années</option>
+                        <option value="7">7 années</option>
+                        <option value="8">8 années</option>
+                        <option value="9">9 années</option>
+                        <option value="10">10 années</option>
+                        <option value="11">11 années</option>
+                        <option value="12">12 années</option>
+                        <option value="13">13 années</option>
+                        <option value="14">14 années</option>
+                        <option value="15">15 années</option>
+                        <option value="16">16 années</option>
+                        <option value="17">17 années</option>
+                        <option value="18">18 années</option>
+                        <option value="19">19 années</option>
+                        <option value="20">20 années</option>
+                        <option value="21">21 années</option>
+                        <option value="22">22 années</option>
+                        <option value="23">23 années</option>
+                        <option value="24">24 années</option>
+                        <option value="25">25 années</option>
+                    </select>
+                </label>
+                <label for="periodicite">Remboursements
+                    <select id="periodicite" name="Périodicité" required>
+                        <option value="1">Au mois</option>
+                        <option value="2">Au trimestre</option>
+                        <option value="3">Au semestre</option>
+                        <option value="4" selected>A l'année</option>
+                    </select>
+                </label>
+            </form>
+        </div>
+    </section>
+    <section class="calcul" id="calcul">
+        <div class="column">
+            <div class="column">
+                <h2>Amortissement de l'emprunt</h2>
+                <div class="table">
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th>Périodes</th>
+                                <th>Capital restant dû (début)</th>
+                                <th>Intérêts</th>
+                                <th>Amortissement</th>
+                                <th>Annuité</th>
+                                <th>Capital restant dû (fin)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Total</td>
+                                <td>/</td>
+                                <td id="totalInterets">0 €</td>
+                                <td id="totalAmortissement">0 €</td>
+                                <td id="totalAnnuite">0 €</td>
+                                <td>/</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

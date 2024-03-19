@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    {% include 'components/meta.html' %}
+
+    <title>Paul Bayfield • Comptabilité</title>
+
+    <link rel="stylesheet" href="{{ url_for('.static', filename='miscellaneous/css/interets.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("*[id='mode-dark']").show();
+            $("*[id='mode-light']").hide();
+
+            $("#switch-mode").click(function () {
+                $("*[id='mode-dark']").toggle();
+                $("*[id='mode-light']").toggle();
+
+                if (document.documentElement.getAttribute('data-theme') == 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    $("#mode").removeAttr("src").attr("src", "light.png");
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    $("#mode").removeAttr("src").attr("src", "dark.png");
+                }
+            });
+
+            const hamburger = $(".hamburger");
+            const year = $("#annee");
+            const header = $("#header");
+
+            var isOpen = false;
+
+            hamburger.on("click", function() {
+                if (!isOpen) {
+                    $("body").addClass('noscroll');
+                } else {
+                    $("body").removeClass('noscroll');
+                }
+                isOpen = !isOpen;
+                header.toggleClass("active");
+            });
+
+            $(".links > *").on("click", function() {
+                $("body").removeClass('noscroll');
+                isOpen = false;
+                header.removeClass("active");
+            });
+
+            $(window).on("load", function() {
+                year.text(new Date().getFullYear());
+            });
+        });
+    </script>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="#" class="logo" >
+                <img src="{{ url_for('static', filename='favicon.png') }}">
+            </a>
+
+            <div class="links">
+                <div class="row">
+                    <a href="#" class="btn">MR4.11 - Comptabilité</a>
+                </div>
+                <div class="small-row">
+                    <button class="btn" id="switch-mode">
+                        <img src="{{ url_for('static', filename='images/light.png') }}" id="mode-dark">
+                        <img src="{{ url_for('static', filename='images/dark.png') }}" id="mode-light">
+                    </button>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <section class="summary" id="summary">
+        <div class="column">
+            <h1>Sommaire 🧮</h1>
+            <div class="links">
+                <a href="/interets">Intérêts</a>
+                <a href="/emprunt">Emprunt</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
