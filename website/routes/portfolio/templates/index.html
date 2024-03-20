@@ -78,26 +78,26 @@
             <div class="links">
                 <div class="row">
                     <!-- Français -->
-                    <a class="btn" href="#about" lang="fr">A propos</a>
-                    <a class="btn" href="#skills" lang="fr">Compétences</a>
-                    <a class="btn" href="#experience" lang="fr">Expérience</a>
-                    <a class="btn" href="#projects" lang="fr">Projets</a>
+                    <a class="btn" href="#about" lang="fr" data-umami-event="Header About">A propos</a>
+                    <a class="btn" href="#skills" lang="fr" data-umami-event="Header Skills">Compétences</a>
+                    <a class="btn" href="#experience" lang="fr"  data-umami-event="Header Experience">Expérience</a>
+                    <a class="btn" href="#projects" lang="fr" data-umami-event="Header Projects">Projets</a>
 
                     <!-- English -->
-                    <a class="btn" href="#about" lang="en">About</a>
-                    <a class="btn" href="#skills" lang="en">Skills</a>
-                    <a class="btn" href="#experience" lang="en">Experience</a>
-                    <a class="btn" href="#projects" lang="en">Projects</a>
+                    <a class="btn" href="#about" lang="en" data-umami-event="Header About">About</a>
+                    <a class="btn" href="#skills" lang="en" data-umami-event="Header Skills">Skills</a>
+                    <a class="btn" href="#experience" lang="en" data-umami-event="Header Experience">Experience</a>
+                    <a class="btn" href="#projects" lang="en" data-umami-event="Header Projects">Projects</a>
 
-                    <a class="btn" href="#contact">Contact</a>
+                    <a class="btn" href="#contact" data-umami-event="Header Contact">Contact</a>
                 </div>
                 <div class="small-row">
-                    <button class="btn" id="switch-lang">
+                    <button class="btn" id="switch-lang" data-umami-event="Switch Lang">
                         <img src="{{ url_for('static', filename='images/uk.png') }}" lang="en">
                         <img src="{{ url_for('static', filename='images/fr.png') }}" lang="fr">
                     </button>
                     <div class="divider"></div>
-                    <button class="btn" id="switch-mode">
+                    <button class="btn" id="switch-mode" data-umami-event="Switch Theme">
                         <img src="{{ url_for('static', filename='images/light.png') }}" id="mode-dark">
                         <img src="{{ url_for('static', filename='images/dark.png') }}" id="mode-light">
                     </button>
@@ -129,13 +129,13 @@
             </div>
 
             <div class="links">
-                <a href="https://linkedin.com/in/paulbayfield" target="_blank">
+                <a href="https://linkedin.com/in/paulbayfield" target="_blank" data-umami-event="Summary LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5521 21.998H2.44401C1.09422 21.998 0 20.9038 0 19.554V2.44596C0 1.09617 1.09422 0.00195312 2.44401 0.00195312H19.5521C20.9019 0.00195312 21.9961 1.09617 21.9961 2.44596V19.554C21.9961 20.9038 20.9019 21.998 19.5521 21.998ZM15.6758 18.9431H18.9399V12.2377C18.9399 9.40058 17.3316 8.0288 15.0852 8.0288C12.8378 8.0288 11.892 9.77893 11.892 9.77893V8.35236H8.74633V18.9431H11.892V13.3836C11.892 11.894 12.5777 11.0075 13.8902 11.0075C15.0966 11.0075 15.6758 11.8593 15.6758 13.3836V18.9431ZM3.05382 5.0113C3.05382 6.09053 3.92207 6.96559 4.99355 6.96559C6.06504 6.96559 6.93277 6.09053 6.93277 5.0113C6.93277 3.93207 6.06504 3.057 4.99355 3.057C3.92207 3.057 3.05382 3.93207 3.05382 5.0113ZM6.64939 18.9431H3.36927V8.35236H6.64939V18.9431Z"/>
                     </svg>
                     LinkedIn
                 </a>
-                <a href="https://github.com/PaulBayfield" target="_blank">
+                <a href="https://github.com/PaulBayfield" target="_blank" data-umami-event="Summary GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <g clip-path="url(#clip0_1_549)">
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9603 0.244896C5.34442 0.244896 -0.00390625 5.63265 -0.00390625 12.298C-0.00390625 17.626 3.42295 22.1361 8.17691 23.7323C8.77128 23.8523 8.98899 23.473 8.98899 23.1539C8.98899 22.8744 8.9694 21.9167 8.9694 20.9187C5.64124 21.6372 4.94818 19.4819 4.94818 19.4819C4.41332 18.085 3.62083 17.726 3.62083 17.726C2.53152 16.9876 3.70018 16.9876 3.70018 16.9876C4.9085 17.0674 5.54254 18.2248 5.54254 18.2248C6.61201 20.0606 8.33536 19.5419 9.02867 19.2225C9.12761 18.4442 9.44475 17.9055 9.78148 17.6062C7.12703 17.3268 4.33422 16.2891 4.33422 11.6593C4.33422 10.3423 4.80932 9.26473 5.56214 8.42669C5.44336 8.12743 5.02728 6.88996 5.68116 5.23371C5.68116 5.23371 6.69136 4.91437 8.96916 6.47094C9.94436 6.2071 10.9501 6.07288 11.9603 6.07175C12.9705 6.07175 14.0003 6.21159 14.9513 6.47094C17.2293 4.91437 18.2395 5.23371 18.2395 5.23371C18.8934 6.88996 18.4771 8.12743 18.3583 8.42669C19.131 9.26473 19.5865 10.3423 19.5865 11.6593C19.5865 16.2891 16.7936 17.3067 14.1194 17.6062C14.5553 17.9853 14.9314 18.7036 14.9314 19.8411C14.9314 21.4575 14.9118 22.7547 14.9118 23.1536C14.9118 23.473 15.1298 23.8523 15.7239 23.7326C20.4779 22.1358 23.9047 17.626 23.9047 12.298C23.9243 5.63265 18.5564 0.244896 11.9603 0.244896Z"/>
@@ -170,24 +170,24 @@
             </div>
             <div class="links">
                 <!-- Français -->
-                <a href="https://cv.bayfield.dev" target="_blank" lang="fr">
+                <a href="https://cv.bayfield.dev" target="_blank" lang="fr" data-umami-event="About CV">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
                     </svg>
                     Télécharger CV
                 </a>
-                <a class="secondary" href="#contact" lang="fr">
+                <a class="secondary" href="#contact" lang="fr" data-umami-event="About Contact">
                     Me contacter
                 </a>
 
                 <!-- English -->
-                <a href="https://cv.bayfield.dev" target="_blank" lang="en">
+                <a href="https://cv.bayfield.dev" target="_blank" lang="en" data-umami-event="About CV">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                         <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
                     </svg>
                     Download CV
                 </a>
-                <a class="secondary" href="#contact" lang="en">
+                <a class="secondary" href="#contact" lang="en" data-umami-event="About Contact">
                     Contact me
                 </a>
             </div>
@@ -907,7 +907,7 @@
             <p lang="en">For any inquiries, feel free to reach out to me:</p>
         </div>
         <div class="list">
-            <a href="mailto:paul@bayfield.dev" target="_blank" class="container">
+            <a href="mailto:paul@bayfield.dev" target="_blank" class="container" data-umami-event="Contact Mail">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M33.3334 6.6665H6.66671C4.83337 6.6665 3.35004 8.1665 3.35004 9.99984L3.33337 29.9998C3.33337 31.8332 4.83337 33.3332 6.66671 33.3332H33.3334C35.1667 33.3332 36.6667 31.8332 36.6667 29.9998V9.99984C36.6667 8.1665 35.1667 6.6665 33.3334 6.6665ZM33.3334 13.3332L20 21.6665L6.66671 13.3332V9.99984L20 18.3332L33.3334 9.99984V13.3332Z"/>
                 </svg>                    
@@ -923,7 +923,7 @@
                     </div>
                 </div>
             </a>
-            <a href="https://linkedin.com/in/paulbayfield" target="_blank" class="container">
+            <a href="https://linkedin.com/in/paulbayfield" target="_blank" class="container" data-umami-event="Contact LinkedIn">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M35.5556 40H4.44444C1.98985 40 0 38.0102 0 35.5556V4.44444C0 1.98985 1.98985 0 4.44444 0H35.5556C38.0102 0 40 1.98985 40 4.44444V35.5556C40 38.0102 38.0102 40 35.5556 40ZM28.5065 34.4447H34.4423V22.251C34.4423 17.0917 31.5177 14.5971 27.4326 14.5971C23.3457 14.5971 21.6257 17.7797 21.6257 17.7797V15.1855H15.9053V34.4447H21.6257V24.3348C21.6257 21.6259 22.8726 20.0139 25.2594 20.0139C27.4533 20.0139 28.5065 21.5629 28.5065 24.3348V34.4447ZM5.55341 9.10974C5.55341 11.0723 7.13233 12.6636 9.08082 12.6636C11.0293 12.6636 12.6073 11.0723 12.6073 9.10974C12.6073 7.14716 11.0293 5.55585 9.08082 5.55585C7.13233 5.55585 5.55341 7.14716 5.55341 9.10974ZM12.092 34.4447H6.12705V15.1855H12.092V34.4447Z"/>
                 </svg>
@@ -939,7 +939,7 @@
                     </div>
                 </div>
             </a>
-            <a href="https://github.com/PaulBayfield" target="_blank" class="container">
+            <a href="https://github.com/PaulBayfield" target="_blank" class="container" data-umami-event="Contact GitHub">
                 <svg width="42" height="40" viewBox="0 0 42 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_5_912)">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9389 0C9.63673 0 0.5 9.16667 0.5 20.5071C0.5 29.5721 6.35421 37.2454 14.4756 39.9612C15.4909 40.1654 15.8629 39.52 15.8629 38.9771C15.8629 38.5017 15.8294 36.8721 15.8294 35.1742C10.1438 36.3967 8.95981 32.7296 8.95981 32.7296C8.04609 30.3529 6.69226 29.7421 6.69226 29.7421C4.83136 28.4858 6.82781 28.4858 6.82781 28.4858C8.89203 28.6217 9.97519 30.5908 9.97519 30.5908C11.8022 33.7142 14.7462 32.8317 15.9306 32.2883C16.0997 30.9642 16.6415 30.0475 17.2167 29.5383C12.682 29.0629 7.91096 27.2975 7.91096 19.4204C7.91096 17.1796 8.72259 15.3462 10.0087 13.9204C9.80575 13.4113 9.09494 11.3058 10.212 8.48792C10.212 8.48792 11.9377 7.94458 15.829 10.5929C17.495 10.144 19.2131 9.91567 20.9389 9.91375C22.6647 9.91375 24.4239 10.1517 26.0484 10.5929C29.9401 7.94458 31.6659 8.48792 31.6659 8.48792C32.7829 11.3058 32.0717 13.4113 31.8688 13.9204C33.1887 15.3462 33.9669 17.1796 33.9669 19.4204C33.9669 27.2975 29.1958 29.0287 24.6272 29.5383C25.3719 30.1833 26.0146 31.4054 26.0146 33.3408C26.0146 36.0908 25.9811 38.2979 25.9811 38.9767C25.9811 39.52 26.3534 40.1654 27.3684 39.9617C35.4897 37.245 41.344 29.5721 41.344 20.5071C41.3774 9.16667 32.2072 0 20.9389 0Z"/>
@@ -979,21 +979,21 @@
             <!-- Français -->
             <p class="title" lang="fr">Liens</p>
             <div class="list" lang="fr">
-                <a href="#about">A propos</a>
-                <a href="#skills">Compétences</a>
-                <a href="#experience">Expérience</a>
-                <a href="#projects">Projets</a>
-                <a href="#contact">Contact</a>
+                <a href="#about" data-umami-event="Footer About">A propos</a>
+                <a href="#skills" data-umami-event="Footer Skills">Compétences</a>
+                <a href="#experience" data-umami-event="Footer Experience">Expérience</a>
+                <a href="#projects" data-umami-event="Footer Projects">Projets</a>
+                <a href="#contact" data-umami-event="Footer Contact">Contact</a>
             </div>
 
             <!-- English -->
             <p class="title" lang="en">Links</p>
             <div class="list" lang="en">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+                <a href="#about" data-umami-event="Footer About">About</a>
+                <a href="#skills" data-umami-event="Footer Skills">Skills</a>
+                <a href="#experience" data-umami-event="Footer Experience">Experience</a>
+                <a href="#projects" data-umami-event="Footer Projects">Projects</a>
+                <a href="#contact" data-umami-event="Footer Contact">Contact</a>
             </div>
         </div>
     </footer>
