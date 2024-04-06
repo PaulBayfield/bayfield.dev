@@ -334,6 +334,10 @@
                     <img src="{{ url_for('.static', filename='portfolio/images/logos/api-platform.png')}}">
                     <p>API Platform</p>
                 </a>
+                <a class="container" loading="lazy" href="https://react.dev/" target="_blank">
+                    <img src="{{ url_for('.static', filename='portfolio/images/logos/react.png')}}">
+                    <p>React</p>
+                </a>
             </div>
         </div>
         <div class="skill-row">
@@ -387,7 +391,11 @@
                     <img src="{{ url_for('.static', filename='portfolio/images/logos/wireshark.png')}}">
                     <p>Wireshark</p>
                 </a>
-                <a class="container" loading="lazy" href="https://www.microsoft.com/power-platform/products/power-bi" target="_blank">
+                <a class="container" loading="lazy" href="https://grafana.com/" target="_blank">
+                    <img src="{{ url_for('.static', filename='portfolio/images/logos/grafana.png')}}">
+                    <p>Grafana</p>
+                </a>
+                <a class="container" loading="lazy" href="https://powerbi.microsoft.com/" target="_blank">
                     <img src="{{ url_for('.static', filename='portfolio/images/logos/power-bi.png')}}">
                     <p>Power BI</p>
                 </a>
@@ -447,10 +455,6 @@
                     <img src="{{ url_for('.static', filename='portfolio/images/logos/markdown.png')}}">
                     <p>Markdown</p>
                 </a>
-                <a class="container" loading="lazy" href="https://react.dev/" target="_blank">
-                    <img src="{{ url_for('.static', filename='portfolio/images/logos/react.png')}}">
-                    <p>React</p>
-                </a>
             </div>
         </div>
     </section>
@@ -463,23 +467,8 @@
 
         <div class="list" lang="fr">
             <div class="container">
-                <a href="#" target="_blank" class="logo">
-                    <img src="{{ url_for('static', filename='favicon.png') }}">
-                </a>
-                <div class="text">
-                    <p class="title">Rien à signaler...</p>
-                    <p class="description">Prochainement !</p>
-                </div>
-                <div class="date">
-                    <p>2024</p>
-                </div>
-            </div>
-        </div>
-        <!--
-        <div class="list" lang="fr">
-            <div class="container">
                 <a href="https://agilab.com" target="_blank" class="logo">
-                    <img src="https://www.agilab.com/wp-content/uploads/2021/01/agilab-logo.png">
+                    <img src="{{ url_for('.static', filename='portfolio/images/experience/agilab.png')}}">
                 </a>
                 <div class="text">
                     <p class="title">Stage</p>
@@ -490,7 +479,6 @@
                 </div>
             </div>
         </div>
-        -->
 
         <!-- English -->
         <div class="row" lang="en">
@@ -500,23 +488,8 @@
 
         <div class="list" lang="en">
             <div class="container">
-                <a href="#" target="_blank" class="logo">
-                    <img src="{{ url_for('static', filename='favicon.png') }}">
-                </a>
-                <div class="text">
-                    <p class="title">Nothing to report...</p>
-                    <p class="description">Coming soon!</p>
-                </div>
-                <div class="date">
-                    <p>2024</p>
-                </div>
-            </div>
-        </div>
-        <!--
-        <div class="list" lang="en">
-            <div class="container">
                 <a href="https://agilab.com" target="_blank" class="logo">
-                    <img src="https://www.agilab.com/wp-content/uploads/2021/01/agilab-logo.png">
+                    <img src="{{ url_for('.static', filename='portfolio/images/experience/agilab.png')}}">
                 </a>
                 <div class="text">
                     <p class="title">Internship</p>
@@ -527,7 +500,6 @@
                 </div>
             </div>
         </div>
-        -->
     </section>
     <section class="projects" id="projects">
         <!-- Français -->
@@ -544,6 +516,141 @@
 
         <div class="list">
             <!-- Français -->
+            <div class="container" lang="fr">
+                <div class="image">
+                    <img src="{{ url_for('.static', filename='portfolio/images/projects/intheair.png')}}">
+                </div>
+                <div class="text">
+                    <p class="title">inTheAir</p>
+                    <p class="description">Dans le cadre de notre projet de fin de 2ème année de BUT informatique, un projet en équipe sur plusieurs mois, nous avons récupéré, transformé et analysé des données de vols aériens Air France au départ de l'aéroport Paris-Charles de Gaulle pour en extraire des informations utiles et les visualiser sous forme de graphiques interactifs.<br><br>Ce projet est composé de deux parties importantes, la première étant notre API, AirFranceKLMAPI, qui sert de cache à l'API officielle d'Air France qui autorise seulement 100 requêtes par jour. La seconde étant la visualisation des données sur des dashboards Grafana et Power BI.</p>
+                    <div class="technologies">
+                        <p>Python</p>
+                        <p>SQL</p>
+                        <p>Grafana</p>
+                        <p>Power BI</p>
+                        <p>OpenAPI Specification</p>
+                        <p>Git</p>
+                    </div>
+                    <div class="projects-links">
+                        <a href="https://airfrance.bayfield.dev" target="_blank" class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 3H21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Voir l'API
+                        </a>
+                        <a href="https://github.com/PaulBayfield/AirFranceKLMAPI" target="_blank" class="button secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_5_596)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9642 0.245117C5.34833 0.245117 0 5.63287 0 12.2983C0 17.6263 3.42686 22.1363 8.18082 23.7325C8.77518 23.8525 8.9929 23.4732 8.9929 23.1541C8.9929 22.8747 8.97331 21.9169 8.97331 20.9189C5.64514 21.6374 4.95208 19.4821 4.95208 19.4821C4.41723 18.0852 3.62474 17.7262 3.62474 17.7262C2.53543 16.9878 3.70408 16.9878 3.70408 16.9878C4.91241 17.0676 5.54645 18.225 5.54645 18.225C6.61592 20.0608 8.33927 19.5421 9.03257 19.2227C9.13151 18.4445 9.44865 17.9057 9.78539 17.6064C7.13094 17.327 4.33812 16.2894 4.33812 11.6596C4.33812 10.3425 4.81323 9.26495 5.56604 8.42691C5.44727 8.12765 5.03118 6.89018 5.68506 5.23393C5.68506 5.23393 6.69527 4.91459 8.97306 6.47116C9.94827 6.20732 10.954 6.0731 11.9642 6.07197C12.9745 6.07197 14.0042 6.21181 14.9552 6.47116C17.2332 4.91459 18.2434 5.23393 18.2434 5.23393C18.8973 6.89018 18.481 8.12765 18.3622 8.42691C19.1349 9.26495 19.5904 10.3425 19.5904 11.6596C19.5904 16.2894 16.7976 17.3069 14.1233 17.6064C14.5592 17.9855 14.9353 18.7038 14.9353 19.8414C14.9353 21.4577 14.9158 22.7549 14.9158 23.1539C14.9158 23.4732 15.1337 23.8525 15.7278 23.7328C20.4818 22.1361 23.9087 17.6263 23.9087 12.2983C23.9282 5.63287 18.5603 0.245117 11.9642 0.245117Z"/>
+                                </g>
+                            </svg>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container reverse" lang="fr">
+                <div class="image">
+                    <img src="{{ url_for('.static', filename='portfolio/images/projects/compta.png')}}">
+                </div>
+                <div class="text">
+                    <p class="title">Comptabilité</p>
+                    <p class="description">Lors de mes cours de comptabilité, nous avons dû réaliser plusieurs sites web afin d'automatiser certaines tâches de comptabilité. J'ai donc réalisé un site web permettant de calculer les intérêts et les emprunts.</p>
+                    <div class="technologies">
+                        <p>HTML</p>
+                        <p>CSS</p>
+                        <p>JavaScript</p>
+                        <p>Git</p>
+                    </div>
+                    <div class="projects-links">
+                        <a href="https://compta.bayfield.dev" target="_blank" class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 3H21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Voir le site
+                        </a>
+                        <a href="https://github.com/PaulBayfield/bayfield.dev" target="_blank" class="button secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_5_596)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9642 0.245117C5.34833 0.245117 0 5.63287 0 12.2983C0 17.6263 3.42686 22.1363 8.18082 23.7325C8.77518 23.8525 8.9929 23.4732 8.9929 23.1541C8.9929 22.8747 8.97331 21.9169 8.97331 20.9189C5.64514 21.6374 4.95208 19.4821 4.95208 19.4821C4.41723 18.0852 3.62474 17.7262 3.62474 17.7262C2.53543 16.9878 3.70408 16.9878 3.70408 16.9878C4.91241 17.0676 5.54645 18.225 5.54645 18.225C6.61592 20.0608 8.33927 19.5421 9.03257 19.2227C9.13151 18.4445 9.44865 17.9057 9.78539 17.6064C7.13094 17.327 4.33812 16.2894 4.33812 11.6596C4.33812 10.3425 4.81323 9.26495 5.56604 8.42691C5.44727 8.12765 5.03118 6.89018 5.68506 5.23393C5.68506 5.23393 6.69527 4.91459 8.97306 6.47116C9.94827 6.20732 10.954 6.0731 11.9642 6.07197C12.9745 6.07197 14.0042 6.21181 14.9552 6.47116C17.2332 4.91459 18.2434 5.23393 18.2434 5.23393C18.8973 6.89018 18.481 8.12765 18.3622 8.42691C19.1349 9.26495 19.5904 10.3425 19.5904 11.6596C19.5904 16.2894 16.7976 17.3069 14.1233 17.6064C14.5592 17.9855 14.9353 18.7038 14.9353 19.8414C14.9353 21.4577 14.9158 22.7549 14.9158 23.1539C14.9158 23.4732 15.1337 23.8525 15.7278 23.7328C20.4818 22.1361 23.9087 17.6263 23.9087 12.2983C23.9282 5.63287 18.5603 0.245117 11.9642 0.245117Z"/>
+                                </g>
+                            </svg>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container" lang="fr">
+                <div class="image">
+                    <img src="{{ url_for('.static', filename='portfolio/images/projects/croustillant.png')}}">
+                </div>
+                <div class="text">
+                    <p class="title">CROUStillant</p>
+                    <p class="description">CROUStillant est un bot Discord. Créé en fin 2022, il a pour but d'afficher les menus de tous les Restaurants Universitaires de France et d'Outre-Mer. Il est également capable de donner des informations sur les Restaurants Universitaires, comme les horaires d'ouverture, les moyens de paiement acceptés, etc...</p>
+                    <div class="technologies">
+                        <p>Python</p>
+                        <p>SQL</p>
+                        <p>Figma</p>
+                        <p>Git</p>
+                    </div>
+                    <div class="projects-links">
+                        <a href="https://croustillant.bayfield.dev" style="pointer-events: none" target="_blank" class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 3H21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <s>Voir le site</s>Bientôt !
+                        </a>
+                        <a href="https://github.com/CROUStillant-Developpement/CROUStillant" target="_blank" class="button secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_5_596)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9642 0.245117C5.34833 0.245117 0 5.63287 0 12.2983C0 17.6263 3.42686 22.1363 8.18082 23.7325C8.77518 23.8525 8.9929 23.4732 8.9929 23.1541C8.9929 22.8747 8.97331 21.9169 8.97331 20.9189C5.64514 21.6374 4.95208 19.4821 4.95208 19.4821C4.41723 18.0852 3.62474 17.7262 3.62474 17.7262C2.53543 16.9878 3.70408 16.9878 3.70408 16.9878C4.91241 17.0676 5.54645 18.225 5.54645 18.225C6.61592 20.0608 8.33927 19.5421 9.03257 19.2227C9.13151 18.4445 9.44865 17.9057 9.78539 17.6064C7.13094 17.327 4.33812 16.2894 4.33812 11.6596C4.33812 10.3425 4.81323 9.26495 5.56604 8.42691C5.44727 8.12765 5.03118 6.89018 5.68506 5.23393C5.68506 5.23393 6.69527 4.91459 8.97306 6.47116C9.94827 6.20732 10.954 6.0731 11.9642 6.07197C12.9745 6.07197 14.0042 6.21181 14.9552 6.47116C17.2332 4.91459 18.2434 5.23393 18.2434 5.23393C18.8973 6.89018 18.481 8.12765 18.3622 8.42691C19.1349 9.26495 19.5904 10.3425 19.5904 11.6596C19.5904 16.2894 16.7976 17.3069 14.1233 17.6064C14.5592 17.9855 14.9353 18.7038 14.9353 19.8414C14.9353 21.4577 14.9158 22.7549 14.9158 23.1539C14.9158 23.4732 15.1337 23.8525 15.7278 23.7328C20.4818 22.1361 23.9087 17.6263 23.9087 12.2983C23.9282 5.63287 18.5603 0.245117 11.9642 0.245117Z"/>
+                                </g>
+                            </svg>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container reverse" lang="fr">
+                <div class="image">
+                    <img src="{{ url_for('.static', filename='portfolio/images/projects/tutoriel.png')}}">
+                </div>
+                <div class="text">
+                    <p class="title">Zoo d'Agueran Tutoriel</p>
+                    <p class="description">Dans la continuité du projet sur le Zoo d'Agueran nous devions désormais réaliser un tutoriel pour expliquer comment utiliser certaines fonctionnalités de notre site web. Mon groupe et moi avons choisi de réaliser un tutoriel sur la réservation pour des évènements et l’administration de ces évènements.</p>
+                    <div class="technologies">
+                        <p>HTML</p>
+                        <p>CSS</p>
+                        <p>JavaScript</p>
+                        <p>Figma</p>
+                        <p>Git</p>
+                    </div>
+                    <div class="projects-links">
+                        <a href="https://tutoriel.bayfield.dev" target="_blank" class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 3H21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Voir le site
+                        </a>
+                        <a href="https://github.com/PaulBayfield/AgueranTutoriel" target="_blank" class="button secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_5_596)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9642 0.245117C5.34833 0.245117 0 5.63287 0 12.2983C0 17.6263 3.42686 22.1363 8.18082 23.7325C8.77518 23.8525 8.9929 23.4732 8.9929 23.1541C8.9929 22.8747 8.97331 21.9169 8.97331 20.9189C5.64514 21.6374 4.95208 19.4821 4.95208 19.4821C4.41723 18.0852 3.62474 17.7262 3.62474 17.7262C2.53543 16.9878 3.70408 16.9878 3.70408 16.9878C4.91241 17.0676 5.54645 18.225 5.54645 18.225C6.61592 20.0608 8.33927 19.5421 9.03257 19.2227C9.13151 18.4445 9.44865 17.9057 9.78539 17.6064C7.13094 17.327 4.33812 16.2894 4.33812 11.6596C4.33812 10.3425 4.81323 9.26495 5.56604 8.42691C5.44727 8.12765 5.03118 6.89018 5.68506 5.23393C5.68506 5.23393 6.69527 4.91459 8.97306 6.47116C9.94827 6.20732 10.954 6.0731 11.9642 6.07197C12.9745 6.07197 14.0042 6.21181 14.9552 6.47116C17.2332 4.91459 18.2434 5.23393 18.2434 5.23393C18.8973 6.89018 18.481 8.12765 18.3622 8.42691C19.1349 9.26495 19.5904 10.3425 19.5904 11.6596C19.5904 16.2894 16.7976 17.3069 14.1233 17.6064C14.5592 17.9855 14.9353 18.7038 14.9353 19.8414C14.9353 21.4577 14.9158 22.7549 14.9158 23.1539C14.9158 23.4732 15.1337 23.8525 15.7278 23.7328C20.4818 22.1361 23.9087 17.6263 23.9087 12.2983C23.9282 5.63287 18.5603 0.245117 11.9642 0.245117Z"/>
+                                </g>
+                            </svg>
+                            Code source
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="container" lang="fr">
                 <div class="image">
                     <img src="{{ url_for('.static', filename='portfolio/images/projects/agueran.png')}}">
@@ -720,6 +827,141 @@
             </div>
 
             <!-- English -->
+            <div class="container" lang="en">
+                <div class="image">
+                    <img src="{{ url_for('.static', filename='portfolio/images/projects/intheair.png')}}">
+                </div>
+                <div class="text">
+                    <p class="title">inTheAir</p>
+                    <p class="description">As part of our final project of the second year of my computer science degree, a team project over several months, we retrieved, transformed and analyzed Air France flight data from Paris-Charles de Gaulle airport to extract useful information and visualize it in the form of interactive graphs.<br><br>This project is composed of two important parts, the first being our API, AirFranceKLMAPI, which serves as a cache for the official Air France API which only allows 100 requests per day. The second being the visualization of the data on Grafana and Power BI dashboards.</p>
+                    <div class="technologies">
+                        <p>Python</p>
+                        <p>SQL</p>
+                        <p>Grafana</p>
+                        <p>Power BI</p>
+                        <p>OpenAPI Specification</p>
+                        <p>Git</p>
+                    </div>
+                    <div class="projects-links">
+                        <a href="https://airfrance.bayfield.dev" target="_blank" class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 3H21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Visit the API
+                        </a>
+                        <a href="https://github.com/PaulBayfield/AirFranceKLMAPI" target="_blank" class="button secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_5_596)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9642 0.245117C5.34833 0.245117 0 5.63287 0 12.2983C0 17.6263 3.42686 22.1363 8.18082 23.7325C8.77518 23.8525 8.9929 23.4732 8.9929 23.1541C8.9929 22.8747 8.97331 21.9169 8.97331 20.9189C5.64514 21.6374 4.95208 19.4821 4.95208 19.4821C4.41723 18.0852 3.62474 17.7262 3.62474 17.7262C2.53543 16.9878 3.70408 16.9878 3.70408 16.9878C4.91241 17.0676 5.54645 18.225 5.54645 18.225C6.61592 20.0608 8.33927 19.5421 9.03257 19.2227C9.13151 18.4445 9.44865 17.9057 9.78539 17.6064C7.13094 17.327 4.33812 16.2894 4.33812 11.6596C4.33812 10.3425 4.81323 9.26495 5.56604 8.42691C5.44727 8.12765 5.03118 6.89018 5.68506 5.23393C5.68506 5.23393 6.69527 4.91459 8.97306 6.47116C9.94827 6.20732 10.954 6.0731 11.9642 6.07197C12.9745 6.07197 14.0042 6.21181 14.9552 6.47116C17.2332 4.91459 18.2434 5.23393 18.2434 5.23393C18.8973 6.89018 18.481 8.12765 18.3622 8.42691C19.1349 9.26495 19.5904 10.3425 19.5904 11.6596C19.5904 16.2894 16.7976 17.3069 14.1233 17.6064C14.5592 17.9855 14.9353 18.7038 14.9353 19.8414C14.9353 21.4577 14.9158 22.7549 14.9158 23.1539C14.9158 23.4732 15.1337 23.8525 15.7278 23.7328C20.4818 22.1361 23.9087 17.6263 23.9087 12.2983C23.9282 5.63287 18.5603 0.245117 11.9642 0.245117Z"/>
+                                </g>
+                            </svg>
+                            View code
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container reverse" lang="en">
+                <div class="image">
+                    <img src="{{ url_for('.static', filename='portfolio/images/projects/compta.png')}}">
+                </div>
+                <div class="text">
+                    <p class="title">Accounting</p>
+                    <p class="description">During my accounting classes, we had to create several websites to automate some accounting tasks. I therefore created a website to calculate interest and loans.</p>
+                    <div class="technologies">
+                        <p>HTML</p>
+                        <p>CSS</p>
+                        <p>JavaScript</p>
+                        <p>Git</p>
+                    </div>
+                    <div class="projects-links">
+                        <a href="https://compta.bayfield.dev" target="_blank" class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 3H21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Visit site
+                        </a>
+                        <a href="https://github.com/PaulBayfield/bayfield.dev" target="_blank" class="button secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_5_596)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9642 0.245117C5.34833 0.245117 0 5.63287 0 12.2983C0 17.6263 3.42686 22.1363 8.18082 23.7325C8.77518 23.8525 8.9929 23.4732 8.9929 23.1541C8.9929 22.8747 8.97331 21.9169 8.97331 20.9189C5.64514 21.6374 4.95208 19.4821 4.95208 19.4821C4.41723 18.0852 3.62474 17.7262 3.62474 17.7262C2.53543 16.9878 3.70408 16.9878 3.70408 16.9878C4.91241 17.0676 5.54645 18.225 5.54645 18.225C6.61592 20.0608 8.33927 19.5421 9.03257 19.2227C9.13151 18.4445 9.44865 17.9057 9.78539 17.6064C7.13094 17.327 4.33812 16.2894 4.33812 11.6596C4.33812 10.3425 4.81323 9.26495 5.56604 8.42691C5.44727 8.12765 5.03118 6.89018 5.68506 5.23393C5.68506 5.23393 6.69527 4.91459 8.97306 6.47116C9.94827 6.20732 10.954 6.0731 11.9642 6.07197C12.9745 6.07197 14.0042 6.21181 14.9552 6.47116C17.2332 4.91459 18.2434 5.23393 18.2434 5.23393C18.8973 6.89018 18.481 8.12765 18.3622 8.42691C19.1349 9.26495 19.5904 10.3425 19.5904 11.6596C19.5904 16.2894 16.7976 17.3069 14.1233 17.6064C14.5592 17.9855 14.9353 18.7038 14.9353 19.8414C14.9353 21.4577 14.9158 22.7549 14.9158 23.1539C14.9158 23.4732 15.1337 23.8525 15.7278 23.7328C20.4818 22.1361 23.9087 17.6263 23.9087 12.2983C23.9282 5.63287 18.5603 0.245117 11.9642 0.245117Z"/>
+                                </g>
+                            </svg>
+                            View code
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container" lang="en">
+                <div class="image">
+                    <img src="{{ url_for('.static', filename='portfolio/images/projects/croustillant.png')}}">
+                </div>
+                <div class="text">
+                    <p class="title">CROUStillant</p>
+                    <p class="description">CROUStillant is a Discord bot. Created in late 2022, its purpose is to display the menus of all University Restaurants in France and Overseas. It is also able to provide information about University Restaurants, such as opening hours, accepted means of payment, etc...</p>
+                    <div class="technologies">
+                        <p>Python</p>
+                        <p>SQL</p>
+                        <p>Figma</p>
+                        <p>Git</p>
+                    </div>
+                    <div class="projects-links">
+                        <a href="https://croustillant.bayfield.dev" style="pointer-events: none" target="_blank" class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 3H21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <s>Visit site</s>Coming soon !
+                        </a>
+                        <a href="https://github.com/CROUStillant-Developpement/CROUStillant" target="_blank" class="button secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_5_596)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9642 0.245117C5.34833 0.245117 0 5.63287 0 12.2983C0 17.6263 3.42686 22.1363 8.18082 23.7325C8.77518 23.8525 8.9929 23.4732 8.9929 23.1541C8.9929 22.8747 8.97331 21.9169 8.97331 20.9189C5.64514 21.6374 4.95208 19.4821 4.95208 19.4821C4.41723 18.0852 3.62474 17.7262 3.62474 17.7262C2.53543 16.9878 3.70408 16.9878 3.70408 16.9878C4.91241 17.0676 5.54645 18.225 5.54645 18.225C6.61592 20.0608 8.33927 19.5421 9.03257 19.2227C9.13151 18.4445 9.44865 17.9057 9.78539 17.6064C7.13094 17.327 4.33812 16.2894 4.33812 11.6596C4.33812 10.3425 4.81323 9.26495 5.56604 8.42691C5.44727 8.12765 5.03118 6.89018 5.68506 5.23393C5.68506 5.23393 6.69527 4.91459 8.97306 6.47116C9.94827 6.20732 10.954 6.0731 11.9642 6.07197C12.9745 6.07197 14.0042 6.21181 14.9552 6.47116C17.2332 4.91459 18.2434 5.23393 18.2434 5.23393C18.8973 6.89018 18.481 8.12765 18.3622 8.42691C19.1349 9.26495 19.5904 10.3425 19.5904 11.6596C19.5904 16.2894 16.7976 17.3069 14.1233 17.6064C14.5592 17.9855 14.9353 18.7038 14.9353 19.8414C14.9353 21.4577 14.9158 22.7549 14.9158 23.1539C14.9158 23.4732 15.1337 23.8525 15.7278 23.7328C20.4818 22.1361 23.9087 17.6263 23.9087 12.2983C23.9282 5.63287 18.5603 0.245117 11.9642 0.245117Z"/>
+                                </g>
+                            </svg>
+                            View code
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container reverse" lang="en">
+                <div class="image">
+                    <img src="{{ url_for('.static', filename='portfolio/images/projects/tutoriel.png')}}">
+                </div>
+                <div class="text">
+                    <p class="title">Agueran Tutoral</p>
+                    <p class="description">Following the project on the Zoo of Agueran we had to create a tutorial to explain how to use some features of our website. My group and I chose to create a tutorial on booking for events and the administration of these events.</p>
+                    <div class="technologies">
+                        <p>HTML</p>
+                        <p>CSS</p>
+                        <p>JavaScript</p>
+                        <p>Figma</p>
+                        <p>Git</p>
+                    </div>
+                    <div class="projects-links">
+                        <a href="https://tutoriel.bayfield.dev" target="_blank" class="button">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 3H21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Visit site
+                        </a>
+                        <a href="https://github.com/PaulBayfield/AgueranTutoriel" target="_blank" class="button secondary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_5_596)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9642 0.245117C5.34833 0.245117 0 5.63287 0 12.2983C0 17.6263 3.42686 22.1363 8.18082 23.7325C8.77518 23.8525 8.9929 23.4732 8.9929 23.1541C8.9929 22.8747 8.97331 21.9169 8.97331 20.9189C5.64514 21.6374 4.95208 19.4821 4.95208 19.4821C4.41723 18.0852 3.62474 17.7262 3.62474 17.7262C2.53543 16.9878 3.70408 16.9878 3.70408 16.9878C4.91241 17.0676 5.54645 18.225 5.54645 18.225C6.61592 20.0608 8.33927 19.5421 9.03257 19.2227C9.13151 18.4445 9.44865 17.9057 9.78539 17.6064C7.13094 17.327 4.33812 16.2894 4.33812 11.6596C4.33812 10.3425 4.81323 9.26495 5.56604 8.42691C5.44727 8.12765 5.03118 6.89018 5.68506 5.23393C5.68506 5.23393 6.69527 4.91459 8.97306 6.47116C9.94827 6.20732 10.954 6.0731 11.9642 6.07197C12.9745 6.07197 14.0042 6.21181 14.9552 6.47116C17.2332 4.91459 18.2434 5.23393 18.2434 5.23393C18.8973 6.89018 18.481 8.12765 18.3622 8.42691C19.1349 9.26495 19.5904 10.3425 19.5904 11.6596C19.5904 16.2894 16.7976 17.3069 14.1233 17.6064C14.5592 17.9855 14.9353 18.7038 14.9353 19.8414C14.9353 21.4577 14.9158 22.7549 14.9158 23.1539C14.9158 23.4732 15.1337 23.8525 15.7278 23.7328C20.4818 22.1361 23.9087 17.6263 23.9087 12.2983C23.9282 5.63287 18.5603 0.245117 11.9642 0.245117Z"/>
+                                </g>
+                            </svg>
+                            View code
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="container" lang="en">
                 <div class="image">
                     <img src="{{ url_for('.static', filename='portfolio/images/projects/agueran.png')}}">
