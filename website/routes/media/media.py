@@ -43,7 +43,7 @@ def init(app):
     """
 
 
-    @blueprint.path(app, uri='/<path:filename>', method=['GET'], log_file="logging/website.log") # , subdomain="media"
+    @blueprint.path(app, uri='/<path:filename>', method=['GET'], subdomain="media", log_file="logging/website.log")
     async def media(filename: str):
         """
         A media file.
@@ -59,7 +59,7 @@ def init(app):
             return await send_file(f"{app.path}/media/public/{filename}")
         
 
-    @blueprint.path(app, uri='/<dir>/<path:filename>', method=['GET', 'POST'], log_file="logging/website.log") # , subdomain="media"
+    @blueprint.path(app, uri='/<dir>/<path:filename>', method=['GET', 'POST'], subdomain="media", log_file="logging/website.log")
     async def mediaWithDir(dir: str, filename: str):
         """
         A media file.
@@ -119,7 +119,7 @@ def init(app):
                     return await send_file(f"{app.path}/media/{dir}/{filename.lower()}")
 
 
-    @blueprint.path(app, uri='/', method=['GET', 'POST'], log_file="logging/website.log", auth=ADMIN) # , subdomain="upload"
+    @blueprint.path(app, uri='/', method=['GET', 'POST'], subdomain="upload", log_file="logging/website.log", auth=ADMIN)
     async def upload():
         """
         The upload page.
@@ -164,7 +164,7 @@ def init(app):
         )
 
 
-    @blueprint.path(app, uri='/upload', method=['POST'], log_file="logging/website.log", auth=ADMIN) # , subdomain="upload"
+    @blueprint.path(app, uri='/upload', method=['POST'], subdomain="upload", log_file="logging/website.log", auth=ADMIN)
     async def send():
         """
         The upload files background page.
@@ -274,7 +274,7 @@ def init(app):
         )
 
 
-    @blueprint.path(app, uri='/delete/<dir>/<path:filename>', method=['GET', 'POST'], log_file="logging/website.log", auth=ADMIN) # , subdomain="upload"
+    @blueprint.path(app, uri='/delete/<dir>/<path:filename>', method=['GET', 'POST'], subdomain="upload", log_file="logging/website.log", auth=ADMIN)
     async def delete(dir: str, filename: str):
         """
         The delete page.
@@ -307,7 +307,7 @@ def init(app):
             )
         
 
-    @blueprint.path(app, uri='/download/<dir>/<path:filename>', method=['GET'], log_file="logging/website.log", auth=ADMIN) # , subdomain="upload"
+    @blueprint.path(app, uri='/download/<dir>/<path:filename>', method=['GET'], subdomain="upload", log_file="logging/website.log", auth=ADMIN)
     async def download(dir: str, filename: str):
         """
         The download page.
