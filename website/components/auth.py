@@ -12,6 +12,8 @@ class Auth:
         """
         if not session.get("username"):
             return False
+        else:
+            return True
 
 
     @staticmethod
@@ -23,6 +25,8 @@ class Auth:
         """
         if not session.get("username") or not session.get("admin"):
             return False
+        else:
+            return True
 
 
 USER = Auth.USER

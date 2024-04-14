@@ -15,22 +15,6 @@
     {% include 'analytics/media.bayfield.dev.html' %}
 
     {% include 'components/script.html' %}
-
-    <script>
-        window.onload = function() {
-            document.querySelectorAll('.actions .btn').forEach((btn) => {
-                if (!btn.classList.contains('pointer')) {
-                    return;
-                }
-                btn.addEventListener('click', function() {
-                    const url = this.parentElement.parentElement.querySelector('a').href;
-                    navigator.clipboard.writeText(url).then(() => {
-                        alert('Lien copié dans le presse-papier.');
-                    });
-                });
-            });
-        };
-    </script>
 </head>
 <body>
     <header id="header">
@@ -65,70 +49,14 @@
     </header>
     <section class="summary" id="summary">
         <div class="column">
-            <h1 lang="fr">Vos fichiers uploadés 📁</h1>
-            <h1 lang="en">Your uploaded files 📁</h1>
-            <div class="list">
-                {% for file in files %}
-                    <div class="card">
-                        <div class="part">
-                            {% if file.path == "private" %}
-                                <div class="material-symbols-outlined">
-                                    lock
-                                </div>
-                            {% else %}
-                                {% if file.name.endswith(('.png', '.jpg', '.jpeg', '.gif')) %}
-                                    <img src="{{ url_for('media.mediaWithDir', filename=file.name|lower, dir=file.path ) }}" alt="{{ file.name }}" height="50" card-img-top>
-                                {% else %}
-                                    {# Display a file icon and name #}
-                                    <div class="material-symbols-outlined">
-                                        description
-                                    </div>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                        <div class="part">
-                            {% if file.name|length > 35 %}
-                                <p class="info">{{ file.name[:15] }} [...] {{ file.name[-8:] }}</p>
-                            {% else %}
-                                <p class="info">{{ file.name }}</p>
-                            {% endif %}
-                            <p class="info">{{ file.date|fileDate }}</p>
-                            <p class="info">{{ file.size|fileSize }}</p>
-                            {% if file.error is defined %}
-                                <p class="error">{{ file.error }}</p>
-                            {% else %}
-                                {% if file.message is defined %}
-                                    <p class="success">{{ file.message }}</p>
-                                {% endif %}
-                            {% endif %}
-                        </div>
-                        <div class="part">
-                            <div class="actions">
-                                <a href="{{ url_for('media.mediaWithDir', filename=file.name|lower, dir=file.path) }}" class="btn" data-umami-event="View File" target="_blank">
-                                    <span class="material-symbols-outlined">
-                                        visibility
-                                    </span>
-                                </a>
-                                <a class="btn pointer" data-umami-event="Copy Link">
-                                    <span class="material-symbols-outlined">
-                                        link
-                                    </span>
-                                </a>
-                                <a href="{{ url_for('media.download', filename=file.name|lower, dir=file.path) }}" class="btn" data-umami-event="Download File">
-                                    <span class="material-symbols-outlined">
-                                        download
-                                    </span>
-                                </a>
-                                <a href="/?path={{ path }}" class="btn" data-umami-event="Upload New File">
-                                    <span class="material-symbols-outlined">
-                                        cloud_upload
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            <h1 lang="fr">404 • Page introuvable 🚨</h1>
+            <h1 lang="en">404 • Page not found 🚨</h1>
+            
+            <p lang="fr">Cette page n'existe pas ou a été déplacée.</p>
+            <p lang="en">This page does not exist or has been moved.</p>
+
+            <p lang="fr">Retourner à la <a href="https://bayfield.dev/" data-umami-event="404 Home">page d'accueil</a>.</p>
+            <p lang="en">Return to the <a href="https://bayfield.dev/" data-umami-event="404 Home">home page</a>.</p>
         </div>
     </section>
     <footer>

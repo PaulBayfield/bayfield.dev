@@ -142,9 +142,15 @@
                 {% for file in files %}
                     <div class="card">
                         <div class="part">
-                            <div class="material-symbols-outlined">
-                                description
-                            </div>
+                            {% if file.path == "private" %}
+                                <div class="material-symbols-outlined">
+                                    lock
+                                </div>
+                            {% else %}
+                                <div class="material-symbols-outlined">
+                                    description
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="part">
                             {% if file.name|length > 35 %}
