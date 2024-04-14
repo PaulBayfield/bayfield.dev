@@ -29,7 +29,7 @@ def init(app):
             elif args.get("redirect") == "youtube":
                 redirect = url_for('youtube.home')
             elif args.get("redirect") == "upload":
-                redirect = url_for('upload.upload')
+                redirect = url_for('media.upload')
         else:
             redirect = url_for('portfolio.home')
 
