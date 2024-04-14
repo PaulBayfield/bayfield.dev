@@ -32,6 +32,9 @@ def APIRoute(self, app, uri, method: list = ["GET"], log_file: str = None, subdo
 
             if auth is not None:
                 if auth == USER and not Auth.checkIfUser(session) or auth == ADMIN and not Auth.checkIfAdmin(session):
+                    if auth == ADMIN and not Auth.checkIfAdmin(session):
+                        session.clear()
+
                     if subdomain is not None:
                         response = Respond.redirect(url_for('internal.login', redirect=subdomain))
                     else:
