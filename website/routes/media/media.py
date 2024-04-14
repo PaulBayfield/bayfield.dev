@@ -148,7 +148,6 @@ def init(app):
                     })
         else:
             for repository in os.listdir(f"{app.path}/media/{formPath}"):
-                print(repository)
                 for file in os.listdir(f"{app.path}/media/{formPath}{repository}"):
                     if os.path.isfile(os.path.join(f"{app.path}/media/{formPath}{repository}", file)):
                         files.append({
@@ -260,7 +259,7 @@ def init(app):
                     "path": "" if saveDir in ["public/", "custom/"] else saveDir[:-1]
                 })
             else:
-                await file.save(f"{app.path}/media/{formPath}{filename}")
+                await file.save(f"{app.path}/media/{formPath}{filename.lower()}")
                 saved.append({
                     "name": filename,
                     "size": os.path.getsize(f"{app.path}/media/{formPath}{filename.lower()}"),
