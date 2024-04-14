@@ -921,7 +921,7 @@ footer > .references > .title {
 footer > .references > .list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 footer > .references > .list > a {

@@ -77,7 +77,7 @@ def init(app):
 
             return Respond.redirect(url_for('internal.login', redirect='youtube'))
 
-        return Respond.html(await render_template('download.html', link=request.args.get('link', ''), duration=f"max is {str(timedelta(seconds=int(getEnvironKey('MAX_DURATION'))))}"))
+        return Respond.render(await render_template('download.html', link=request.args.get('link', ''), duration=f"max is {str(timedelta(seconds=int(getEnvironKey('MAX_DURATION'))))}"))
 
 
     @blueprint.path(app, uri='/download-video', subdomain="youtube", method=['POST'], log_file="logging/website.log")
@@ -201,7 +201,7 @@ def init(app):
                 return Respond.redirect(url_for('youtube.download'))
             else:
                 format = await getFormat(app.pool, video['format'])
-                return Respond.html(await render_template('video.html', image=video['thumbnail'], url=video['link'], title=video['title'], rawTitle=video['title'].replace(".", " "), author=video['author'], path=f"/temp/{video['id']}.{format}", id=video['id'], delete_period=format_seconds(int(getEnvironKey('MAX_SAVE')))))
+                return Respond.render(await render_template('video.html', image=video['thumbnail'], url=video['link'], title=video['title'], rawTitle=video['title'].replace(".", " "), author=video['author'], path=f"/temp/{video['id']}.{format}", id=video['id'], delete_period=format_seconds(int(getEnvironKey('MAX_SAVE')))))
 
 
     @blueprint.path(app, uri='/temp/<path:file>', subdomain="youtube", method=['GET'], log_file="logging/website.log")

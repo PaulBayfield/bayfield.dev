@@ -33,7 +33,7 @@ def init(app):
         
         :return: The rendered template.
         """
-        return Respond.html(await render_template('saintthibault.html'))
+        return Respond.render(await render_template('saintthibault.html'))
 
 
     return blueprint

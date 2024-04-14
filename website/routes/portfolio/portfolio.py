@@ -38,7 +38,7 @@ def init(app):
         
         :return: The rendered template.
         """
-        return Respond.html(await render_template('index.html'))
+        return Respond.render(await render_template('index.html'))
 
 
     @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="www", log_file="logging/website.log")

@@ -49,7 +49,7 @@ def init(app):
                     error_fr = "Identifiants invalides. Veuillez réessayer."
                     error_en = "Invalid credentials. Please try again."
 
-                    return Respond.html(await render_template('login.html', error_fr=error_fr, error_en=error_en))
+                    return Respond.render(await render_template('login.html', error_fr=error_fr, error_en=error_en))
                 else:
                     session['username'] = username
                     session['admin'] = data["admin"]
@@ -58,7 +58,7 @@ def init(app):
             else:
                 return Respond.redirect(url_for('internal.login'))
         else:
-            return Respond.html(await render_template('login.html', error_fr=error_fr, error_en=error_en))
+            return Respond.render(await render_template('login.html', error_fr=error_fr, error_en=error_en))
         
 
     @blueprint.path(app, uri='/logout', method=['GET','POST'], log_file="logging/website.log")
@@ -77,7 +77,7 @@ def init(app):
     @blueprint.path(app, uri="/<path:path>", method=['GET','POST'], log_file="/logging/website.log")
     async def catch_all(path):
         return Respond.redirect(redirect_url=url_for('portfolio.home'))
-    
+
 
     @blueprint.path(app, uri="/<path:path>", method=['GET','POST'], subdomain="saintthibault", log_file="/logging/website.log")
     async def catch_all_saintthibault(path):

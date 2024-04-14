@@ -22,7 +22,7 @@ class Bp(Blueprint):
         Blueprint.__init__(self, name=name, import_name=import_name, template_folder=template_folder, static_folder=static_folder, static_url_path=static_url_path)
 
 
-    def path(self, app, uri, method: list = ["GET"], log_file: str = None, subdomain: str = None):
+    def path(self, app, uri, method: list = ["GET"], log_file: str = None, subdomain: str = None, auth=None) -> APIRoute:
         """
         Decorator for Web routes
 
@@ -32,5 +32,6 @@ class Bp(Blueprint):
         :param log_file: The file to log requests to
         :param tag: The tag to use for logging
         :param subdomain: The subdomain to use for the endpoint
+        :param auth: The authentication level required for the endpoint
         """
-        return APIRoute(self, app, uri=uri, method=method, log_file=log_file, subdomain=subdomain)                   
+        return APIRoute(self, app, uri=uri, method=method, log_file=log_file, subdomain=subdomain, auth=auth)

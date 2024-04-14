@@ -29,7 +29,7 @@ class Website(Quart):
                 output.write(f"ERROR 500: {error}\n")
 
             return Respond.error(cause="Something went wrong, please try again later.")
-        
+
 
         @self.errorhandler(404)
         async def error_handler_404(error):

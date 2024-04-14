@@ -1,0 +1,209 @@
+.pointer {
+    cursor: pointer;
+}
+
+.summary > .column > form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.summary > .column > form > input[type="submit"] {
+    display: flex;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 22px;
+    gap: 8px;
+    height: 40px;
+    width: 100%;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--text);
+    background-color: var(--extra-2);
+    transition: all 0.3s ease-in-out;
+}
+
+.summary > .column > form > input[type="submit"]:hover {
+    background-color: var(--extra-1);
+    transform: scale(1.01);
+}
+
+.summary > .column > form > label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.summary > .column > form > input[type="text"],
+.summary > .column > form > select {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.summary > .column > form > input[type="text"]:focus,
+.summary > .column > form > select:focus {
+    border: 1px solid var(--text);
+    transform: scale(1.01);
+}
+
+.summary > .column > form > input[type="file"] {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+}
+
+.summary > .column > form > input[type="file"]:hover {
+    border: 1px solid var(--text);
+}
+
+.summary > .column > form > input[type="file"]::file-selector-button {
+    padding: 15px;
+    margin: 0 15px 0 0;
+    border: 0px;
+    border-radius: 10px 0 0 10px;
+    background-color: var(--background-2);
+    color: var(--text);
+    transition: all 0.3s ease-in-out;
+    width: max-content;
+    height: 100%;
+}
+
+.summary > .column > form > input[type="file"]:focus {
+    border: 1px solid var(--text);
+}
+
+.summary > .column > .list {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+.summary > .column > .list > .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 16px;
+    padding-top: 16px;
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+    background-color: var(--background-3);
+    transition: all 0.3s ease-in-out;
+}
+
+.summary > .column > .list > .card > .part {
+    width: 100%;
+}
+
+.summary > .column > .list > .card > .part > * {
+    text-align: center;
+}
+
+.summary > .column > .list > .card > .part:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border-bottom: 1px solid var(--background-1);
+}
+
+.summary > .column > .list > .card > .part:first-child > img {
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.summary > .column > .list > .card > .part:first-child > img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.summary > .column > .list > .card > .part:nth-child(2) {
+    height: 200px;
+    border-bottom: 1px solid var(--background-1);
+}
+
+.summary > .column > .list > .card .error {
+    text-align: center;
+    background-color: var(--lightred);
+    border-radius: 8px;
+    padding: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.summary > .column > .list > .card .info {
+    text-align: center;
+    background-color: var(--background-1);
+    border-radius: 8px;
+    padding: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.summary > .column > .list > .card .success {
+    text-align: center;
+    background-color: var(--lightgreen);
+    border-radius: 8px;
+    padding: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.summary > .column > .list > .card:hover {
+    background-color: var(--background-2);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.actions > a {
+    display: flex;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--text);
+    background-color: var(--extra-1);
+    transition: all 0.3s ease-in-out;
+}
+
+.actions > a:hover {
+    background-color: var(--extra-2);
+}
+
+.actions > a > svg {
+    width: 24px;
+    height: 24px;
+}

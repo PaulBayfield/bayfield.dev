@@ -1,0 +1,56 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("*[lang='fr']").show();
+        $("*[lang='en']").hide();
+        $("html").show();
+
+        $("*[id='mode-dark']").show();
+        $("*[id='mode-light']").hide();
+
+        $("#switch-lang").click(function () {
+            $("*[lang='fr']").toggle();
+            $("*[lang='en']").toggle();
+            $("html").show();
+        });
+
+        $("#switch-mode").click(function () {
+            $("*[id='mode-dark']").toggle();
+            $("*[id='mode-light']").toggle();
+
+            if (document.documentElement.getAttribute('data-theme') == 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                $("#mode").removeAttr("src").attr("src", "light.png");
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                $("#mode").removeAttr("src").attr("src", "dark.png");
+            }
+        });
+
+        const hamburger = $(".hamburger");
+        const year = $("#annee");
+        const header = $("#header");
+
+        var isOpen = false;
+
+        hamburger.on("click", function() {
+            if (!isOpen) {
+                $("body").addClass('noscroll');
+            } else {
+                $("body").removeClass('noscroll');
+            }
+            isOpen = !isOpen;
+            header.toggleClass("active");
+        });
+
+        $(".links > *").on("click", function() {
+            $("body").removeClass('noscroll');
+            isOpen = false;
+            header.removeClass("active");
+        });
+
+        $(window).on("load", function() {
+            year.text(new Date().getFullYear());
+        });
+    });
+</script>

@@ -35,14 +35,14 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = False
 
 
 # Register blueprints
-app.register_blueprint(Route_Internal(app))
-app.register_blueprint(Route_Map(app))
+#app.register_blueprint(Route_Internal(app))
+#app.register_blueprint(Route_Map(app))
 app.register_blueprint(Route_Media(app))
-app.register_blueprint(Route_Miscellaneous(app))
-app.register_blueprint(Route_PDF(app))
-app.register_blueprint(Route_Portfolio(app))
-app.register_blueprint(Route_SaintThibault(app))
-app.register_blueprint(Route_YouTube(app))
+#app.register_blueprint(Route_Miscellaneous(app))
+##app.register_blueprint(Route_PDF(app))
+#app.register_blueprint(Route_Portfolio(app))
+#app.register_blueprint(Route_SaintThibault(app))
+#app.register_blueprint(Route_YouTube(app))
 
 
 # Create the instance for the Schedule.
@@ -64,6 +64,14 @@ async def lifespan():
         host=getEnvironKey('POSTGRES_HOST'),
         port=getEnvironKey('POSTGRES_PORT')
     )
+
+    if not os.path.exists(f"{app.path}/media"):
+        os.makedirs(f"{app.path}/media")
+
+    for directory in ["public", "temporary", "private", "archive", "custom"]:
+        if not os.path.exists(f"{app.path}/media/{directory}"):
+            os.makedirs(f"{app.path}/media/{directory}")
+
 
     with open(f"{app.path}/logging/website.log", 'a+') as f:
         f.write(f"Server started!\n")

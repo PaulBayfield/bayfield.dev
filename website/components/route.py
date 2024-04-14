@@ -1,16 +1,17 @@
-from quart import Response, request, session
+from quart import Response, url_for, request, session
 
 from .log import logging
 from .respond import Respond
+from .auth import Auth, USER, ADMIN
 
 
 import time
 import functools
 
-from typing import Coroutine
+from typing import Coroutine, Union
 
 
-def APIRoute(self, app, uri, method: list = ["GET"], log_file: str = None, subdomain: str = None):
+def APIRoute(self, app, uri, method: list = ["GET"], log_file: str = None, subdomain: str = None, auth: Union[USER, ADMIN, None] = None) -> Coroutine: # type: ignore
     """
     Decorator for Web routes
 
@@ -20,15 +21,26 @@ def APIRoute(self, app, uri, method: list = ["GET"], log_file: str = None, subdo
     :param method: The method of the endpoint
     :param log_file: The file to log requests to
     :param subdomain: The subdomain to use for the endpoint
+    :param auth: The authentication level required for the endpoint
     """
     def decorator(func):
         @self.route(rule=uri, methods=method, subdomain=subdomain)
         @functools.wraps(func)
         async def decorated_function(*args, **kwargs):
             receive_time = time.time()
+            response = None
 
-            # Handle the request
-            response: Response = await handleRequest(func, app, *args, **kwargs)
+            if auth is not None:
+                if auth == USER and not Auth.checkIfUser(session) or auth == ADMIN and not Auth.checkIfAdmin(session):
+                    if subdomain is not None:
+                        response = Respond.redirect(url_for('internal.login', redirect=subdomain))
+                    else:
+                        response = Respond.redirect(url_for('internal.login'))
+
+
+            if not response:
+                # Handle the request
+                response: Response = await handleRequest(func, app, *args, **kwargs)
 
             # Log the request
             if log_file is not None:

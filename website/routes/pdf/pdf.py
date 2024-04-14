@@ -2,6 +2,7 @@ from quart import render_template, url_for, send_file, session, request
 
 from ...components.blueprints import Bp
 from ...components.respond import Respond
+from ...components.auth import USER
 
 
 import asyncio
@@ -34,29 +35,23 @@ def init(app):
     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     """
 
-    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="pdf", log_file="logging/website.log")
+    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="pdf", log_file="logging/website.log", auth=USER)
     async def home():
         """
         Home page of the PDF merger.
         
         :return: The rendered template.
         """
-        if not session.get("username"):
-            return Respond.redirect(url_for('internal.login', redirect='pdf'))
+        return Respond.render(await render_template('upload.html'))
 
-        return Respond.html(await render_template('upload.html'))
-    
 
-    @blueprint.path(app, uri='/internal/merge', method=['POST'], subdomain="pdf", log_file="logging/website.log")
+    @blueprint.path(app, uri='/internal/merge', method=['POST'], subdomain="pdf", log_file="logging/website.log", auth=USER)
     async def internal_merge():
         """
         Merge the PDF files.
         
         :return: The file.
         """
-        if not session.get("username"):
-            return Respond.redirect(url_for('internal.login', redirect='pdf'))
-
         files = await request.files
 
         # Check if the 'uploaded_file' key is in the request files
@@ -64,11 +59,11 @@ def init(app):
             return Respond.json({'error': 'No file part'})
 
         uploaded_files = files.getlist('uploaded_file')
-    
+
         merged_file_bytes_io = await merge_files(uploaded_files)
 
         return await send_file(merged_file_bytes_io, mimetype='application/pdf', as_attachment=True)
-        
+
 
     async def merge_files(uploaded_files):
         loop = asyncio.get_event_loop()

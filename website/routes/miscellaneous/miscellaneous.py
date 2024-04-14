@@ -38,7 +38,7 @@ def init(app):
         
         :return: The rendered template.
         """
-        return Respond.html(await render_template('home.html'))
+        return Respond.render(await render_template('home.html'))
 
 
     @blueprint.path(app, uri='/interets', method=['GET','POST'], subdomain="compta", log_file="logging/website.log")
@@ -48,7 +48,7 @@ def init(app):
         
         :return: The rendered template.
         """
-        return Respond.html(await render_template('interets.html'))
+        return Respond.render(await render_template('interets.html'))
     
 
     @blueprint.path(app, uri='/emprunt', method=['GET','POST'], subdomain="compta", log_file="logging/website.log")
@@ -58,7 +58,7 @@ def init(app):
         
         :return: The rendered template.
         """
-        return Respond.html(await render_template('emprunt.html'))
+        return Respond.render(await render_template('emprunt.html'))
 
 
     return blueprint

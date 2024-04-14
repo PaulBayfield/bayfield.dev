@@ -2,6 +2,7 @@ from quart import render_template, request, session
 
 from ...components.blueprints import Bp
 from ...components.respond import Respond
+from ...components.auth import ADMIN
 
 from ...utils.environ import getEnvironKey
 
@@ -86,19 +87,16 @@ def init(app):
             "type": "ville",
         }
 
-        return Respond.html(await render_template("map.html", markers=markers, last=last, edit=getBoolean(session.get("admin", False)), API_KEY=getEnvironKey("GOOGLE_API_KEY")))
+        return Respond.render(await render_template("map.html", markers=markers, last=last, edit=getBoolean(session.get("admin", False)), API_KEY=getEnvironKey("GOOGLE_API_KEY")))
 
 
-    @blueprint.path(app, uri='/add', method=['POST'], subdomain="map", log_file="logging/website.log")
+    @blueprint.path(app, uri='/add', method=['POST'], subdomain="map", log_file="logging/website.log", auth=ADMIN)
     async def add():
         """
         Add a marker to the map.
         
         :return: OK
         """
-        if not session.get("username") or not session.get("admin"):
-            return Respond.html("Vous n'êtes pas autorisé à effectuer cette action.", status_code=403)
-
         with open(f"data.json", "r+", encoding="utf-8") as f:
             data: list = loads(f.read())
 
@@ -119,7 +117,7 @@ def init(app):
 
             return Respond.json({"status": "OK"})
         else:
-            return Respond.html(f"Le type \"{form_data['type'].lower()}\" n'existe pas.", status_code=400)
+            return Respond.render(f"Le type \"{form_data['type'].lower()}\" n'existe pas.", status_code=400)
 
 
     return blueprint

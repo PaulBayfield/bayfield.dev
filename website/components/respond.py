@@ -28,7 +28,7 @@ class Respond:
 
 
     @staticmethod
-    def html(html: str, status_code: int = 200) -> Response:
+    def render(html: str, status_code: int = 200) -> Response:
         """
         :param html: html to send
         :param status_code: status code of the response
