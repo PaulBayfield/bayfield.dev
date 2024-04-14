@@ -28,6 +28,8 @@ def init(app):
                 redirect = url_for('map.map')
             elif args.get("redirect") == "youtube":
                 redirect = url_for('youtube.home')
+            elif args.get("redirect") == "upload":
+                redirect = url_for('upload.upload')
         else:
             redirect = url_for('portfolio.home')
 

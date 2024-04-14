@@ -48,7 +48,7 @@ def init(app):
         
         :return: The redirect.
         """
-        return Respond.redirect(url_for('home'))
+        return Respond.redirect(url_for('portfolio.home'))
 
 
     @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="cv", log_file="logging/website.log")
