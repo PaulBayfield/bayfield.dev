@@ -110,7 +110,7 @@ function placeMarker(map, location) {
     let description = prompt("Description du lieu:");
     if (description === null) return;
 
-    let type = prompt("Type (Monument, Maison, Musee, Zoo, Parc, Ville, Gite, Restaurant):", "Monument").toLowerCase();
+    let type = prompt("Type (Monument, Maison, Musee, Zoo, Parc, Ville, Aéroport, Gite, Restaurant):", "Monument").toLowerCase();
     if (type === null) return;
 
     $.post("/add", { lat: location.lat, lng: location.lng, description, type })

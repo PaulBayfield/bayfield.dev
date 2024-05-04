@@ -51,12 +51,12 @@ def init(app):
         :param filename: The name of the file.
         :return: The file.
         """
-        if not os.path.exists(f"{app.path}/media/public/{filename}"):
+        if not os.path.exists(f"{app.path}/media/public/{filename.lower()}"):
             return Respond.render(
                 await render_template('404.html')
             )
         else:
-            return await send_file(f"{app.path}/media/public/{filename}")
+            return await send_file(f"{app.path}/media/public/{filename.lower()}")
         
 
     @blueprint.path(app, uri='/<dir>/<path:filename>', method=['GET', 'POST'], subdomain="media", log_file="logging/website.log")
@@ -177,11 +177,14 @@ def init(app):
         formPath = form.get("path", "")
         formPassword = form.get("password", "")
         formCustom = form.get("custom", "")
+        formFilename = form.get("filename", "")
 
         if len(files) == 0:
             return Respond.render(
                 await render_template('error.html', message="No files!")
             )
+        elif len(files) == 1 and formFilename != "":
+            files[0].filename = formFilename
 
         if formPath not in ["public", "temporary", "private", "archive", "custom"]:
             return Respond.render(

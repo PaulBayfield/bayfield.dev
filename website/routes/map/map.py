@@ -26,6 +26,7 @@ def init(app):
         "zoo",
         "parc",
         "ville",
+        "aeroport",
         "gite",
         "restaurant",
     ]

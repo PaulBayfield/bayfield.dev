@@ -42,7 +42,7 @@ def init(app):
         
         :return: The rendered template.
         """
-        return Respond.render(await render_template('upload.html'))
+        return Respond.render(await render_template('pdf_upload.html'))
 
 
     @blueprint.path(app, uri='/internal/merge', method=['POST'], subdomain="pdf", log_file="logging/website.log", auth=USER)
