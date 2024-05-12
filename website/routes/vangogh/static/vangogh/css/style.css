@@ -514,6 +514,8 @@ body.noscroll {
 
     padding: 10px;
     border-radius: 20px;
+
+    transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .part__carrousel__item > .arrows > button {
