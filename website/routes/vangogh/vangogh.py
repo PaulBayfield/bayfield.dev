@@ -34,7 +34,7 @@ def init(app):
         
         :return: The rendered template.
         """
-        return Respond.render(await render_template('index.html'))
+        return Respond.render(await render_template('vangogh_index.html'))
 
 
     @blueprint.path(app, uri='/favicon.ico', method=['GET','POST'], subdomain="vangogh", log_file="logging/website.log")
