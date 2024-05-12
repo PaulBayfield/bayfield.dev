@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Vincent Van Gogh</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta property="og:title" content="Vincent Van Gogh" />
+    <meta property="og:url" content="https://vangogh.bayfield.dev/" />
+    <meta property="og:description" content="Vincent Van Gogh était un peintre post-impressionniste néerlandais, l'un des plus célèbres et influents de l'histoire de la peinture occidentale." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://vangogh.bayfield.dev/favicon.ico" />
+    <meta property="og:image:alt" content="favicon.ico" />
+    <meta property="og:image:type" content="image/vnd.microsoft.icon">
+    <meta property="og:image:width" content="48">
+    <meta property="og:image:height" content="48">
+
+    <meta content="#869298" data-react-helmet="true" name="theme-color" />
+    <meta content="Vincent Van Gogh était un peintre post-impressionniste néerlandais, l'un des plus célèbres et influents de l'histoire de la peinture occidentale." data-react-helmet="true" name="description" />
+    <meta content="Vincent Van Gogh" data-react-helmet="true" name="author" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-title" content="Vincent Van Gogh">
+    <meta name="application-name" content="Vincent Van Gogh">
+    <meta name="msapplication-TileColor" content="#869298">
+    <meta name="theme-color" content="#869298">
+    <meta name="keywords" content="paul bayfield, bayfield, bayfield.dev, vincent, van gogh, vincent van gogh, peintre, célèbre, painter, auvers sur oise, auvers-sur-oise">
+    <meta name="robots" content="index,follow" />
+    <meta name="googlebot" content="index,follow" />
+    <meta name="google" content="translate" />
+
+    {% include 'analytics/vangogh.bayfield.dev.html' %}
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='vangogh/css/style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Damion&family=Inter&display=swap" rel="stylesheet">
+
+    <link rel="preload" href="{{ url_for('.static', filename='vangogh/img/logo.png') }}" as="image">
+    <link rel="preload" href="{{ url_for('.static', filename='vangogh/img/header.png') }}" as="image">
+    <link rel="preload" href="{{ url_for('.static', filename='vangogh/img/footer.png') }}" as="image">
+
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+    <script src="{{ url_for('.static', filename='vangogh/js/script.js') }}"></script>
+    <script src="{{ url_for('.static', filename='vangogh/js/animations.js') }}"></script>
+</head>
+<body>
+    <header class="header" id="accueil">
+        <div class="header__superior__container">
+            <div class="header__superior">
+                <div class="header__superior__logo">
+                    <a href="/" data-umami-event="Header Logo">
+                        <img src="{{ url_for('.static', filename='vangogh/img/logo.png') }}" alt="Vincent Van Gogh">
+                        <p>VAN GOGH</p>
+                    </a>
+                </div>
+                <nav class="header__superior__nav">
+                    <a href="#biographie" data-umami-event="Header Bio">Biographie</a>
+                    <a href="#peintures" data-umami-event="Header Paintings">Peintures</a>
+                </nav>
+            </div>
+        </div>
+        <div class="header__container">
+            <div class="header__sub__container">
+                <div class="info bottom right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+                        <path d="M27.5002 50.4167C24.3682 50.4167 21.4081 49.8151 18.62 48.612C15.8318 47.4089 13.3969 45.7665 11.3153 43.6849C9.23367 41.6033 7.59131 39.1684 6.38818 36.3802C5.18506 33.592 4.5835 30.632 4.5835 27.5C4.5835 24.3299 5.20416 21.3507 6.44548 18.5625C7.68679 15.7743 9.36735 13.349 11.4871 11.2865C13.6069 9.22397 16.08 7.59116 18.9064 6.38803C21.7328 5.18491 24.7502 4.58334 27.9585 4.58334C31.014 4.58334 33.8977 5.10852 36.6095 6.15886C39.3213 7.20921 41.6989 8.6606 43.7423 10.513C45.7858 12.3655 47.409 14.5616 48.6121 17.1016C49.8153 19.6415 50.4168 22.382 50.4168 25.3229C50.4168 29.7153 49.08 33.0859 46.4064 35.4349C43.7328 37.7839 40.4863 38.9583 36.6668 38.9583H32.4272C32.0835 38.9583 31.8448 39.0538 31.7111 39.2448C31.5774 39.4358 31.5106 39.6458 31.5106 39.875C31.5106 40.3333 31.797 40.9922 32.37 41.8516C32.9429 42.7109 33.2293 43.6945 33.2293 44.8021C33.2293 46.7118 32.7042 48.125 31.6538 49.0417C30.6035 49.9583 29.2189 50.4167 27.5002 50.4167ZM14.896 29.7917C15.8891 29.7917 16.7102 29.467 17.3595 28.8177C18.0088 28.1684 18.3335 27.3472 18.3335 26.3542C18.3335 25.3611 18.0088 24.5399 17.3595 23.8906C16.7102 23.2413 15.8891 22.9167 14.896 22.9167C13.9029 22.9167 13.0818 23.2413 12.4325 23.8906C11.7831 24.5399 11.4585 25.3611 11.4585 26.3542C11.4585 27.3472 11.7831 28.1684 12.4325 28.8177C13.0818 29.467 13.9029 29.7917 14.896 29.7917ZM21.771 20.625C22.7641 20.625 23.5852 20.3004 24.2345 19.6511C24.8838 19.0017 25.2085 18.1806 25.2085 17.1875C25.2085 16.1945 24.8838 15.3733 24.2345 14.724C23.5852 14.0747 22.7641 13.75 21.771 13.75C20.7779 13.75 19.9568 14.0747 19.3075 14.724C18.6581 15.3733 18.3335 16.1945 18.3335 17.1875C18.3335 18.1806 18.6581 19.0017 19.3075 19.6511C19.9568 20.3004 20.7779 20.625 21.771 20.625ZM33.2293 20.625C34.2224 20.625 35.0436 20.3004 35.6929 19.6511C36.3422 19.0017 36.6668 18.1806 36.6668 17.1875C36.6668 16.1945 36.3422 15.3733 35.6929 14.724C35.0436 14.0747 34.2224 13.75 33.2293 13.75C32.2363 13.75 31.4151 14.0747 30.7658 14.724C30.1165 15.3733 29.7918 16.1945 29.7918 17.1875C29.7918 18.1806 30.1165 19.0017 30.7658 19.6511C31.4151 20.3004 32.2363 20.625 33.2293 20.625ZM40.1043 29.7917C41.0974 29.7917 41.9186 29.467 42.5679 28.8177C43.2172 28.1684 43.5418 27.3472 43.5418 26.3542C43.5418 25.3611 43.2172 24.5399 42.5679 23.8906C41.9186 23.2413 41.0974 22.9167 40.1043 22.9167C39.1113 22.9167 38.2901 23.2413 37.6408 23.8906C36.9915 24.5399 36.6668 25.3611 36.6668 26.3542C36.6668 27.3472 36.9915 28.1684 37.6408 28.8177C38.2901 29.467 39.1113 29.7917 40.1043 29.7917ZM27.5002 45.8333C27.8439 45.8333 28.1208 45.7379 28.3309 45.5469C28.541 45.3559 28.646 45.1076 28.646 44.8021C28.646 44.2674 28.3595 43.6372 27.7866 42.9115C27.2137 42.1858 26.9272 41.0972 26.9272 39.6458C26.9272 38.0417 27.4811 36.7622 28.5887 35.8073C29.6963 34.8524 31.0522 34.375 32.6564 34.375H36.6668C39.1877 34.375 41.3456 33.6398 43.1408 32.1693C44.9359 30.6988 45.8335 28.4167 45.8335 25.3229C45.8335 20.7014 44.067 16.8533 40.534 13.7787C37.001 10.704 32.8092 9.16668 27.9585 9.16668C22.7641 9.16668 18.3335 10.9427 14.6668 14.4948C11.0002 18.0469 9.16683 22.382 9.16683 27.5C9.16683 32.5799 10.9524 36.9054 14.5236 40.4766C18.0948 44.0478 22.4203 45.8333 27.5002 45.8333Z" fill="white"/>
+                    </svg>
+                    <span>Champs de blé sous un ciel orageux</span>
+                </div>
+            </div>
+    </header>
+    <section class="separator" id="biographie">
+        <div class="separator__container">
+            <div class="separator__content dark-red dark-red-shadow">
+                <p>Biographie</p>
+            </div>
+        </div>
+    </section>
+    <section class="part bg-gray">
+        <div class="part__container">
+            <div class="part__content dark-blue dark-blue-shadow" id="part-1" style="z-index: 2;">
+                <p>Vincent Van Gogh, peintre néerlandais né le 30 mars 1853 à Zundert et mort le 29 juillet 1890 à Auvers-sur-Oise, est considéré comme l'un des plus grands peintres de l'histoire de l'art, et notamment de l’impressionnisme.</p>
+                <p>Il a produit durant sa courte vie plus de <span id="anime-number">2000</span> œuvres, dont des peintures à l'huile, des dessins et des aquarelles.</p>
+                <p>Ses peintures sont connues pour leurs couleurs vives et leur expressivité émotionnelle. Elles ont eu une influence majeure sur les mouvements artistiques du XXème siècle.</p>
+                <div class="legend end">
+                    <p>L'église d'Auvers-sur-Oise</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
+                        <path d="M16.586 5.08606C16.9611 4.71112 17.4697 4.50049 18 4.50049C18.5303 4.50049 19.0389 4.71112 19.414 5.08606L28.414 14.0861C28.7889 14.4611 28.9996 14.9697 28.9996 15.5001C28.9996 16.0304 28.7889 16.539 28.414 16.9141L19.414 25.9141C19.0368 26.2784 18.5316 26.48 18.0072 26.4754C17.4828 26.4709 16.9812 26.2605 16.6104 25.8897C16.2395 25.5189 16.0292 25.0173 16.0247 24.4929C16.0201 23.9685 16.2217 23.4633 16.586 23.0861L22 17.5001H3C2.46957 17.5001 1.96086 17.2893 1.58579 16.9143C1.21071 16.5392 1 16.0305 1 15.5001C1 14.9696 1.21071 14.4609 1.58579 14.0858C1.96086 13.7108 2.46957 13.5001 3 13.5001H22L16.586 7.91406C16.2111 7.53901 16.0004 7.03039 16.0004 6.50006C16.0004 5.96973 16.2111 5.46112 16.586 5.08606Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+            <img class="dark-blue-shadow" src="{{ url_for('.static', filename='vangogh/img/eglise-aso.png') }}" alt="L'église d'Auvers-sur-Oise" id="img-1" style="z-index: 1;">
+        </div>
+    </section>
+    <section class="part" id="part-2">
+        <div class="part__container__box">
+            <div class="part__container__box__item dark-yellow dark-yellow-shadow" id="anime-box">
+                <p>Van Gogh a connu une vie tourmentée par une lutte contre la maladie mentale qui l’a rongé tout au long de sa carrière.</p>
+                <div class="legend end">
+                    <p>Champ de blé avec corbeaux</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
+                        <path d="M16.586 5.08606C16.9611 4.71112 17.4697 4.50049 18 4.50049C18.5303 4.50049 19.0389 4.71112 19.414 5.08606L28.414 14.0861C28.7889 14.4611 28.9996 14.9697 28.9996 15.5001C28.9996 16.0304 28.7889 16.539 28.414 16.9141L19.414 25.9141C19.0368 26.2784 18.5316 26.48 18.0072 26.4754C17.4828 26.4709 16.9812 26.2605 16.6104 25.8897C16.2395 25.5189 16.0292 25.0173 16.0247 24.4929C16.0201 23.9685 16.2217 23.4633 16.586 23.0861L22 17.5001H3C2.46957 17.5001 1.96086 17.2893 1.58579 16.9143C1.21071 16.5392 1 16.0305 1 15.5001C1 14.9696 1.21071 14.4609 1.58579 14.0858C1.96086 13.7108 2.46957 13.5001 3 13.5001H22L16.586 7.91406C16.2111 7.53901 16.0004 7.03039 16.0004 6.50006C16.0004 5.96973 16.2111 5.46112 16.586 5.08606Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="part__container__box__item dark-yellow dark-yellow-shadow bg img-champ-corbeaux" id="anime-box">
+            </div>
+            <div class="part__container__box__item dark-yellow dark-yellow-shadow bg img-crepuscule-aso" id="anime-box">
+            </div>
+            <div class="part__container__box__item dark-yellow dark-yellow-shadow" id="anime-box">
+                <p>Il a subi plusieurs hospitalisations en psychiatrie et s'est même coupé l'oreille lors d'une crise grave en 1888.</p>
+                <div class="legend start">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
+                        <path d="M16.586 5.08606C16.9611 4.71112 17.4697 4.50049 18 4.50049C18.5303 4.50049 19.0389 4.71112 19.414 5.08606L28.414 14.0861C28.7889 14.4611 28.9996 14.9697 28.9996 15.5001C28.9996 16.0304 28.7889 16.539 28.414 16.9141L19.414 25.9141C19.0368 26.2784 18.5316 26.48 18.0072 26.4754C17.4828 26.4709 16.9812 26.2605 16.6104 25.8897C16.2395 25.5189 16.0292 25.0173 16.0247 24.4929C16.0201 23.9685 16.2217 23.4633 16.586 23.0861L22 17.5001H3C2.46957 17.5001 1.96086 17.2893 1.58579 16.9143C1.21071 16.5392 1 16.0305 1 15.5001C1 14.9696 1.21071 14.4609 1.58579 14.0858C1.96086 13.7108 2.46957 13.5001 3 13.5001H22L16.586 7.91406C16.2111 7.53901 16.0004 7.03039 16.0004 6.50006C16.0004 5.96973 16.2111 5.46112 16.586 5.08606Z" fill="white"/>
+                    </svg>
+                    <p>Le Château d'Auvers-sur-Oise au coucher du soleil</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="part bg-gray">
+        <div class="part__container">
+            <img class="dark-red-shadow" src="{{ url_for('.static', filename='vangogh/img/dr-gachet.png') }}" alt="Portrait du Docteur Paul Gachet" id="anime-img-large-2">
+            <div class="part__content dark-red dark-red-shadow">
+                <p>Malgré ces difficultés, Van Gogh a produit certaines des œuvres les plus célèbres et influentes de l'histoire de l'art.</p>
+                <p>Il est mort à l'âge de 37 ans, sans avoir connu la gloire et sous-estimé en tant qu'artiste. Ce n'est qu'après sa mort que son travail s’est distingué et qu’il a gagné en réputation pour son génie et son originalité.</p>
+                <div class="legend start">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
+                        <path d="M16.586 5.08606C16.9611 4.71112 17.4697 4.50049 18 4.50049C18.5303 4.50049 19.0389 4.71112 19.414 5.08606L28.414 14.0861C28.7889 14.4611 28.9996 14.9697 28.9996 15.5001C28.9996 16.0304 28.7889 16.539 28.414 16.9141L19.414 25.9141C19.0368 26.2784 18.5316 26.48 18.0072 26.4754C17.4828 26.4709 16.9812 26.2605 16.6104 25.8897C16.2395 25.5189 16.0292 25.0173 16.0247 24.4929C16.0201 23.9685 16.2217 23.4633 16.586 23.0861L22 17.5001H3C2.46957 17.5001 1.96086 17.2893 1.58579 16.9143C1.21071 16.5392 1 16.0305 1 15.5001C1 14.9696 1.21071 14.4609 1.58579 14.0858C1.96086 13.7108 2.46957 13.5001 3 13.5001H22L16.586 7.91406C16.2111 7.53901 16.0004 7.03039 16.0004 6.50006C16.0004 5.96973 16.2111 5.46112 16.586 5.08606Z" fill="white"/>
+                    </svg>
+                    <p>Portrait du Docteur Paul Gachet</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="part">
+        <div class="part__container__doubles">
+            <div class="part__container__doubles__item light-green light-green-shadow">
+                <p>Il est aujourd'hui considéré comme l'un des plus grands peintres de tous les temps et ses œuvres continuent d'être admirées et étudiées dans le monde entier.</p>
+                <div class="legend end bottom">
+                    <p>Champ de blé et ciel orageux</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
+                        <path d="M16.586 5.08606C16.9611 4.71112 17.4697 4.50049 18 4.50049C18.5303 4.50049 19.0389 4.71112 19.414 5.08606L28.414 14.0861C28.7889 14.4611 28.9996 14.9697 28.9996 15.5001C28.9996 16.0304 28.7889 16.539 28.414 16.9141L19.414 25.9141C19.0368 26.2784 18.5316 26.48 18.0072 26.4754C17.4828 26.4709 16.9812 26.2605 16.6104 25.8897C16.2395 25.5189 16.0292 25.0173 16.0247 24.4929C16.0201 23.9685 16.2217 23.4633 16.586 23.0861L22 17.5001H3C2.46957 17.5001 1.96086 17.2893 1.58579 16.9143C1.21071 16.5392 1 16.0305 1 15.5001C1 14.9696 1.21071 14.4609 1.58579 14.0858C1.96086 13.7108 2.46957 13.5001 3 13.5001H22L16.586 7.91406C16.2111 7.53901 16.0004 7.03039 16.0004 6.50006C16.0004 5.96973 16.2111 5.46112 16.586 5.08606Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="part__container__doubles__item_large light-green-shadow bg img-paysage-aso">
+            </div>
+        </div>
+    </section>
+    <section class="separator" id="peintures">
+        <div class="separator__container">
+            <div class="separator__content dark-gray dark-gray-shadow">
+                <p>Peintures</p>
+            </div>
+        </div>
+    </section>
+    <section class="part" id="painting">
+        <div class="part__carrousel" id="carrousel">
+            <div class="part__carrousel__item bg light-green-two-shadow">
+                <div class="arrows">
+                    <button type="button" id="button-left" data-umami-event="Carrousel Large Left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                            <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                        </svg>
+                    </button>
+                    <button type="button" id="button-right" data-umami-event="Carrousel Large Right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                            <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                        </svg>
+                    </button>
+                </div>
+                <div>
+                    <a href="#description" class="info bottom right" id="carrousel-info">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+                            <path d="M27.5002 50.4167C24.3682 50.4167 21.4081 49.8151 18.62 48.612C15.8318 47.4089 13.3969 45.7665 11.3153 43.6849C9.23367 41.6033 7.59131 39.1684 6.38818 36.3802C5.18506 33.592 4.5835 30.632 4.5835 27.5C4.5835 24.3299 5.20416 21.3507 6.44548 18.5625C7.68679 15.7743 9.36735 13.349 11.4871 11.2865C13.6069 9.22397 16.08 7.59116 18.9064 6.38803C21.7328 5.18491 24.7502 4.58334 27.9585 4.58334C31.014 4.58334 33.8977 5.10852 36.6095 6.15886C39.3213 7.20921 41.6989 8.6606 43.7423 10.513C45.7858 12.3655 47.409 14.5616 48.6121 17.1016C49.8153 19.6415 50.4168 22.382 50.4168 25.3229C50.4168 29.7153 49.08 33.0859 46.4064 35.4349C43.7328 37.7839 40.4863 38.9583 36.6668 38.9583H32.4272C32.0835 38.9583 31.8448 39.0538 31.7111 39.2448C31.5774 39.4358 31.5106 39.6458 31.5106 39.875C31.5106 40.3333 31.797 40.9922 32.37 41.8516C32.9429 42.7109 33.2293 43.6945 33.2293 44.8021C33.2293 46.7118 32.7042 48.125 31.6538 49.0417C30.6035 49.9583 29.2189 50.4167 27.5002 50.4167ZM14.896 29.7917C15.8891 29.7917 16.7102 29.467 17.3595 28.8177C18.0088 28.1684 18.3335 27.3472 18.3335 26.3542C18.3335 25.3611 18.0088 24.5399 17.3595 23.8906C16.7102 23.2413 15.8891 22.9167 14.896 22.9167C13.9029 22.9167 13.0818 23.2413 12.4325 23.8906C11.7831 24.5399 11.4585 25.3611 11.4585 26.3542C11.4585 27.3472 11.7831 28.1684 12.4325 28.8177C13.0818 29.467 13.9029 29.7917 14.896 29.7917ZM21.771 20.625C22.7641 20.625 23.5852 20.3004 24.2345 19.6511C24.8838 19.0017 25.2085 18.1806 25.2085 17.1875C25.2085 16.1945 24.8838 15.3733 24.2345 14.724C23.5852 14.0747 22.7641 13.75 21.771 13.75C20.7779 13.75 19.9568 14.0747 19.3075 14.724C18.6581 15.3733 18.3335 16.1945 18.3335 17.1875C18.3335 18.1806 18.6581 19.0017 19.3075 19.6511C19.9568 20.3004 20.7779 20.625 21.771 20.625ZM33.2293 20.625C34.2224 20.625 35.0436 20.3004 35.6929 19.6511C36.3422 19.0017 36.6668 18.1806 36.6668 17.1875C36.6668 16.1945 36.3422 15.3733 35.6929 14.724C35.0436 14.0747 34.2224 13.75 33.2293 13.75C32.2363 13.75 31.4151 14.0747 30.7658 14.724C30.1165 15.3733 29.7918 16.1945 29.7918 17.1875C29.7918 18.1806 30.1165 19.0017 30.7658 19.6511C31.4151 20.3004 32.2363 20.625 33.2293 20.625ZM40.1043 29.7917C41.0974 29.7917 41.9186 29.467 42.5679 28.8177C43.2172 28.1684 43.5418 27.3472 43.5418 26.3542C43.5418 25.3611 43.2172 24.5399 42.5679 23.8906C41.9186 23.2413 41.0974 22.9167 40.1043 22.9167C39.1113 22.9167 38.2901 23.2413 37.6408 23.8906C36.9915 24.5399 36.6668 25.3611 36.6668 26.3542C36.6668 27.3472 36.9915 28.1684 37.6408 28.8177C38.2901 29.467 39.1113 29.7917 40.1043 29.7917ZM27.5002 45.8333C27.8439 45.8333 28.1208 45.7379 28.3309 45.5469C28.541 45.3559 28.646 45.1076 28.646 44.8021C28.646 44.2674 28.3595 43.6372 27.7866 42.9115C27.2137 42.1858 26.9272 41.0972 26.9272 39.6458C26.9272 38.0417 27.4811 36.7622 28.5887 35.8073C29.6963 34.8524 31.0522 34.375 32.6564 34.375H36.6668C39.1877 34.375 41.3456 33.6398 43.1408 32.1693C44.9359 30.6988 45.8335 28.4167 45.8335 25.3229C45.8335 20.7014 44.067 16.8533 40.534 13.7787C37.001 10.704 32.8092 9.16668 27.9585 9.16668C22.7641 9.16668 18.3335 10.9427 14.6668 14.4948C11.0002 18.0469 9.16683 22.382 9.16683 27.5C9.16683 32.5799 10.9524 36.9054 14.5236 40.4766C18.0948 44.0478 22.4203 45.8333 27.5002 45.8333Z" fill="white"/>
+                        </svg>
+                        <p id="desc-1">Champs de blé avec corbeaux</p>
+                        <p class="hidden" id="desc-2">Le Château d'Auvers-sur-Oise au coucher du soleil</p>
+                        <p class="hidden" id="desc-3">Champ de blé et ciel orageux</p>
+                        <p class="hidden" id="desc-4">Les bords de l'Oise à Auvers</p>
+                        <p class="hidden" id="desc-5">Sous-bois avec couple</p>
+                        <p class="hidden" id="desc-6">Champs de blé sous un ciel orageux</p>
+                        <p class="hidden" id="desc-7">Champ de blé avec bleuets</p>
+                        <p class="hidden" id="desc-8">Autoportrait</p>
+                        <p class="hidden" id="desc-9">Rue d'Auvers-sur-Oise</p>
+                        <p class="hidden" id="desc-10">Racines et troncs d'arbres</p>
+                        <p class="hidden" id="desc-11">Vue d'Auvers-sur-Oise</p>
+                        <p class="hidden" id="desc-12">Portrait du Docteur Paul Gachet</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="part bg-gray" id="description">
+        <div class="part__container__unique">
+            <div class="part__container__unique__item light-green-two light-green-two-shadow">
+                <p>C’est une peinture à l'huile peinte en 1890. Considéré comme un chef-d'œuvre de l'art de Van Gogh, c'est aussi l'une de ses dernières œuvres peintes peu avant sa mort.</p>
+                <p>Elle représente un champ de blé doré ondulant sous un ciel tourmenté et orageux. Les nuages sombres et menaçants sont balayés par le vent, créant une atmosphère lourde et inquiétante. Des corbeaux noirs volent au-dessus du champ, ajoutant une touche de mélancolie et de solitude à la scène.</p>
+                <p>Le champ de blé occupe la majeure partie du tableau, avec un chemin sinueux qui serpente au travers, menant à un point de fuite sur la droite. Les coups de pinceau de Van Gogh sont rapides et expressifs, créant un mouvement et une énergie dans le champ de blé. Ils reflètent sa lutte personnelle avec la maladie mentale et son approche unique de la couleur et de la texture présente dans son style.</p>
+                <div class="legend start">
+                    <a href="#painting">Champs de blé avec corbeaux - juillet 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>C'est une œuvre caractéristique de Vincent Van Gogh, peinte durant son séjour dans le petit village d'Auvers-sur-Oise en France. Van Gogh s’y est installé en mai 1890 à la recherche de paix et d'inspiration quelques mois seulement avant sa mort tragique. Ce tableau capture la beauté sereine de la campagne française alors que la nuit tombe sur celui-ci.</p>
+                <p>Dans cette scène Van Gogh représente le paysage baigné de teintes douces et chaudes du crépuscule. Le ciel est, quant à lui, un mélange tourbillonnant de bleus, de pourpres et d'oranges, avec des nuages effilés et teintés de rose. De plus, le soleil couchant projette de longues ombres à travers les champs et les arbres, créant une sensation de profondeur et de perspective.</p>
+                <p>Le village d'Auvers-sur-Oise est visible au loin, niché parmi les collines ondulantes.</p>
+                <div class="legend start">
+                    <a href="#painting">Le Château d'Auvers-sur-Oise au coucher du soleil - juin 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Ce tableau est peint par Vincent Van Gogh en 1890 avec une peinture à l'huile.</p>
+                <p>La peinture représente un champ de blé ondulant sous un ciel bleu clair, avec des coquelicots rouge vif éparpillés à travers le champ. Les coups de pinceau de Van Gogh sont rapides et expressifs, créant une sensation de mouvement et de l’énergie dans le champ de blé.</p>
+                <p>Le contraste entre le rouge vif des coquelicots et le jaune doré du blé crée aussi une tension visuelle sur le tableau tandis que le ciel bleu clair ajoute une touche de calme et de sérénité. Les couleurs vives et audacieuses utilisées par Van Gogh dans cette peinture reflètent son approche unique de l'art de la peinture et sa capacité à capturer l'émotion et la beauté de la nature par des gestes simples.</p>
+                <div class="legend start">
+                    <a href="#painting">Champ de blé et ciel orageux - juillet 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Dans cette œuvre, Van Gogh utilise des couleurs vives et des coups de pinceau audacieux pour capturer l'atmosphère paisible et pittoresque des rives de la rivière. Les tons de bleu et de vert dominent tout en reflétant le calme de l'eau et la verdure luxuriante des arbres qui bordent la rivière. Les reflets de la lumière sur l'eau sont rendus avec une grande finesse, créant une sensation de mouvement et de vie.</p>
+                <p>Van Gogh a peint plusieurs vues des bords de l'Oise pendant son séjour à Auvers, capturant ainsi la beauté intemporelle de ce paysage rural. <i>Les Bords de l'Oise à Auvers</i> est une œuvre qui témoigne du talent de l'artiste à représenter la nature avec émotion et intensité, et qui invite le spectateur à contempler la tranquillité et la simplicité de la vie à la campagne.</p>
+                <div class="legend start">
+                    <a href="#painting">Les bords de l'Oise à Auvers - juillet 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Van Gogh a souvent été inspiré par la nature, ainsi ses œuvres témoignent de sa fascination pour les paysages naturels. Dans cette peinture, les arbres forment une canopée au-dessus du chemin, créant un jeu de lumière et d'ombre qui ajoute de la profondeur à la scène. Les couleurs sont riches et vibrantes, avec des tons de verts, de bleus et de bruns qui évoquent la luxuriance de la végétation.</p>
+                <p>Le couple au centre de la composition ajoute une touche d'humanité à la scène, renforçant le sentiment de quiétude et de tranquillité qui se dégage de l'œuvre. Le choix de représenter un couple se promenant dans la nature reflète peut-être le désir de Van Gogh de trouver la paix et le réconfort dans les relations humaines et dans la beauté du monde qui l'entoure.</p>
+                <div class="legend start">
+                    <a href="#painting">Sous-bois avec couple - juin 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Van Gogh était fasciné par les variations de lumière et de couleur dans la nature, et cette peinture en est un exemple frappant. Les tons de jaunes, de verts et de bleus du champ de blé contrastent avec les teintes sombres et tourmentées du ciel, créant une atmosphère de tension et d'excitation. Les coups de pinceau audacieux et expressifs de Van Gogh ajoutent une dimension supplémentaire à la peinture, évoquant le mouvement du vent et la force de la nature.</p>
+                <p>Malgré l'aspect menaçant du ciel, il y a une beauté saisissante dans cette scène. Van Gogh parvient à capturer à la fois la grandeur et la fragilité de la nature, ainsi que l'émotion et la sensation d'urgence qui se dégagent de la confrontation entre les éléments.</p>
+                <div class="legend start">
+                    <a href="#painting">Champs de blé sous un ciel orageux - juillet 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Dans ce paysage, Van Gogh utilise des couleurs riches et intenses pour capturer la beauté de la nature en plein essor. Les tons de jaune doré du blé se mêlent aux nuances délicates de bleus des bleuets créant un contraste saisissant qui attire le regard du spectateur. Les coups de pinceau audacieux et expressifs de Van Gogh ajoutent une dimension de mouvement et de vie à la composition en évoquant le vent qui agite les épis de blé et les fleurs sauvages.</p>
+                <p><i>Champ de blé avec bleuets</i> est une œuvre qui célèbre la beauté simple et la vitalité de la nature. Van Gogh était fasciné par les paysages ruraux et les scènes de la vie quotidienne, et cette peinture en est un exemple remarquable. Elle témoigne de son talent à capturer l'essence même de la nature et à transmettre son émerveillement pour le monde qui l'entoure.</p>
+                <div class="legend start">
+                    <a href="#painting">Champ de blé avec bleuets - juillet 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>L'autoportrait présente Van Gogh regardant directement le spectateur avec un regard intense et scrutateur. Son visage est marqué par des traits anguleux, sa barbe rousse est touffue et sa chevelure est ébouriffée. Van Gogh utilise des coups de pinceau expressifs pour capturer les nuances subtiles de son expression faciale, reflétant à la fois son tempérament tourmenté et sa sensibilité artistique.</p>
+                <p>Ce tableau offre un aperçu puissant de l'âme tourmentée de l'artiste. Van Gogh était connu pour son introspection profonde et sa capacité à exprimer ses émotions à travers son art, et cet autoportrait en est un exemple remarquable. Il capture à la fois la vulnérabilité et la force de Van Gogh en tant qu'artiste, ainsi que son désir ardent de se connecter avec le spectateur à un niveau émotionnel et spirituel.</p>
+                <div class="legend start">
+                    <a href="#painting">Autoportrait - septembre 1889</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Dans cette peinture, Van Gogh capture la simplicité et la beauté de la vie quotidienne d’un petit village rural français. La rue est bordée de maisons aux toits de tuiles rouges et aux murs de pierre avec des arbres qui ombragent doucement la chaussée. Les couleurs sont douces et subtiles, avec des tons de verts, de bleus et de bruns qui évoquent la tranquillité et la sérénité de la scène.</p>
+                <p>Malgré sa simplicité apparente, <i>Rue d'Auvers-sur-Oise</i> est une œuvre qui dégage une profondeur émotionnelle. Van Gogh était fasciné par les paysages ruraux et les scènes de la vie quotidienne : cette peinture en est un exemple remarquable. Elle témoigne de son talent à capturer la beauté et la poésie de la vie ordinaire, ainsi que de son désir de trouver la paix et la rédemption dans la simplicité de la nature et de la vie quotidienne.</p>
+                <div class="legend start">
+                    <a href="#painting">Rue d'Auvers-sur-Oise - mai 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Avec des coups de pinceau vigoureux et audacieux, Vincent Van Gogh rend la rugosité de l'écorce et la complexité des motifs naturels avec une vivacité frappante. Les couleurs utilisées sont riches et variées, allant des tons terreux aux teintes chaudes de rouges, d'oranges et de jaunes, créant une palette visuelle vibrante et captivante.</p>
+                <p>Ce tableau témoigne du génie artistique de Van Gogh et de sa capacité à trouver la beauté dans les aspects les plus simples et les plus modestes de la nature. En se concentrant sur les racines et les troncs d'arbres, Van Gogh invite le spectateur à contempler la force et la vitalité de la vie même dans les endroits les plus obscurs et les plus cachés de la nature.</p>
+                <div class="legend start">
+                    <a href="#painting">Racines et troncs d'arbres - juillet 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Dans cette peinture, Van Gogh nous offre une vue panoramique du village, mettant en valeur les toits rouges des maisons, les arbres verdoyants et les collines qui entourent la ville. Les couleurs sont douces et subtiles, avec des tons de bleus, de verts et de bruns qui évoquent la douceur de la campagne française pendant l’été.</p>
+                <p>Van Gogh utilise des coups de pinceaux vifs et expressifs pour capturer l'énergie et la vitalité de la nature environnante, ce qui permet de créer une sensation de mouvement et de vie dans la composition. Malgré sa simplicité apparente, <i>Vue d'Auvers-sur-Oise</i> est une œuvre qui dégage une profondeur émotionnelle et une beauté intemporelle.</p>
+                <div class="legend start">
+                    <a href="#painting">Vue d'Auvers-sur-Oise - juillet 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="part__container__unique__item light-green-two light-green-two-shadow hidden">
+                <p>Dans ce portrait Van Gogh a capturé le visage du Dr Gachet avec une grande empathie et une sensibilité artistique. Le médecin est représenté assis et tourné légèrement de trois-quarts, le visage tourné vers les spectateurs avec un regard introspectif. Ses traits sont marqués par une expression de calme et de réflexion, tandis que son regard semble pénétrer l'âme des spectateurs.</p>
+                <p>Van Gogh a utilisé une palette de couleurs subtiles pour représenter le Dr Gachet, avec des tons de bleus, de verts et de bruns qui évoquent la douceur de la vie dans la campagne française en été. Les coups de pinceau sont vifs et expressifs, créant une texture dynamique et une sensation de mouvement dans cette œuvre.</p>
+                <div class="legend start">
+                    <a href="#painting">Portrait du Docteur Paul Gachet - juin 1890</a>
+                    <div class="arrows">
+                        <button type="button" id="button-left" data-umami-event="Carrousel Small Left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M33.4596 5.61271C34.0454 6.19874 34.3745 6.99345 34.3745 7.82209C34.3745 8.65072 34.0454 9.44544 33.4596 10.0315L17.9908 25.5002L33.4596 40.969C34.0288 41.5583 34.3438 42.3477 34.3367 43.1671C34.3296 43.9865 34.0009 44.7703 33.4215 45.3497C32.8421 45.9291 32.0583 46.2577 31.239 46.2648C30.4196 46.2719 29.6302 45.957 29.0408 45.3877L11.3627 27.7096C10.7769 27.1236 10.4478 26.3289 10.4478 25.5002C10.4478 24.6716 10.7769 23.8769 11.3627 23.2908L29.0408 5.61271C29.6269 5.02686 30.4216 4.69775 31.2502 4.69775C32.0788 4.69775 32.8736 5.02686 33.4596 5.61271Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button type="button" id="button-right" data-umami-event="Carrousel Small Right">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51" fill="none">
+                                <path d="M16.5407 45.3873C15.9548 44.8013 15.6257 44.0066 15.6257 43.1779C15.6257 42.3493 15.9548 41.5546 16.5407 40.9685L32.0094 25.4998L16.5407 10.031C15.9714 9.44165 15.6564 8.65227 15.6636 7.8329C15.6707 7.01354 15.9993 6.22975 16.5787 5.65035C17.1581 5.07095 17.9419 4.7423 18.7613 4.73518C19.5806 4.72806 20.37 5.04304 20.9594 5.61229L38.6375 23.2904C39.2234 23.8764 39.5525 24.6711 39.5525 25.4998C39.5525 26.3284 39.2234 27.1231 38.6375 27.7092L20.9594 45.3873C20.3734 45.9731 19.5787 46.3022 18.75 46.3022C17.9214 46.3022 17.1267 45.9731 16.5407 45.3873Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="part">
+        <div class="part__container__doubles">
+            <div class="part__container__doubles__item white light-blue-shadow" id="infos">
+                <p>Site réalisé à la suite d'une visite en décembre 2023 au musée d’Orsay, à l’exposition <i>Van Gogh à Auvers-sur-Oise - Les derniers mois</i>. Toutes les images présentes ont été prises lors de cette visite.</p>
+                <p>Vous souhaitez voir d’autres de mes réalisations ? Rendez-vous sur mon Portfolio disponible à l’adresse suivante : <a href="https://bayfield.dev" target="_blank" data-umami-event="Portfolio">https://bayfield.dev</a>.</p>
+            </div>
+            <div class="part__container__doubles__item_large light-blue-shadow bg img-sous-bois">
+            </div>
+        </div>
+    </section>
+    <footer class="footer img-footer bg">
+        <div class="footer__container">
+            <div class="footer__content">
+                <div class="footer__content__item">
+                    <img src="{{ url_for('static', filename='favicon.png') }}" alt="Logo Paul Bayfield">
+                    <p>Merci d’être passé ッ</p>
+                </div>
+                <div class="footer__content__credits">
+                    <p>© 2024 Paul Bayfield, tous droits réservés.</p>
+                    <p>Toutes les images présentes sur le site sont la propriété de Peter Bayfield et ne peuvent être utilisées sans autorisation.</p>
+                </div>
+            </div>
+            <div class="footer__links">
+                <div class="footer__links_container">
+                    <p>Liens</p>
+                    <div class="footer__links__container__links">
+                        <a href="#accueil" data-umami-event="Footer Home">Accueil</a>
+                        <a href="#biographie" data-umami-event="Footer Bio">Biographie</a>
+                        <a href="#peintures" data-umami-event="Footer Paintings">Peintures</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
