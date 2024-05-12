@@ -74,6 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // After the page loads, preload all images
     for (let i = 1; i <= carrouselInfoLegends.length; i++) {
         const img = new Image();
-        img.src = `static/vangogh/vangogh/img/paintings/carrousel-${i}.png`;
+        img.src = `https://bayfield.dev/static/vangogh/vangogh/img/paintings/carrousel-${i}.png`;
     }
 });
