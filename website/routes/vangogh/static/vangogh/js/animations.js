@@ -62,21 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const part2 = document.getElementById('part-2');
 
-    const animation4 = anime({
-        targets: '#infos',
-        duration: 4000,
-        autoplay: false,
-        easing: 'easeInOutExpo',
-        background: '#54626d'
-    });
-
-    const description = document.getElementById('description');
-
     window.onscroll = function() {
         number.seek(animateOnScroll(sep, 100) * number.duration);
-        animation1.seek(animateOnScroll(img1, 1000) * animation1.duration);
+        animation1.seek(animateOnScroll(img1, 1000, -400) * animation1.duration);
         animation2.seek(animateOnScroll(part1, 1000) * animation2.duration);
         animation3.seek(animateOnScroll(part2, 800) * animation3.duration);
-        animation4.seek(animateOnScroll(description, 1000) * animation4.duration);
     };
 });
