@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function updateCarrousel(index) {
-        carrousel.style.backgroundImage = `url('static/vangogh/vangogh/img/paintings/carrousel-${index}.png')`;
+        carrousel.style.backgroundImage = 'https://bayfield.dev/static/vangogh/vangogh/img/paintings/carrousel-${index}.png';
 
         hideAllInfo();
         carrouselInfoLegends[index - 1].classList.remove('hidden');
