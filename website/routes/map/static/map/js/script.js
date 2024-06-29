@@ -57,10 +57,16 @@ function initMap(lat, lng, edit) {
             var infowindowContent = document.getElementById("infowindow-content-default").cloneNode(true);
             // Changement de l'ID
             infowindowContent.id = "infowindow-content";
-            var marker = new google.maps.Marker({
+
+            var iconImg = document.createElement("img");
+            iconImg.src = 'https://bayfield.dev/static/map/map/images/tout.svg';
+
+            var marker = new google.maps.marker.AdvancedMarkerElement({
                 map: map,
-                icon: 'https://bayfield.dev/static/map/map/images/tout.svg',
+                content: iconImg,
+                gmpClickable: true,
             });
+
             marker.setPlace({
                 placeId: place.place_id,
                 location: results[0].geometry.location,
@@ -116,10 +122,14 @@ function placeMarker(map, location) {
 
     $.post("/add", { lat: location.lat, lng: location.lng, description, type })
     .done(function () {
-        var marker = new google.maps.Marker({
-            position: location,
+        var iconImg = document.createElement("img");
+        iconImg.src = `https://bayfield.dev/static/map/map/images/${type}.svg`;
+
+        var marker = new google.maps.marker.AdvancedMarkerElement({
             map: map,
-            icon: `https://bayfield.dev/static/map/map/images/${type}.svg`,
+            position: location,
+            content: iconImg,
+            gmpClickable: true,
         });
 
         marker.iconType = type;
