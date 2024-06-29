@@ -63,15 +63,11 @@ function initMap(lat, lng, edit) {
 
             var marker = new google.maps.marker.AdvancedMarkerElement({
                 map: map,
+                position: results[0].geometry.location,
                 content: iconImg,
                 gmpClickable: true,
             });
 
-            marker.setPlace({
-                placeId: place.place_id,
-                location: results[0].geometry.location,
-            });
-            marker.setVisible(true);
             marker.addListener("click", () => {
                 infoWindow.open(map, marker);
             });
