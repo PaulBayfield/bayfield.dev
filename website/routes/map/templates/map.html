@@ -202,16 +202,11 @@
             const map = await initMap({{ last['lat'] }}, {{ last['lon'] }}, {{ edit }});
             window.map = map;
 
-            // const marker = new google.maps.marker.AdvancedMarkerElement({
-            //     map: map,
-            //     position: new google.maps.LatLng(48.855835599380775, 2.3512130671340703),
-            // });
-
             {% for marker in markers %}
-            let iconImg = document.createElement("img");
+            var iconImg = document.createElement("img");
             iconImg.src = 'https://bayfield.dev/static/map/map/images/' + "{{ marker['type'] }}" + '.svg';
 
-            let marker = new google.maps.marker.AdvancedMarkerElement({
+            var marker = new google.maps.marker.AdvancedMarkerElement({
                 map: map,
                 position: new google.maps.LatLng({{ marker['lat'] }}, {{ marker['lon'] }}),
                 content: iconImg,
