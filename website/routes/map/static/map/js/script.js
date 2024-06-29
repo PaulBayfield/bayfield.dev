@@ -160,7 +160,7 @@ function addInfoWindow(map, marker, message) {
         }
 
         if (marker.geocoded) {
-            infoWindow.open(marker.map, marker);
+            infoWindow.open(map, marker);
             return;
         } else {
             geocoder.geocode({ 'location': marker.position }, function (results, status) {
@@ -168,10 +168,10 @@ function addInfoWindow(map, marker, message) {
                     var formattedAddress = results[0].formatted_address;
                     message += "<br><br>" + formattedAddress;
                     infoWindow.setContent(message);
-                    infoWindow.open(marker.map, marker);
+                    infoWindow.open(map, marker);
                 } else {
                     infoWindow.setContent(message);
-                    infoWindow.open(marker.map, marker);
+                    infoWindow.open(map, marker);
                 }
     
                 openInfoWindow = infoWindow;
