@@ -17,6 +17,7 @@ function initMap(lat, lng, edit) {
         streetViewControl: false,
         fullscreenControl: false,
         mapTypeControl: true,
+        mapId: "MAP_ID",
     });
 
     editable = edit;
@@ -121,7 +122,7 @@ function placeMarker(map, location) {
             icon: `https://bayfield.dev/static/map/map/images/${type}.svg`,
         });
 
-        marker.type = type;
+        marker.iconType = type;
 
         if (filter !== type && filter !== 'tout') {
             marker.setVisible(false);
@@ -148,7 +149,7 @@ function addInfoWindow(map, marker, message) {
         content: message,
     });
 
-    google.maps.event.addListener(marker, 'click', function () {
+    marker.addListener("click", ({ domEvent, latLng }) => {
         if (currentSearch) {
             currentSearch.setMap(null);
             currentSearch = null;
@@ -159,7 +160,7 @@ function addInfoWindow(map, marker, message) {
         }
 
         if (marker.geocoded) {
-            infoWindow.open(map, marker);
+            infoWindow.open(marker.map, marker);
             return;
         } else {
             geocoder.geocode({ 'location': marker.position }, function (results, status) {
@@ -167,10 +168,10 @@ function addInfoWindow(map, marker, message) {
                     var formattedAddress = results[0].formatted_address;
                     message += "<br><br>" + formattedAddress;
                     infoWindow.setContent(message);
-                    infoWindow.open(map, marker);
+                    infoWindow.open(marker.map, marker);
                 } else {
                     infoWindow.setContent(message);
-                    infoWindow.open(map, marker);
+                    infoWindow.open(marker.map, marker);
                 }
     
                 openInfoWindow = infoWindow;
@@ -178,7 +179,7 @@ function addInfoWindow(map, marker, message) {
             });
         }
 
-        map.panTo(this.getPosition());
+        map.panTo(latLng);
         map.setZoom(12);
     });
 }
@@ -189,12 +190,12 @@ function filterMarkers(category) {
 
     var visible = [];
     for (let i = 0; i < markers.length; i++) {
-        if (markers[i].type === category || category === 'tout') {
-            markers[i].setVisible(true);
+        if (markers[i].iconType === category || category === 'tout') {
+            markers[i].map = map;
             visible.push(markers[i]);
         }
         else {
-            markers[i].setVisible(false);
+            markers[i].map = null;
         }
     }
 

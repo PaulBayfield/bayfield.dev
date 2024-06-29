@@ -26,7 +26,6 @@
     {% include 'analytics/map.bayfield.dev.html' %}
 
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="{{ url_for('.static', filename='map/js/script.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
@@ -199,21 +198,29 @@
     </section>
 
     <script>
-        function loadMap() {
-            const map = initMap({{ last['lat'] }}, {{ last['lon'] }}, {{ edit }});
+        async function loadMap() {
+            const map = await initMap({{ last['lat'] }}, {{ last['lon'] }}, {{ edit }});
             window.map = map;
-        
+
+            // const marker = new google.maps.marker.AdvancedMarkerElement({
+            //     map: map,
+            //     position: new google.maps.LatLng(48.855835599380775, 2.3512130671340703),
+            // });
+
             {% for marker in markers %}
-            var iconType = "{{ marker['type'] }}";
-            var iconPath = 'https://bayfield.dev/static/map/map/images/' + iconType + '.svg';
-        
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng({{ marker['lat'] }}, {{ marker['lon'] }}),
+            let iconImg = document.createElement("img");
+            iconImg.src = 'https://bayfield.dev/static/map/map/images/' + "{{ marker['type'] }}" + '.svg';
+
+            let marker = new google.maps.marker.AdvancedMarkerElement({
                 map: map,
-                icon: iconPath,
+                position: new google.maps.LatLng({{ marker['lat'] }}, {{ marker['lon'] }}),
+                content: iconImg,
+                gmpClickable: true,
+                title: `{{ marker['description'] }}`,
             });
-        
-            marker.type = iconType;
+
+            marker.iconType = "{{ marker['type'] }}";
+
             markers.push(marker);
         
             addInfoWindow(map, marker, "{{ marker['description'] }}");
@@ -223,8 +230,8 @@
         }
     </script>
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key={{ API_KEY }}&callback=loadMap&libraries=places&v=weekly&loading=async"
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key={{ API_KEY }}&callback=loadMap&libraries=places,marker&v=weekly&loading=async"
         defer
     ></script>
 </body>
