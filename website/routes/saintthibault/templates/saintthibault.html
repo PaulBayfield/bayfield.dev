@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ url_for('.static', filename='saintthibault/images/logo.png') }}" />
+    <meta
+      property="og:image"
+      content="{{ url_for('.static', filename='saintthibault/images/logo.png') }}"
+    />
     <meta property="og:image:alt" content="logo.png" />
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1051">
-    <meta property="og:image:height" content="1051">
-    <meta property="og:description" content="Centre Equestre/Poney Club de Saint-Thibault. 
-    Situé à 30 km de Paris, au sein de la forêt régionale de Montgé en Goële, CHARLES HENRY et THOMAS FONTANA vous souhaitent la bienvenue et vous invitent à venir partager votre passion de l'équitation dans un cadre idéal de détente."/>
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1051" />
+    <meta property="og:image:height" content="1051" />
+    <meta
+      property="og:description"
+      content="Centre Equestre/Poney Club de Saint-Thibault. 
+    Situé à 30 km de Paris, au sein de la forêt régionale de Montgé en Goële, CHARLES HENRY et THOMAS FONTANA vous souhaitent la bienvenue et vous invitent à venir partager votre passion de l'équitation dans un cadre idéal de détente."
+    />
 
     <meta content="#FFCA4F" data-react-helmet="true" name="theme-color" />
-    <meta content="Centre Equestre/Poney Club de Saint-Thibault. 
-    Situé à 30 km de Paris, au sein de la forêt régionale de Montgé en Goële, CHARLES HENRY et THOMAS FONTANA vous souhaitent la bienvenue et vous invitent à venir partager votre passion de l'équitation dans un cadre idéal de détente." data-react-helmet="true" name="description" />
-    <meta content="Centre équestre Saint-Thibault" data-react-helmet="true" name="author" />
+    <meta
+      content="Centre Equestre/Poney Club de Saint-Thibault. 
+    Situé à 30 km de Paris, au sein de la forêt régionale de Montgé en Goële, CHARLES HENRY et THOMAS FONTANA vous souhaitent la bienvenue et vous invitent à venir partager votre passion de l'équitation dans un cadre idéal de détente."
+      data-react-helmet="true"
+      name="description"
+    />
+    <meta
+      content="Centre équestre Saint-Thibault"
+      data-react-helmet="true"
+      name="author"
+    />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="apple-mobile-web-app-title" content="Centre équestre Saint-Thibault">
-    <meta name="application-name" content="Centre équestre Saint-Thibault">
-    <meta name="msapplication-TileColor" content="#FFCA4F">
-    <meta name="theme-color" content="#FFCA4F">
-    <meta name="keywords" content="équitation, cheval, centre équestre, 77 230 montgé-en-goële, 77230, centre équestre saint-thibault, centre équestre saint thibault, centre equestre saint thibault">
+    <meta
+      name="apple-mobile-web-app-title"
+      content="Centre équestre Saint-Thibault"
+    />
+    <meta name="application-name" content="Centre équestre Saint-Thibault" />
+    <meta name="msapplication-TileColor" content="#FFCA4F" />
+    <meta name="theme-color" content="#FFCA4F" />
+    <meta
+      name="keywords"
+      content="équitation, cheval, centre équestre, 77 230 montgé-en-goële, 77230, centre équestre saint-thibault, centre équestre saint thibault, centre equestre saint thibault"
+    />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
     <meta name="google" content="notranslate" />
@@ -34,258 +53,44 @@
 
     <title>Centre équestre • Saint Thibault</title>
 
-    <link rel="stylesheet" href="{{ url_for('.static', filename='saintthibault/css/style.css') }}">
-
     {% include 'analytics/saintthibault.bayfield.dev.html' %}
 
-    <script src="{{ url_for('.static', filename='saintthibault/js/script.js') }}" defer></script>
-    <script>
-        function addHashToURL(title) {
-            window.location.hash = '';
-            window.location.hash = title;
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
         }
-    </script>
-</head>
 
-<body>
-    <nav class="flex space-between vertically-centered">
-        <div class="left menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <a class="nav-logo flex hover-button" href="./">
-            <img src="{{ url_for('.static', filename='saintthibault/images/logo.png') }}" alt="Saint Thibault">
+        .bg-primary {
+            background-color: #f4a117;
+        }
+
+        .shadow-primary-100 {
+            box-shadow: #fef3c7;
+        }
+
+        .shadow-primary-200 {
+            box-shadow: #fce68b;
+        }
+    </style>
+  </head>
+
+  <body class="bg-white">
+    <div class="container mx-auto h-screen grid content-center px-5 sm:px-0">
+      <div class="grid gap-5 justify-items-center text-center">
+        <img src="{{ url_for('.static', filename='saintthibault/images/construction.svg') }}" class="h-32" />
+        <h1 class="font-serif text-4xl font-semibold">Prochainement !</h1>
+        <p class="font-sans text-gray-400 text-lg tracking-wide">
+          Ce site est en cours de construction. Revenez bientôt pour découvrir
+          notre nouveau site.
+        </p>
+        <a
+          href="http://saintthibault.free.fr"
+          class="bg-primary text-white py-4 px-7 rounded-full tracking-wide uppercase text-sm shadow-xl shadow-primary-100 transition duration-300 hover:shadow-primary-200 hover:-translate-y-1"
+          >Site officiel du centre équestre Saint-Thibault<br><br>>> saintthibault.free.fr <<
         </a>
-        <div class="left nav-links flex vertically-centered">
-            <div class="container flex nav-buttons">
-                <a href=""
-                    class="nav-link nav-button button hover-button flex vertically-centered horizontally-centered">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M20 19.9999C20 20.2651 19.8946 20.5195 19.7071 20.707C19.5196 20.8946 19.2652 20.9999 19 20.9999H5C4.73478 20.9999 4.48043 20.8946 4.29289 20.707C4.10536 20.5195 4 20.2651 4 19.9999V10.9999H1L11.327 1.61192C11.5111 1.4444 11.7511 1.35156 12 1.35156C12.2489 1.35156 12.4889 1.4444 12.673 1.61192L23 10.9999H20V19.9999Z"
-                            fill="white" />
-                    </svg>
-                    Accueil
-                </a>
-                <a href=""
-                    class="nav-link nav-button button hover-button flex vertically-centered horizontally-centered">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11 7V9H13V7H11ZM14 17V15H13V11H10V13H11V15H10V17H14ZM22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2C17.5 2 22 6.5 22 12ZM20 12C20 7.58 16.42 4 12 4C7.58 4 4 7.58 4 12C4 16.42 7.58 20 12 20C16.42 20 20 16.42 20 12Z"
-                            fill="white" />
-                    </svg>
-                    Horaires
-                </a>
-                <a href=""
-                    class="nav-link nav-button button hover-button flex vertically-centered horizontally-centered">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M1.19922 4.79961C1.19922 4.48135 1.32565 4.17612 1.55069 3.95108C1.77573 3.72604 2.08096 3.59961 2.39922 3.59961H21.5992C21.9175 3.59961 22.2227 3.72604 22.4477 3.95108C22.6728 4.17612 22.7992 4.48135 22.7992 4.79961V14.3996C22.7992 14.7179 22.6728 15.0231 22.4477 15.2481C22.2227 15.4732 21.9175 15.5996 21.5992 15.5996H2.39922C2.08096 15.5996 1.77573 15.4732 1.55069 15.2481C1.32565 15.0231 1.19922 14.7179 1.19922 14.3996V4.79961ZM15.5992 9.59961C15.5992 10.5544 15.2199 11.4701 14.5448 12.1452C13.8697 12.8203 12.954 13.1996 11.9992 13.1996C11.0444 13.1996 10.1288 12.8203 9.45363 12.1452C8.7785 11.4701 8.39922 10.5544 8.39922 9.59961C8.39922 8.64483 8.7785 7.72916 9.45363 7.05403C10.1288 6.37889 11.0444 5.99961 11.9992 5.99961C12.954 5.99961 13.8697 6.37889 14.5448 7.05403C15.2199 7.72916 15.5992 8.64483 15.5992 9.59961ZM4.79922 10.7996C5.11748 10.7996 5.4227 10.6732 5.64775 10.4481C5.87279 10.2231 5.99922 9.91787 5.99922 9.59961C5.99922 9.28135 5.87279 8.97613 5.64775 8.75108C5.4227 8.52604 5.11748 8.39961 4.79922 8.39961C4.48096 8.39961 4.17573 8.52604 3.95069 8.75108C3.72565 8.97613 3.59922 9.28135 3.59922 9.59961C3.59922 9.91787 3.72565 10.2231 3.95069 10.4481C4.17573 10.6732 4.48096 10.7996 4.79922 10.7996ZM20.3992 9.59961C20.3992 9.91787 20.2728 10.2231 20.0477 10.4481C19.8227 10.6732 19.5175 10.7996 19.1992 10.7996C18.881 10.7996 18.5757 10.6732 18.3507 10.4481C18.1256 10.2231 17.9992 9.91787 17.9992 9.59961C17.9992 9.28135 18.1256 8.97613 18.3507 8.75108C18.5757 8.52604 18.881 8.39961 19.1992 8.39961C19.5175 8.39961 19.8227 8.52604 20.0477 8.75108C20.2728 8.97613 20.3992 9.28135 20.3992 9.59961ZM2.09922 17.3996C1.86052 17.3996 1.63161 17.4944 1.46282 17.6632C1.29404 17.832 1.19922 18.0609 1.19922 18.2996C1.19922 18.5383 1.29404 18.7672 1.46282 18.936C1.63161 19.1048 1.86052 19.1996 2.09922 19.1996C7.39962 19.1996 12.5308 19.9232 17.398 21.2756C18.7312 21.6464 20.0992 20.6612 20.0992 19.2404V18.2996C20.0992 18.0609 20.0044 17.832 19.8356 17.6632C19.6668 17.4944 19.4379 17.3996 19.1992 17.3996C18.9605 17.3996 18.7316 17.4944 18.5628 17.6632C18.394 17.832 18.2992 18.0609 18.2992 18.2996V19.2404C18.2973 19.2902 18.284 19.3389 18.2603 19.3827C18.2367 19.4266 18.2033 19.4644 18.1628 19.4934C18.1222 19.5224 18.0756 19.5416 18.0265 19.5498C17.9773 19.5579 17.9269 19.5547 17.8792 19.5404C12.7405 18.1152 7.43192 17.395 2.09922 17.3996Z"
-                            fill="white" />
-                    </svg>
-                    Tarifs
-                </a>
-                <a href=""
-                    class="nav-link nav-button button hover-button flex vertically-centered horizontally-centered">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M17 12H12V17H17V12ZM16 1V3H8V1H6V3H5C3.89 3 3.01 3.9 3.01 5L3 19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3H18V1H16ZM19 19H5V8H19V19Z"
-                            fill="white" />
-                    </svg>
-                    Evènements
-                </a>
-                <a href="#contacts"
-                    class="nav-link nav-button button hover-button flex vertically-centered horizontally-centered">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M4 20C3.45 20 2.979 19.804 2.587 19.412C2.195 19.02 1.99934 18.5493 2 18V6C2 5.45 2.196 4.979 2.588 4.587C2.98 4.195 3.45067 3.99934 4 4H20C20.55 4 21.021 4.196 21.413 4.588C21.805 4.98 22.0007 5.45067 22 6V18C22 18.55 21.804 19.021 21.412 19.413C21.02 19.805 20.5493 20.0007 20 20H4ZM12 13L20 8V6L12 11L4 6V8L12 13Z"
-                            fill="white" />
-                    </svg>
-                    Contacts
-                </a>
-            </div>
-            <div class="container flex nav-buttons active">
-                <a href="#itineraire"
-                    class="nav-link nav-button button hover-button flex vertically-centered horizontally-centered">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_1426_575)">
-                            <path
-                                d="M12.0003 23.1431C18.1543 23.1431 23.1431 18.1543 23.1431 12.0003C23.1431 5.84625 18.1543 0.857422 12.0003 0.857422C5.84625 0.857422 0.857422 5.84625 0.857422 12.0003C0.857422 18.1543 5.84625 23.1431 12.0003 23.1431Z"
-                                stroke="#475263" stroke-width="1.71429" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <path d="M12.8571 18.0006L16.2857 7.71484L6 11.1434L10.2857 13.7148L12.8571 18.0006Z"
-                                stroke="#475263" stroke-width="1.71429" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_1426_575">
-                                <rect width="24" height="24" fill="#475263" />
-                            </clipPath>
-                        </defs>
-                    </svg>
-                    Itinéraire
-                </a>
-            </div>
-        </div>
-    </nav>
-    <main class="body flex col">
-        <div class="flex space-between vertically-centered page-margin">
-            <div class="left flex col horizontally-centered space-between">
-                <header class="flex col">
-                    <h1 class="bold dark">Centre équestre Saint Thibault</h1>
-                    <p class="dark">
-                        Situé à 30 km de Paris, au sein de la forêt régionale de Montgé en Goële, CHARLES HENRY et
-                        THOMAS FONTANA
-                        vous souhaitent la bienvenue au Centre Equestre/Poney Club de Saint-Thibault et vous invitent à
-                        venir partager
-                        votre passion de l'équitation dans un cadre idéal de détente.
-                        <br>
-                        En famille ou entre amis, vous pratiquerez l'équitation de votre choix, encadrés par des
-                        professionnels.
-                    </p>
-                </header>
-            </div>
-            <img class="transition logo-big" src="{{ url_for('.static', filename='saintthibault/images/centre.png') }}"
-                alt="Centre équestre Saint Thibault">
-        </div>
-        <section class="flex col acces-section">
-            <svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
-                preserveAspectRatio="none">
-                <path fill="#FFCA4F" fill-opacity="1" id="itineraire"
-                    d="M0,192L80,186.7C160,181,320,171,480,149.3C640,128,800,96,960,101.3C1120,107,1280,149,1360,170.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-                </path>
-            </svg>
-            <div
-                class="section grid vertically-centered horizontally-centered yellow-bg space-between page-margin with-divider">
-                <div class="flex col reverse section-header">
-                    <h2 class="section-main-header pointer dark" onclick="addHashToURL('itineraire')">Accès</h2>
-                    <div class="acces bold">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M20 10C18.7639 10 17.5555 10.3666 16.5277 11.0533C15.4999 11.7401 14.6988 12.7162 14.2258 13.8582C13.7527 15.0003 13.6289 16.2569 13.8701 17.4693C14.1112 18.6817 14.7065 19.7953 15.5806 20.6694C16.4547 21.5435 17.5683 22.1388 18.7807 22.3799C19.9931 22.6211 21.2497 22.4973 22.3918 22.0242C23.5338 21.5512 24.5099 20.7501 25.1967 19.7223C25.8834 18.6945 26.25 17.4861 26.25 16.25C26.25 14.5924 25.5915 13.0027 24.4194 11.8306C23.2473 10.6585 21.6576 10 20 10ZM20 20C19.2583 20 18.5333 19.7801 17.9166 19.368C17.2999 18.956 16.8193 18.3703 16.5355 17.6851C16.2516 16.9998 16.1774 16.2458 16.3221 15.5184C16.4667 14.791 16.8239 14.1228 17.3483 13.5983C17.8728 13.0739 18.541 12.7167 19.2684 12.5721C19.9958 12.4274 20.7498 12.5016 21.4351 12.7855C22.1203 13.0693 22.706 13.5499 23.118 14.1666C23.5301 14.7833 23.75 15.5083 23.75 16.25C23.75 17.2446 23.3549 18.1984 22.6517 18.9017C21.9484 19.6049 20.9946 20 20 20ZM20 2.5C16.3545 2.50414 12.8596 3.95412 10.2818 6.53185C7.70412 9.10958 6.25414 12.6045 6.25 16.25C6.25 21.1562 8.51719 26.3563 12.8125 31.2891C14.7425 33.5181 16.9148 35.5252 19.2891 37.2734C19.4992 37.4207 19.7496 37.4996 20.0062 37.4996C20.2629 37.4996 20.5133 37.4207 20.7234 37.2734C23.0934 35.5245 25.2614 33.5174 27.1875 31.2891C31.4766 26.3563 33.75 21.1562 33.75 16.25C33.7459 12.6045 32.2959 9.10958 29.7182 6.53185C27.1404 3.95412 23.6455 2.50414 20 2.5ZM20 34.6875C17.4172 32.6562 8.75 25.1953 8.75 16.25C8.75 13.2663 9.93526 10.4048 12.045 8.29505C14.1548 6.18526 17.0163 5 20 5C22.9837 5 25.8452 6.18526 27.955 8.29505C30.0647 10.4048 31.25 13.2663 31.25 16.25C31.25 25.1922 22.5828 32.6562 20 34.6875Z"
-                                fill="#475263" />
-                        </svg>
-                        <p class="dark">
-                            Route du Château de Saint Thibault
-                            <br>
-                            77230 - Montgé en Goële
-                        </p>
-                    </div>
-
-                    <p class="dark">
-                        Par les autoroutes A1 ou A3, prendre la direction Soisson A104 (21 km), sortir à Othis et suivre
-                        la direction de Saint-Soupplets D401.
-                        <br><br>
-                        Après le passage à niveau (2,5 km), prendre la première à droite en direction de Montgè-en-Goële
-                        D41. Puis à 1 km prendre le chemin à gauche qui vous amènera au Centre Equestre.
-                    </p>
-
-                    <a target="_blank"
-                        href="https://www.google.com/maps/dir//Centre+Equestre+Fontana,+Rte+du+Ch%C3%A2teau+de+Saint-Thibault,+77230+Montg%C3%A9-en-Go%C3%ABle/@49.0193004,2.6478464,12.25z"
-                        class="button section-button yellow-bg hover-button dark"><svg class="svg-down"
-                            stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
-                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                            <polyline points="15 3 21 3 21 9"></polyline>
-                            <line x1="10" y1="14" x2="21" y2="3"></line>
-                        </svg>Ouvrir Google Maps</a>
-                </div>
-                <div class="right flex horizontally-centered vertically-centered frame">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d99698.64290600774!2d2.5331271414487224!3d48.95572827803929!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6218806d28f4d%3A0xe0396672977d617e!2sCentre%20Equestre%20Fontana!5e0!3m2!1sfr!2sfr!4v1688898496613!5m2!1sfr!2sfr"
-                        width="100%" height="100%" style="border:0; border-radius: 25px;" allowfullscreen=""
-                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-            <svg class="wave-divider invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
-                preserveAspectRatio="none">
-                <path fill="#FFCA4F" fill-opacity="1"
-                    d="M0,192L80,186.7C160,181,320,171,480,149.3C640,128,800,96,960,101.3C1120,107,1280,149,1360,170.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-                </path>
-            </svg>
-        </section>
-
-        <!--
-        <section class="flex col projects-section">
-            <div class="section grid vertically-centered horizontally-centered space-between page-margin after-divider">
-                <div class="flex col section-header">
-                </div>
-            </div>
-        </section>
-        <section class="flex col projects-section darker-grey-bg">
-            <div class="section grid vertically-centered horizontally-centered space-between page-margin ">
-                <div class="flex col reverse section-header">
-                </div>
-                <div class="right flex horizontally-centered vertically-centered ">
-                </div>
-            </div>
-        </section>
-        <section class="flex col projects-section">
-            <div class="section grid vertically-centered horizontally-centered space-between page-margin ">
-                <div class="flex col section-header">
-                </div>
-                <div class="right flex horizontally-centered vertically-centered">
-                </div>
-            </div>
-        </section>
-        <section class="flex col projects-section darker-grey-bg">
-            <div class="section grid vertically-centered horizontally-centered space-between page-margin ">
-                <div class="flex col reverse section-header">
-                </div>
-                <div class="right flex horizontally-centered vertically-centered ">
-                </div>
-            </div>
-        </section>
-        -->
-
-    </main>
-    <footer class="flex col">
-        <div class="top flex col space-between">
-            <div class="left flex row space-between">
-                <h2 class="footer-title pointer" onclick="addHashToURL('contacts')" id="contacts">SAINT THIBAULT</h2>
-                <p class="dark"><strong>Besoin d’un renseignement ? Contactez-nous</strong>
-                    <br>
-                    • Par mail : <a class="hover-underline bold"
-                        href="mailto:saintthibault@free.fr">saintthibault@free.fr</a>
-                    <br>
-                    • Par téléphone : <a class="hover-underline bold" href="tel:+33 06 09 10 19 14">06 09 10 19 14</a>
-                </p>
-
-                <div class="empty"></div>
-                <p class="dark"><strong>Nos réseaux :</strong></p>
-                <div class="footer-socials flex">
-                    <a href="https://www.facebook.com/groups/86001386204" target="_blank" class="icon hover-button">
-                        <?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px"
-                            stroke="currentColor" fill="currentColor" stroke-width="0" height="50px">
-                            <path
-                                d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M37,19h-2c-2.14,0-3,0.5-3,2 v3h5l-1,5h-4v15h-5V29h-4v-5h4v-3c0-4,2-7,6-7c2.9,0,4,1,4,1V19z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/centre_equestre_saint_thibault" target="_blank"
-                        class="icon hover-button">
-                        <?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px"
-                            stroke="currentColor" fill="currentColor" stroke-width="0" height="50px">
-                            <path
-                                d="M 16 3 C 8.83 3 3 8.83 3 16 L 3 34 C 3 41.17 8.83 47 16 47 L 34 47 C 41.17 47 47 41.17 47 34 L 47 16 C 47 8.83 41.17 3 34 3 L 16 3 z M 37 11 C 38.1 11 39 11.9 39 13 C 39 14.1 38.1 15 37 15 C 35.9 15 35 14.1 35 13 C 35 11.9 35.9 11 37 11 z M 25 14 C 31.07 14 36 18.93 36 25 C 36 31.07 31.07 36 25 36 C 18.93 36 14 31.07 14 25 C 14 18.93 18.93 14 25 14 z M 25 16 C 20.04 16 16 20.04 16 25 C 16 29.96 20.04 34 25 34 C 29.96 34 34 29.96 34 25 C 34 20.04 29.96 16 25 16 z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="bottom flex row vertically-centered">
-            <a class="hover-button" href="./">
-                <img src="{{ url_for('.static', filename='saintthibault/images/logo.png') }}" alt="Saint Thibault">
-            </a>
-            <div class="right">
-                <p class="dark">Tous droits réservés &copy;2024 Centre équestre Saint Thibault.</p>
-                <p class="dark">Réalisé par Paul Bayfield - <a class="hover-underline" href="https://bayfield.dev"
-                        target="_blank">https://bayfield.dev</a></p>
-            </div>
-        </div>
-    </footer>
-</body>
-
+      </div>
+    </div>
+  </body>
 </html>
