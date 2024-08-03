@@ -2,7 +2,7 @@ from quart import send_file, render_template, url_for, request
 
 from ...components.blueprints import Bp
 from ...components.respond import Respond
-from ...components.auth import ADMIN
+from ...components.auth import Auth
 
 
 import os
@@ -119,7 +119,7 @@ def init(app):
                     return await send_file(f"{app.path}/media/{dir}/{filename.lower()}")
 
 
-    @blueprint.path(app, uri='/', method=['GET', 'POST'], subdomain="upload", log_file="logging/website.log", auth=ADMIN)
+    @blueprint.path(app, uri='/', method=['GET', 'POST'], subdomain="upload", log_file="logging/website.log", auth=Auth.ADMIN)
     async def upload():
         """
         The upload page.
@@ -163,7 +163,7 @@ def init(app):
         )
 
 
-    @blueprint.path(app, uri='/upload', method=['POST'], subdomain="upload", log_file="logging/website.log", auth=ADMIN)
+    @blueprint.path(app, uri='/upload', method=['POST'], subdomain="upload", log_file="logging/website.log", auth=Auth.ADMIN)
     async def send():
         """
         The upload files background page.
@@ -276,7 +276,7 @@ def init(app):
         )
 
 
-    @blueprint.path(app, uri='/delete/<dir>/<path:filename>', method=['GET', 'POST'], subdomain="upload", log_file="logging/website.log", auth=ADMIN)
+    @blueprint.path(app, uri='/delete/<dir>/<path:filename>', method=['GET', 'POST'], subdomain="upload", log_file="logging/website.log", auth=Auth.ADMIN)
     async def delete(dir: str, filename: str):
         """
         The delete page.
@@ -309,7 +309,7 @@ def init(app):
             )
         
 
-    @blueprint.path(app, uri='/download/<dir>/<path:filename>', method=['GET'], subdomain="upload", log_file="logging/website.log", auth=ADMIN)
+    @blueprint.path(app, uri='/download/<dir>/<path:filename>', method=['GET'], subdomain="upload", log_file="logging/website.log", auth=Auth.ADMIN)
     async def download(dir: str, filename: str):
         """
         The download page.

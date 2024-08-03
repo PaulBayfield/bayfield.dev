@@ -2,7 +2,7 @@ from quart import render_template, request, session
 
 from ...components.blueprints import Bp
 from ...components.respond import Respond
-from ...components.auth import ADMIN
+from ...components.auth import Auth
 
 from ...utils.environ import getEnvironKey
 
@@ -91,7 +91,7 @@ def init(app):
         return Respond.render(await render_template("map.html", markers=markers, last=last, edit=getBoolean(session.get("admin", False)), API_KEY=getEnvironKey("GOOGLE_API_KEY")))
 
 
-    @blueprint.path(app, uri='/add', method=['POST'], subdomain="map", log_file="logging/website.log", auth=ADMIN)
+    @blueprint.path(app, uri='/add', method=['POST'], subdomain="map", log_file="logging/website.log", auth=Auth.ADMIN)
     async def add():
         """
         Add a marker to the map.

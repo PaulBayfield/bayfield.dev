@@ -27,7 +27,3 @@ class Auth:
             return False
         else:
             return True
-
-
-USER = Auth.USER
-ADMIN = Auth.ADMIN

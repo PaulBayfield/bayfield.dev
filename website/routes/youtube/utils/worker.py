@@ -120,21 +120,34 @@ class Worker(Thread):
                     eta=0
                 )
 
-            error = False
-            if duration > self.max_duration:
-                if self.admin:
+            try:
+                error = False
+                if duration > self.max_duration:
+                    if self.admin:
+                        if os.path.exists(f"{self.path}/{id}.{self.format}"):
+                            pass
+                        else:
+                            ydl.download([self.link])
+                    else:
+                        error = True
+                else:
                     if os.path.exists(f"{self.path}/{id}.{self.format}"):
                         pass
                     else:
                         ydl.download([self.link])
-                else:
-                    error = True
-            else:
-                if os.path.exists(f"{self.path}/{id}.{self.format}"):
-                    pass
-                else:
-                    ydl.download([self.link])
+            except:
+                await updateTaskStatus(
+                    pool=self.pool,
+                    uuid=self.uuid,
+                    status="failed",
+                    speed="0MiB/s",
+                    progress=-50,
+                    eta=0
+                )
 
+                self.conn.close()
+
+                return
 
         await updateTaskStatus(
             pool=self.pool,

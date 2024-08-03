@@ -55,7 +55,7 @@ class Tasks:
                 run = False
             else:
                 # WARNING: DO NOT REMOVE THE LINE BELOW OR THE SERVER WILL SEND THOUSANDS OF REQUESTS PER SECOND!
-                await asyncio.sleep(0.6)
+                await asyncio.sleep(0.5)
 
 
     def getWorker(self, link: str, ydl_opts: dict, uuid: str, format: Literal["mp3", "mp4", "wav"], admin: bool, max_duration:int, path: str) -> Worker:

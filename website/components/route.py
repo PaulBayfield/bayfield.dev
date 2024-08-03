@@ -2,7 +2,7 @@ from quart import Response, url_for, request, session
 
 from .log import logging
 from .respond import Respond
-from .auth import Auth, USER, ADMIN
+from .auth import Auth
 
 
 import time
@@ -11,7 +11,7 @@ import functools
 from typing import Coroutine, Union
 
 
-def APIRoute(self, app, uri, method: list = ["GET"], log_file: str = None, subdomain: str = None, auth: Union[USER, ADMIN, None] = None) -> Coroutine: # type: ignore
+def APIRoute(self, app, uri, method: list = ["GET"], log_file: str = None, subdomain: str = None, auth: Union[Auth.USER, Auth.ADMIN, None] = None) -> Coroutine: # type: ignore
     """
     Decorator for Web routes
 
@@ -30,12 +30,12 @@ def APIRoute(self, app, uri, method: list = ["GET"], log_file: str = None, subdo
             receive_time = time.time()
             response = None
 
-            if auth is not None:
-                if auth == USER and not Auth.checkIfUser(session) or auth == ADMIN and not Auth.checkIfAdmin(session):
-                    if auth == ADMIN and not Auth.checkIfAdmin(session):
+            if auth:
+                if auth == Auth.USER and not Auth.checkIfUser(session) or auth == Auth.ADMIN and not Auth.checkIfAdmin(session):
+                    if auth == Auth.ADMIN and not Auth.checkIfAdmin(session):
                         session.clear()
 
-                    if subdomain is not None:
+                    if subdomain:
                         response = Respond.redirect(url_for('internal.login', redirect=subdomain))
                     else:
                         response = Respond.redirect(url_for('internal.login'))

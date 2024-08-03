@@ -36,14 +36,14 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = False
 
 # Register blueprints
 app.register_blueprint(Route_Internal(app))
-app.register_blueprint(Route_Map(app))
-app.register_blueprint(Route_Media(app))
-app.register_blueprint(Route_Miscellaneous(app))
-app.register_blueprint(Route_PDF(app))
+# app.register_blueprint(Route_Map(app))
+# app.register_blueprint(Route_Media(app))
+# app.register_blueprint(Route_Miscellaneous(app))
+# app.register_blueprint(Route_PDF(app))
 app.register_blueprint(Route_Portfolio(app))
-app.register_blueprint(Route_SaintThibault(app))
-app.register_blueprint(Route_VanGogh(app))
-app.register_blueprint(Route_YouTube(app))
+# app.register_blueprint(Route_SaintThibault(app))
+# app.register_blueprint(Route_VanGogh(app))
+# app.register_blueprint(Route_YouTube(app))
 
 
 # Create the instance for the Schedule.

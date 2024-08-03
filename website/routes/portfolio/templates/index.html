@@ -154,19 +154,19 @@
             <!-- Français -->
             <h1 lang="fr">A propos de moi</h1>
             <div class="text" lang="fr">
-                <p>Je suis Paul Bayfield, un étudiant en informatique franco-britannique de 19 ans.</p>
+                <p>Je suis Paul Bayfield, un étudiant en informatique franco-britannique de 20 ans.</p>
                 <p>J'ai commencé mon parcours de développeur en 2019 alors que j'étais en seconde, et depuis, j'ai continué à grandir et à évoluer en tant que développeur, en relevant de nouveaux défis et en apprenant les dernières technologies en cours de route.</p>
-                <p>J'ai commencé par apprendre Python, SQL et HTML.</p>
-                <p>Quand je ne suis pas en mode développeur à plein temps, j'aime pratiquer l'équitation et l'escalade.</p>
+                <p>J'ai commencé par apprendre Python, les bases de données SQL et le PL/SQL et aussi le développement web avec le PHP, HTML, CSS et le React.</p>
+                <p>Je me suis ensuite dirigé vers le domaine de la DATA.</p>
             </div>
 
             <!-- English -->
             <h1 lang="en">About me</h1>
             <div class="text" lang="en">
-                <p>I am Paul Bayfield, a 19 year old franco-british computer science student.</p>
+                <p>I am Paul Bayfield, a 20 year old franco-british computer science student.</p>
                 <p>I began my journey as a developer in 2019 when I was in 10th grade, and since then, I've continued to grow and evolve as a developer, taking on new challenges and learning the latest technologies along the way.</p>
-                <p>I started by learning Python, SQL and HTML.</p>
-                <p>When I'm not in full-on developer mode, I enjoy practicing horse riding and climbing.</p>
+                <p>I started by learning Python, SQL databases and PL/SQL and also web development with PHP, HTML, CSS and React.</p>
+                <p>I then moved towards the DATA domain.</p>
             </div>
             <div class="links">
                 <!-- Français -->
@@ -202,9 +202,22 @@
                     <circle cx="5" cy="5" r="5"/>
                 </svg>
                 <div class="line"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"  >
+                    <circle cx="5" cy="5" r="5"/>
+                </svg>
+                <div class="line"></div>
             </div>
             <div class="list">
                 <!-- Français -->
+                <div class="container" lang="fr">
+                    <h3>2024-</h3>
+                    <div class="text">
+                        <p class="container-title">Moët Hennessy Information Services</p>
+                        <p class="container-position">Moët Hennessy - Epernay (51)</p>
+                        <p class="container-type">Data Engineer Vignoble Œnologie</p>
+                        <p class="container-info">Alternance</p>
+                    </div>
+                </div>
                 <div class="container" lang="fr">
                     <h3>2022-</h3>
                     <div class="text">
@@ -225,6 +238,15 @@
                 </div>
 
                 <!-- English -->
+                <div class="container" lang="en">
+                    <h3>2024-</h3>
+                    <div class="text">
+                        <p class="container-title">Moët Hennessy Information Services</p>
+                        <p class="container-position">Moët Hennessy - Epernay (51)</p>
+                        <p class="container-type">Data Engineer Vignoble Œnologie</p>
+                        <p class="container-info">Apprenticeship</p>
+                    </div>
+                </div>
                 <div class="container" lang="en">
                     <h3>2022-</h3>
                     <div class="text">
@@ -467,12 +489,24 @@
 
         <div class="list" lang="fr">
             <div class="container">
+                <a href="https://moethennessy.com" target="_blank" class="logo">
+                    <img src="{{ url_for('.static', filename='portfolio/images/experience/moethennessy.png')}}">
+                </a>
+                <div class="text">
+                    <p class="title">Alternance</p>
+                    <p class="description">Alternant Data Engineer Vignoble Œnologie</p>
+                </div>
+                <div class="date">
+                    <p>Juil 2024 - Présent</p>
+                </div>
+            </div>
+            <div class="container">
                 <a href="https://agilab.com" target="_blank" class="logo">
                     <img src="{{ url_for('.static', filename='portfolio/images/experience/agilab.png')}}">
                 </a>
                 <div class="text">
                     <p class="title">Stage</p>
-                    <p class="description">Stagiaire chez AgiLab</p>
+                    <p class="description">Développeur Oracle APEX</p>
                 </div>
                 <div class="date">
                     <p>Avr 2024 - Juin 2024</p>
@@ -488,12 +522,24 @@
 
         <div class="list" lang="en">
             <div class="container">
+                <a href="https://moethennessy.com" target="_blank" class="logo">
+                    <img src="{{ url_for('.static', filename='portfolio/images/experience/moethennessy.png')}}">
+                </a>
+                <div class="text">
+                    <p class="title">Apprenticeship</p>
+                    <p class="description">Data Engineer Vineyard Oenology</p>
+                </div>
+                <div class="date">
+                    <p>July 2024 - Present</p>
+                </div>
+            </div>
+            <div class="container">
                 <a href="https://agilab.com" target="_blank" class="logo">
                     <img src="{{ url_for('.static', filename='portfolio/images/experience/agilab.png')}}">
                 </a>
                 <div class="text">
                     <p class="title">Internship</p>
-                    <p class="description">Intern at AgiLab</p>
+                    <p class="description">Oracle APEX Developer</p>
                 </div>
                 <div class="date">
                     <p>Apr 2024 - Jun 2024</p>

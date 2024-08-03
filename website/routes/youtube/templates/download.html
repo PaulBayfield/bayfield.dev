@@ -98,8 +98,7 @@
                                 }
 
                                 source.close();
-                            }
-                            else {
+                            } else {
                                 $('.progress-bar').css('width', data.progress + '%').attr('aria-valuenow', data.progress);
                                 $('.progress-bar-label').text(data.progress + '%');
 
@@ -114,6 +113,20 @@
                                     } else {
                                         $('.text').text("Error! This video does not exist!");
                                         $('.plus').text("Error 404");
+                                    }
+
+                                    source.close();
+                                } else if (data.progress == -50) {
+                                    $('.progress').hide();
+                                    $('.go-back').show();
+                                    $('.status').hide();
+
+                                    if ($("*[lang='en']").is(":hidden")) {
+                                        $('.text').text("Une erreur est survenue...");
+                                        $('.plus').text("Veuillez réessayer plus tard !");
+                                    } else {
+                                        $('.text').text("Something went wrong...");
+                                        $('.plus').text("Please try again later!");
                                     }
 
                                     source.close();

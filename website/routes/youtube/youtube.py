@@ -2,6 +2,7 @@ from quart import render_template, url_for, session, request
 
 from ...components.blueprints import Bp
 from ...components.respond import Respond
+from ...components.auth import Auth
 
 from ...utils.environ import getEnvironKey
 
@@ -48,17 +49,14 @@ def init(app):
     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     """
 
-    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log")
+    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="youtube", log_file="logging/website.log", auth=Auth.USER)
     async def home():
         """
         Home page of the Youtube Downloader.
         
         :return: The rendered template.
         """
-        if not session.get("username"):
-            return Respond.redirect(url_for('internal.login', redirect='youtube'))
-        else:
-            return Respond.redirect(url_for('youtube.download'))
+        return Respond.redirect(url_for('youtube.download'))
 
 
     @blueprint.path(app, uri='/download', subdomain="youtube", method=['GET','POST'], log_file="logging/website.log")

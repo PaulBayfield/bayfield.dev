@@ -2,7 +2,7 @@ from quart import render_template, url_for, send_file, session, request
 
 from ...components.blueprints import Bp
 from ...components.respond import Respond
-from ...components.auth import USER
+from ...components.auth import Auth
 
 
 import asyncio
@@ -35,7 +35,7 @@ def init(app):
     ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     """
 
-    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="pdf", log_file="logging/website.log", auth=USER)
+    @blueprint.path(app, uri='/', method=['GET','POST'], subdomain="pdf", log_file="logging/website.log", auth=Auth.USER)
     async def home():
         """
         Home page of the PDF merger.
@@ -45,7 +45,7 @@ def init(app):
         return Respond.render(await render_template('pdf_upload.html'))
 
 
-    @blueprint.path(app, uri='/internal/merge', method=['POST'], subdomain="pdf", log_file="logging/website.log", auth=USER)
+    @blueprint.path(app, uri='/internal/merge', method=['POST'], subdomain="pdf", log_file="logging/website.log", auth=Auth.USER)
     async def internal_merge():
         """
         Merge the PDF files.
