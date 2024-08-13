@@ -102,25 +102,26 @@ def init(app):
             if format == "mp3":
                 ydl_opts = {
                     'outtmpl': os.path.join(path, '%(id)s.%(ext)s'),      # name the file the ID of the video
-                    'format': 'bestaudio[ext=mp3]/best[ext=mp3]/best',    # choice of quality
+                    'format': 'bestaudio/best',
                     'extractaudio': True,                                 # only keep the audio
                     'audioformat': 'mp3',                                 # convert to mp3
+                    'audioquality': 0,                                    # best audio quality
                     'noplaylist': True,                                   # only download single song, not playlist
-                    'merge_output_format': 'mp3',
                     'writethumbnail': True,
                     'addmetadata':True,
                     'no_warnings': True,
                     'postprocessors': [
                         {
-                            'key': 'FFmpegExtractAudio',
-                            'preferredcodec': 'mp3',
-                            'preferredquality': '192'
+                            'key': 'FFmpegExtractAudio',                         # Extract audio using FFmpeg
+                            'preferredcodec': 'mp3',                             # Convert to MP3
+                            'preferredquality': '192',                           # Audio quality (192 kbps)
                         },
                         {
-                            'key': 'EmbedThumbnail',
+                            'key': 'FFmpegMetadata',                             # Embed metadata and cover image
                         },
                         {
-                            'key': 'FFmpegMetadata'
+                            'key': 'EmbedThumbnail',                             # Embed the thumbnail as cover art
+                            'already_have_thumbnail': False,                     # Download thumbnail if not already available
                         }
                     ],
                     'quiet': True
