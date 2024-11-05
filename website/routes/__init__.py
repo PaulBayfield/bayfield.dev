@@ -4,6 +4,5 @@ from .media.media import init as Route_Media
 from .miscellaneous.miscellaneous import init as Route_Miscellaneous
 from .pdf.pdf import init as Route_PDF
 from .portfolio.portfolio import init as Route_Portfolio
-from .saintthibault.saintthibault import init as Route_SaintThibault
 from .vangogh.vangogh import init as Route_VanGogh
 from .youtube.youtube import init as Route_YouTube
