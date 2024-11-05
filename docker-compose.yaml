@@ -1,0 +1,43 @@
+services:
+  bayfield.dev-app:
+    container_name: bayfield.dev-app
+    build:
+      dockerfile: Dockerfile.app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./media:/app/media
+    depends_on:
+      - bayfield.dev-db
+    restart: unless-stopped
+    networks:
+      - BayfieldNetwork
+
+  bayfield.dev-db:
+    container_name: bayfield.dev-db
+    build:
+      dockerfile: Dockerfile.postgres
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    expose:
+      - 8001
+    ports:
+      - 8001:5432
+    command: -p 8001
+    restart: unless-stopped
+    networks:
+      - BayfieldNetwork
+
+networks:
+  BayfieldNetwork:
+    external: true
+
+volumes:
+  app_media:
+  postgres_data:
