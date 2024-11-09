@@ -1,6 +1,10 @@
 FROM python:3.12
 
-RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update
+RUN apt-get -y upgrade
+RUN apt-get install -y postgresql-client
+RUN apt-get install -y --no-install-recommends ffmpeg
+RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 

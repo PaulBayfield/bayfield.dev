@@ -37,7 +37,3 @@ services:
 networks:
   BayfieldNetwork:
     external: true
-
-volumes:
-  app_media:
-  postgres_data:
