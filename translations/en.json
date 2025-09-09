@@ -275,6 +275,15 @@
             "report": "Report an issue"
         }
     },
+    "ContactPage": {
+        "title": "Get in touch!",
+        "description": "You've encountered an issue with the site? Have a question or suggestion? Feel free to reach out to me.",
+        "methods": {
+            "email": "📩 Send me an email!",
+            "github": "🐛 Spotted a bug? Report it on GitHub!"
+        },
+        "footer": "I love hearing from you, but not via forms."
+    },
     "Footer": {
         "description": "Thanks for stopping by ッ",
         "visits": "This site has been visited by <strong>{visitors}</strong> unique visitors, totaling <strong>{pageviews}</strong> page views.",

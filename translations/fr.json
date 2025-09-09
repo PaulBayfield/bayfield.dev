@@ -73,7 +73,7 @@
                 "institution": "Lycée Saint Dominique",
                 "location": "Saint-Dominique, Mortefontaine (60)",
                 "title": "Baccalauréat Général",
-                "description":"Spécialités : Mathématiques, NSI, Physique-Chimie",
+                "description": "Spécialités : Mathématiques, NSI, Physique-Chimie",
                 "color": "border-zinc-400 bg-zinc-300"
             }
         }
@@ -129,10 +129,10 @@
                 "title": "inTheAir",
                 "description": "Une service qui suit les vols au départ de l'aéroport de Paris Charles de Gaulle (CDG).",
                 "tech": {
-                    "0": "Python", 
-                    "1": "PostgreSQL", 
-                    "2": "API", 
-                    "3": "Sanic", 
+                    "0": "Python",
+                    "1": "PostgreSQL",
+                    "2": "API",
+                    "3": "Sanic",
                     "4": "CI/CD"
                 },
                 "href": "https://github.com/AirFranceCDGStats",
@@ -144,12 +144,12 @@
                 "star": "Plus de 85 000 vols suivis en 9 mois"
             },
             "3": {
-               "title": "Agueran",
+                "title": "Agueran",
                 "description": "Un site internet entièrement fonctionnel réalisé pour un zoo fictif, en équipe, dans le cadre d'un projet universitaire.",
                 "tech": {
-                    "0": "PHP", 
-                    "1": "Symfony", 
-                    "2": "MySQL", 
+                    "0": "PHP",
+                    "1": "Symfony",
+                    "2": "MySQL",
                     "3": "HTML",
                     "4": "CSS",
                     "5": "JavaScript"
@@ -166,9 +166,9 @@
                 "title": "amaZing",
                 "description": "Un jeu réalisé en Python dans le cadre d'un projet universitaire. Le but est de guider un sorcier à travers un labyrinthe généré aléatoirement pour collecter des objets.",
                 "tech": {
-                    "0": "Python", 
-                    "1": "Pygame", 
-                    "2": "PyQt5", 
+                    "0": "Python",
+                    "1": "Pygame",
+                    "2": "PyQt5",
                     "3": "Windows Application"
                 },
                 "href": "https://github.com/PaulBayfield/amaZing",
@@ -183,9 +183,9 @@
                 "title": "Map",
                 "description": "Une carte basée sur OpenStreetMap qui me permet de suivre les endroits que j'ai visités dans le monde. Ce site est en continuelle évolution.",
                 "tech": {
-                    "0": "React", 
-                    "1": "Next.js", 
-                    "2": "Tailwind", 
+                    "0": "React",
+                    "1": "Next.js",
+                    "2": "Tailwind",
                     "3": "Leaflet"
                 },
                 "href": "https://github.com/PaulBayfield/bayfield.dev",
@@ -249,7 +249,7 @@
             }
         }
     },
-    "ErrorPage": { 
+    "ErrorPage": {
         "400": {
             "title": "400 - Mauvaise Requête",
             "description": "Oups ! La requête que vous avez envoyée au serveur est incorrecte.",
@@ -274,6 +274,15 @@
             "home": "Retour à la maison",
             "report": "Signaler un problème"
         }
+    },
+    "ContactPage": {
+        "title": "Contactez moi !",
+        "description": "Vous avez rencontré un problème avec le site ? Vous avez une question ou une suggestion ? N'hésitez pas à me contacter.",
+        "methods": {
+            "email": "📩 Envoyez mois un email !",
+            "github": "🐛 Un bug repéré ? Signalez-le sur GitHub !"
+        },
+        "footer": "J'adore avoir de vos nouvelles, mais pas via des formulaires."
     },
     "Footer": {
         "description": "Merci d'être passé ッ",
