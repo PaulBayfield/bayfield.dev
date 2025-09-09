@@ -1,0 +1,304 @@
+{
+    "Header": {
+        "about": "About",
+        "experience": "Experience",
+        "projects": "Projects",
+        "data": "Data",
+        "sub-title": "Junior Data Engineer — Studying Data & AI"
+    },
+    "About": {
+        "title": "Hello, I'm Paul 👋",
+        "description": "I am a passionate developer. Currently, I am studying computer science, specialising in Data and AI. I also work as a Junior Data Engineer at Moët Hennessy, in the Champagne division.",
+        "description2": "In my free time, I enjoy coding all kinds of side projects. Most are open-source, and you can find them on my GitHub. I also love climbing, horseback riding, running, swimming, and cycling.",
+        "learn_more": "Learn more about me"
+    },
+    "Contact": {
+        "title": "Got a project in mind?",
+        "description": "I am always open to discussing new projects.",
+        "description2": "If you want to bring an idea to life, increase your online presence, or if you just have a question, feel free to reach out!"
+    },
+    "Experience": {
+        "title": "Experience & Education",
+        "list": {
+            "0": {
+                "period": "Since September 2025",
+                "institution": "UFR Sciences Exactes et Naturelles",
+                "location": "URCA, Reims (51)",
+                "title": "Master's degree in Data & AI",
+                "description": "",
+                "color": "border-zinc-400 bg-zinc-300"
+            },
+            "1": {
+                "period": "Since July 2024",
+                "institution": "Moët Hennessy Information Services & Technology",
+                "location": "On-site, Epernay (51)",
+                "title": "Junior Data Engineer",
+                "description": "Apprenticeship",
+                "color": "border-zinc-400 bg-background"
+            },
+            "2": {
+                "period": "April 2024 – June 2024",
+                "institution": "AgiLab",
+                "location": "Hybrid, Reims (51)",
+                "title": "Oracle APEX Developer",
+                "description": "Internship",
+                "color": "border-zinc-400 bg-background"
+            },
+            "3": {
+                "period": "Since March 2024",
+                "institution": "bayfield.dev",
+                "location": "Remote, Reims (51)",
+                "title": "Founder & Developer",
+                "description": "Self-employed",
+                "color": "border-zinc-400 bg-background"
+            },
+            "4": {
+                "period": "July 2023 – August 2023",
+                "institution": "Kuehne+Nagel",
+                "location": "On-site, Le Plessis-Belleville (60)",
+                "title": "Copacking Agent",
+                "description": "Indirect contract",
+                "color": "border-zinc-400 bg-background"
+            },
+            "5": {
+                "period": "September 2022 – June 2025",
+                "institution": "IUT de Reims-Châlons-Charleville",
+                "location": "URCA, Reims (51)",
+                "title": "3 year degree in Computer Science",
+                "description": "Specialisation: Data & AI",
+                "color": "border-zinc-400 bg-zinc-300"
+            },
+            "6": {
+                "period": "September 2019 – June 2022",
+                "institution": "Lycée Saint Dominique",
+                "location": "Saint-Dominique, Mortefontaine (60)",
+                "title": "General Baccalaureate",
+                "description": "Specialisations: Mathematics, Computer Science, Physics-Chemistry",
+                "color": "border-zinc-400 bg-zinc-300"
+            }
+        }
+    },
+    "Projects": {
+        "title": "Projects",
+        "view_all": "View all projects",
+        "list": {
+            "0": {
+                "title": "CROUStillant",
+                "description": "Menus for all university restaurants in France and overseas. Open-source, free, and ad-free service. Available on web, mobile, via API, and on Discord.",
+                "tech": {
+                    "0": "Python",
+                    "1": "API",
+                    "2": "Sanic",
+                    "3": "React",
+                    "4": "Next.js",
+                    "5": "Tailwind",
+                    "6": "CI/CD"
+                },
+                "href": "https://github.com/CROUStillant-Developpement",
+                "site": "https://croustillant.menu",
+                "role": "Founder & Lead dev",
+                "team": "5 members",
+                "year": "Since February 2022",
+                "superstar": "data.gouv.fr liked this project",
+                "star": "Thousands of daily users"
+            },
+            "1": {
+                "title": "Better IUT RCC",
+                "description": "Open-source extension to enhance the IUT RCC intranet on all browsers. Features include averages, graphs, themes, dark mode, and more.",
+                "tech": {
+                    "0": "JavaScript",
+                    "1": "HTML",
+                    "2": "CSS",
+                    "3": "Python",
+                    "4": "API",
+                    "5": "Sanic",
+                    "6": "CI/CD",
+                    "7": "Chrome Extensions",
+                    "8": "Firefox Extensions",
+                    "9": "Edge Extensions"
+                },
+                "href": "https://github.com/PaulBayfield/Better-IUT-RCC",
+                "site": "https://betteriutrcc.bayfield.dev/",
+                "role": "Co-creator & Lead dev",
+                "team": "3 members",
+                "year": "Since February 2023",
+                "superstar": "",
+                "star": "Over 1,000 active monthly students"
+            },
+            "2": {
+                "title": "inTheAir",
+                "description": "A service that tracks flights departing from Paris Charles de Gaulle Airport (CDG).",
+                "tech": {
+                    "0": "Python",
+                    "1": "PostgreSQL",
+                    "2": "API",
+                    "3": "Sanic",
+                    "4": "CI/CD"
+                },
+                "href": "https://github.com/AirFranceCDGStats",
+                "site": "https://airfrance.bayfield.dev",
+                "role": "Co-creator",
+                "team": "2 members",
+                "year": "June 2023",
+                "superstar": "",
+                "star": "Over 85,000 flights tracked in 9 months"
+            },
+            "3": {
+                "title": "Agueran",
+                "description": "A fully functional website created for a fictional zoo, as part of a university team project.",
+                "tech": {
+                    "0": "PHP",
+                    "1": "Symfony",
+                    "2": "MySQL",
+                    "3": "HTML",
+                    "4": "CSS",
+                    "5": "JavaScript"
+                },
+                "href": "https://github.com/DaVyer/Agueran",
+                "site": "",
+                "role": "Developer",
+                "team": "4 members",
+                "year": "December 2023",
+                "superstar": "",
+                "star": ""
+            },
+            "4": {
+                "title": "amaZing",
+                "description": "A game developed in Python as part of a university project. The goal is to guide a wizard through a randomly generated maze to collect items.",
+                "tech": {
+                    "0": "Python",
+                    "1": "Pygame",
+                    "2": "PyQt5",
+                    "3": "Windows Application"
+                },
+                "href": "https://github.com/PaulBayfield/amaZing",
+                "site": "",
+                "role": "",
+                "team": "",
+                "year": "December 2022",
+                "superstar": "",
+                "star": ""
+            },
+            "5": {
+                "title": "Map",
+                "description": "A map based on OpenStreetMap that allows me to track the places I have visited around the world. This site is continuously evolving.",
+                "tech": {
+                    "0": "React",
+                    "1": "Next.js",
+                    "2": "Tailwind",
+                    "3": "Leaflet"
+                },
+                "href": "https://github.com/PaulBayfield/bayfield.dev",
+                "site": "",
+                "role": "",
+                "team": "",
+                "year": "November 2022",
+                "superstar": "",
+                "star": ""
+            }
+        }
+    },
+    "Stats": {
+        "title": "Data",
+        "description": "Here are some real-time numbers that represent me.",
+        "stat": {
+            "infrastructure": {
+                "title": "Infrastructure",
+                "description": "Komodo — Private servers and services that I manage and maintain.",
+                "label": {
+                    "servers": "servers",
+                    "disk": "TB of storage",
+                    "stacks": "applications",
+                    "containers": "services"
+                }
+            },
+            "development": {
+                "title": "Code",
+                "description": "Wakapi — Since December 2024 (outside of working hours)",
+                "label": {
+                    "hours_coded": "hours",
+                    "daily_average": "minutes/day",
+                    "top_language": "Main language:"
+                }
+            },
+            "music": {
+                "title": "Music",
+                "description": "Your Spotify — Since 2023",
+                "label": {
+                    "tracks": "tracks listened to",
+                    "hours": "hours listened",
+                    "artists": "artists"
+                }
+            },
+            "tracking": {
+                "title": "GPS",
+                "description": "Dawarich — Since March 2025",
+                "label": {
+                    "km": "km traveled",
+                    "points": "points tracked"
+                }
+            },
+            "photos": {
+                "title": "Photos",
+                "description": "Immich — Private cloud storage",
+                "label": {
+                    "photos": "photos",
+                    "videos": "videos",
+                    "storage": "GB"
+                }
+            }
+        }
+    },
+    "ErrorPage": {
+        "400": {
+            "title": "400 - Bad Request",
+            "description": "Oops! The request you sent to the server is incorrect.",
+            "home": "Back to home",
+            "report": "Report an issue"
+        },
+        "403": {
+            "title": "403 - Forbidden",
+            "description": "Oops! You do not have permission to access this page.",
+            "home": "Back to home",
+            "report": "Report an issue"
+        },
+        "404": {
+            "title": "404 - Page Not Found",
+            "description": "Oops! The page you are looking for does not exist.",
+            "home": "Back to home",
+            "report": "Report an issue"
+        },
+        "500": {
+            "title": "500 - Internal Server Error",
+            "description": "Oops! Something went wrong on our end.",
+            "home": "Back to home",
+            "report": "Report an issue"
+        }
+    },
+    "Footer": {
+        "description": "Thanks for stopping by ッ",
+        "visits": "This site has been visited by <strong>{visitors}</strong> unique visitors, totaling <strong>{pageviews}</strong> page views.",
+        "copyright": "© 2022 - {year} Paul Bayfield, all rights reserved.",
+        "links": {
+            "website": {
+                "title": "Site",
+                "about": "About",
+                "experience": "Experience",
+                "projects": "Projects",
+                "data": "Data"
+            },
+            "projects": {
+                "title": "Projects",
+                "croustillant": "CROUStillant",
+                "betteriutrcc": "Better IUT RCC",
+                "intheair": "InTheAir",
+                "bayfield-dev": "bayfield.dev"
+            },
+            "services": {
+                "title": "Services",
+                "github": "GitHub",
+                "status": "Status"
+            }
+        }
+    }
+}
