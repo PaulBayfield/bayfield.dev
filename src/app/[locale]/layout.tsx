@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
-    images: { url: process.env.WEB_URL + "/avatar.png" },
+    images: { url: process.env.WEB_URL + "/images/avatar.png" },
     url: process.env.WEB_URL,
   },
   twitter: {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
-    images: { url: process.env.WEB_URL + "/avatar.png" },
+    images: { url: process.env.WEB_URL + "/images/avatar.png" },
   },
 };
 
