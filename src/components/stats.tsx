@@ -107,7 +107,7 @@ export default async function Stats({
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <HardDrive className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
-                {(komodoStats?.totalStorage ?? 0).toLocaleString(localeString)}{" "}
+                {(komodoStats?.totalStorage ?? 0).toLocaleString(localeString)}{"+ "}
                 {t("stat.infrastructure.label.disk")}
               </Badge>
               <Badge variant="outline" className="font-normal">
