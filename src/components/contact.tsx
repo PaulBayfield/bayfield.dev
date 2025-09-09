@@ -38,7 +38,7 @@ function IconLink({
         rel="noopener noreferrer"
       >
         <Icon className="h-4 w-4" />
-        <span className="hidden lg:inline">{label}</span>
+        <span className="lg:inline">{label}</span>
       </Link>
     </Button>
   );
