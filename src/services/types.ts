@@ -51,26 +51,28 @@ export interface KomodoStats {
 }
 
 export interface WakapiStats {
-  username: string;
-  user_id: string;
-  start: string;
-  end: string;
-  status: string;
-  total_seconds: number;
-  daily_average: number;
-  days_including_holidays: number;
-  range: string;
-  human_readable_range: string;
-  human_readable_total: string;
-  human_readable_daily_average: string;
-  is_coding_activity_visible: boolean;
-  is_other_usage_visible: boolean;
-  editors: WakapiStatItem[];
-  languages: WakapiStatItem[];
-  machines: WakapiStatItem[];
-  projects: WakapiStatItem[];
-  operating_systems: WakapiStatItem[];
-  categories: WakapiStatItem[];
+  data: {
+    username: string;
+    user_id: string;
+    start: string;
+    end: string;
+    status: string;
+    total_seconds: number;
+    daily_average: number;
+    days_including_holidays: number;
+    range: string;
+    human_readable_range: string;
+    human_readable_total: string;
+    human_readable_daily_average: string;
+    is_coding_activity_visible: boolean;
+    is_other_usage_visible: boolean;
+    editors: WakapiStatItem[];
+    languages: WakapiStatItem[];
+    machines: WakapiStatItem[];
+    projects: WakapiStatItem[];
+    operating_systems: WakapiStatItem[];
+    categories: WakapiStatItem[];
+  }
 }
 
 export interface WakapiStatItem {

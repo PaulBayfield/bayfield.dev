@@ -23,11 +23,11 @@ const requestHandler = async <T>(
 };
 
 const getYourSpotifySongsCount = async (): Promise<
-  ApiResult<YourSpotifySongsCount>
+  ApiResult<YourSpotifySongsCount[]>
 > => {
   const today = new Date().toISOString().split("T")[0];
 
-  return requestHandler<YourSpotifySongsCount>(
+  return requestHandler(
     `spotify/songs_per?start=2019-01-01T00:00:00.000Z&end=${today}&timeSplit=all&token=${process.env.YOURSPOTIFY_TOKEN}`,
     "GET",
     1000 * 60 * 60 * 24 // Cache for 24 hours
@@ -35,11 +35,11 @@ const getYourSpotifySongsCount = async (): Promise<
 };
 
 const getYourSpotifyListenTime = async (): Promise<
-  ApiResult<YourSpotifyListenTime>
+  ApiResult<YourSpotifyListenTime[]>
 > => {
   const today = new Date().toISOString().split("T")[0];
 
-  return requestHandler<YourSpotifyListenTime>(
+  return requestHandler(
     `spotify/time_per?start=2019-01-01T00:00:00.000Z&end=${today}&timeSplit=all&token=${process.env.YOURSPOTIFY_TOKEN}`,
     "GET",
     1000 * 60 * 60 * 24 // Cache for 24
@@ -47,11 +47,11 @@ const getYourSpotifyListenTime = async (): Promise<
 };
 
 const getYourSpotifyArtistsCount = async (): Promise<
-  ApiResult<YourSpotifyArtistsCount>
+  ApiResult<YourSpotifyArtistsCount[]>
 > => {
   const today = new Date().toISOString().split("T")[0];
 
-  return requestHandler<YourSpotifyArtistsCount>(
+  return requestHandler(
     `spotify/different_artists_per?start=2019-01-01T00:00:00.000Z&end=${today}&timeSplit=all&token=${process.env.YOURSPOTIFY_TOKEN}`,
     "GET",
     1000 * 60 * 60 * 24 // Cache for 24
@@ -59,9 +59,9 @@ const getYourSpotifyArtistsCount = async (): Promise<
 };
 
 export const getYourSpotifyStats = async (): Promise<{
-  songsCount: ApiResult<YourSpotifySongsCount>;
-  listenTime: ApiResult<YourSpotifyListenTime>;
-  artistsCount: ApiResult<YourSpotifyArtistsCount>;
+  songsCount: YourSpotifySongsCount | null;
+  listenTime: YourSpotifyListenTime | null;
+  artistsCount: YourSpotifyArtistsCount | null;
 }> => {
   const [songsCount, listenTime, artistsCount] = await Promise.all([
     getYourSpotifySongsCount(),
@@ -69,5 +69,9 @@ export const getYourSpotifyStats = async (): Promise<{
     getYourSpotifyArtistsCount(),
   ]);
 
-  return { songsCount, listenTime, artistsCount };
+  return {
+    songsCount: songsCount.success ? songsCount.data[0] : null,
+    listenTime: listenTime.success ? listenTime.data[0] : null,
+    artistsCount: artistsCount.success ? artistsCount.data[0] : null,
+  };
 };

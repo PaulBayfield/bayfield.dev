@@ -14,7 +14,16 @@ import Image from "next/image";
 import { useMessages, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, FolderGit2, Globe, HandHeart, Heart, ShieldUser, Sparkles, Users } from "lucide-react";
+import {
+  ArrowUpRight,
+  ExternalLink,
+  FolderGit2,
+  Globe,
+  Heart,
+  ShieldUser,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export default function Projects() {
@@ -88,7 +97,10 @@ export default function Projects() {
                         </Badge>
                       ))}
                     </div>
-                    {t(`list.${key}.superstar`) || t(`list.${key}.star`) || t(`list.${key}.role`) || t(`list.${key}.team`) ? (
+                    {t(`list.${key}.superstar`) ||
+                    t(`list.${key}.star`) ||
+                    t(`list.${key}.role`) ||
+                    t(`list.${key}.team`) ? (
                       <Separator className="mt-3 mb-1" />
                     ) : null}
                     {t(`list.${key}.superstar`) && (

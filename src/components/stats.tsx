@@ -28,6 +28,16 @@ import {
 } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
+import {
+  ApiResult,
+  DawarichStats,
+  ImmichStats,
+  KomodoStats,
+  WakapiStats,
+  YourSpotifySongsCount,
+  YourSpotifyListenTime,
+  YourSpotifyArtistsCount,
+} from "@/services/types";
 
 export default async function Stats({
   komodoStats,
@@ -36,11 +46,15 @@ export default async function Stats({
   dawarichStats,
   immichStats,
 }: {
-  komodoStats?: any;
-  wakapiStats?: any;
-  yourspotifyStats?: any;
-  dawarichStats?: any;
-  immichStats?: any;
+  komodoStats: KomodoStats | null;
+  wakapiStats: ApiResult<WakapiStats>;
+  yourspotifyStats: {
+    songsCount: YourSpotifySongsCount | null;
+    listenTime: YourSpotifyListenTime | null;
+    artistsCount: YourSpotifyArtistsCount | null;
+  }
+  dawarichStats: ApiResult<DawarichStats>;
+  immichStats: ApiResult<ImmichStats>;
 }) {
   const t = await getTranslations("Stats");
 
@@ -138,21 +152,27 @@ export default async function Stats({
               <Badge variant="outline" className="font-normal">
                 <Hourglass className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {Math.floor(
-                  (wakapiStats?.data?.data.total_seconds ?? 0) / 3600
+                  wakapiStats?.success
+                    ? (wakapiStats.data.data.total_seconds ?? 0) / 3600
+                    : 0
                 ).toLocaleString(localeString)}{" "}
                 {t("stat.development.label.hours_coded")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Code className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {Math.floor(
-                  (wakapiStats?.data?.data.daily_average ?? 0) / 60
+                  wakapiStats?.success
+                    ? (wakapiStats.data.data.daily_average ?? 0) / 60
+                    : 0
                 ).toLocaleString(localeString)}{" "}
                 {t("stat.development.label.daily_average")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <FileCode className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {t("stat.development.label.top_language")}{" "}
-                {wakapiStats?.data?.data.languages?.[0]?.name ?? "N/A"}
+                {wakapiStats?.success
+                  ? wakapiStats.data.data.languages?.[0]?.name ?? "N/A"
+                  : "N/A"}
               </Badge>
             </CardContent>
           </Card>
@@ -178,14 +198,14 @@ export default async function Stats({
               <Badge variant="outline" className="font-normal">
                 <Music className="h-4 w-4 text-zinc-90 dark:text-zinc-100" />
                 {(
-                  yourspotifyStats?.songsCount?.data[0].count ?? 0
+                  yourspotifyStats?.songsCount?.count ?? 0
                 ).toLocaleString(localeString)}{" "}
                 {t("stat.music.label.tracks")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Clock className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {Math.floor(
-                  (yourspotifyStats?.listenTime?.data[0].count ?? 0) /
+                  (yourspotifyStats?.listenTime?.count ?? 0) /
                     1000 /
                     60 /
                     60
@@ -195,7 +215,7 @@ export default async function Stats({
               <Badge variant="outline" className="font-normal">
                 <UserRound className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {(
-                  yourspotifyStats?.artistsCount?.data[0].differents ?? 0
+                  yourspotifyStats?.artistsCount?.differents ?? 0
                 ).toLocaleString(localeString)}{" "}
                 {t("stat.music.label.artists")}
               </Badge>
@@ -224,16 +244,18 @@ export default async function Stats({
             <CardContent className="flex flex-wrap gap-2">
               <Badge variant="outline" className="font-normal">
                 <Car className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(dawarichStats?.data?.totalDistanceKm ?? 0).toLocaleString(
-                  localeString
-                )}{" "}
+                {(dawarichStats?.success
+                  ? dawarichStats.data.totalDistanceKm ?? 0
+                  : 0
+                ).toLocaleString(localeString)}{" "}
                 {t("stat.tracking.label.km")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <MousePointer2Icon className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(dawarichStats?.data?.totalPointsTracked ?? 0).toLocaleString(
-                  localeString
-                )}{" "}
+                {(dawarichStats?.success
+                  ? dawarichStats.data.totalPointsTracked ?? 0
+                  : 0
+                ).toLocaleString(localeString)}{" "}
                 {t("stat.tracking.label.points")}
               </Badge>
             </CardContent>
@@ -259,22 +281,24 @@ export default async function Stats({
             <CardContent className="flex flex-wrap gap-2">
               <Badge variant="outline" className="font-normal">
                 <Camera className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(immichStats?.data?.photos ?? 0).toLocaleString(
-                  localeString
-                )}{" "}
+                {(immichStats?.success
+                  ? immichStats.data.photos ?? 0
+                  : 0
+                ).toLocaleString(localeString)}{" "}
                 {t("stat.photos.label.photos")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Video className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(immichStats?.data?.videos ?? 0).toLocaleString(
-                  localeString
-                )}{" "}
+                {(immichStats?.success
+                  ? immichStats.data.videos ?? 0
+                  : 0
+                ).toLocaleString(localeString)}{" "}
                 {t("stat.photos.label.videos")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Save className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {Math.floor(
-                  immichStats?.data?.usage
+                  immichStats?.success && immichStats.data.usage
                     ? immichStats.data.usage / 1024 ** 3
                     : 0
                 ).toLocaleString(localeString, {

@@ -12,6 +12,8 @@ const komodo = KomodoClient(`${process.env.KOMODO_URL}`, {
 });
 
 const cacheDuration = 1000 * 60 * 60 * 24; // Cache for 24 hours
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const cache = new Map<string, { data: any; expiry: number }>();
 
 async function getKomodoServers(): Promise<Types.Server[]> {
@@ -34,7 +36,7 @@ async function getKomodoStacks(): Promise<Types.ListStacksResponse> {
   return await komodo.read("ListStacks", {});
 }
 
-export async function getKomodoStats() {
+export async function getKomodoStats(): Promise<KomodoStats> {
   const cacheKey = `komodoStats`;
 
   if (cache.has(cacheKey)) {
@@ -48,9 +50,9 @@ export async function getKomodoStats() {
 
   const servers: Types.Server[] = await getKomodoServers();
 
-  var totalStorage = 0;
-  var totalStacks = 0;
-  var totalContainers = 0;
+  let totalStorage = 0;
+  let totalStacks = 0;
+  let totalContainers = 0;
 
   for (const server of servers) {
     if (server.config?.enabled === true) {
@@ -86,5 +88,5 @@ export async function getKomodoStats() {
     });
   }
 
-  return <KomodoStats>data;
+  return data;
 }
