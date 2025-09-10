@@ -13,7 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
   const t = await getTranslations("ContactPage");
-  const umami = useUmami();
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 px-4 md:px-6 h-90svh">
@@ -30,7 +29,6 @@ export default async function ContactPage() {
               asChild
               variant="default"
               className="w-full"
-              onClick={() => umami.event("Contact.Email")}
             >
               <Link href="mailto:paul@bayfield.dev">{t("methods.email")}</Link>
             </Button>
@@ -38,7 +36,6 @@ export default async function ContactPage() {
               asChild
               variant="outline"
               className="w-full"
-              onClick={() => umami.event("Contact.LinkedIn")}
             >
               <Link
                 href="https://github.com/PaulBayfield/bayfield.dev/issues/new"
