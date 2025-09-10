@@ -14,12 +14,14 @@ import {
   Database,
 } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
+import { useUmami } from "next-umami";
 
 export default function Header() {
   const pathname = usePathname();
   const isDesktop = useMediaQuery("(min-width: 850px)");
 
   const t = useTranslations("Header");
+  const umami = useUmami();
 
   const activeSection = useScrollSpy(
     ["about", "experience", "projects", "data"],
@@ -29,7 +31,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/50 dark:supports-[backdrop-filter]:bg-zinc-950/50 bg-white/70 dark:bg-zinc-950/70 border-b border-zinc-200/60 dark:border-zinc-800/60">
       <div className="mx-auto max-w-6xl px-5 md:px-8 py-4 flex items-center justify-between">
-        <Link href="/">
+        <Link href="/" onClick={() => umami.event("Header.Home")}>
           <div className="flex items-center gap-3">
             <Avatar className="h-12 w-12 ring-2 ring-zinc-200 dark:ring-zinc-800">
               <AvatarImage src="/images/avatar.png" alt="Paul Bayfield" />
@@ -55,6 +57,7 @@ export default function Header() {
                 : "outline"
             }
             className="select-none"
+            onClick={() => umami.event("Header.About")}
           >
             <Link href="/#about">
               {isDesktop ? t("about") : <SquareUserRound className="h-6 w-6" />}
@@ -69,6 +72,7 @@ export default function Header() {
                 : "outline"
             }
             className="select-none"
+            onClick={() => umami.event("Header.Experience")}
           >
             <Link href="/#experience">
               {isDesktop ? (
@@ -87,6 +91,7 @@ export default function Header() {
                 : "outline"
             }
             className="select-none"
+            onClick={() => umami.event("Header.Projects")}
           >
             <Link href="/#projects">
               {isDesktop ? t("projects") : <FolderCode className="h-6 w-6" />}
@@ -101,6 +106,7 @@ export default function Header() {
                 : "outline"
             }
             className="select-none"
+            onClick={() => umami.event("Header.Data")}
           >
             <Link href="/#data">
               {isDesktop ? t("data") : <Database className="h-6 w-6" />}

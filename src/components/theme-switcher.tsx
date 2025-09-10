@@ -10,9 +10,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { Moon, Sun, MonitorCog } from "lucide-react";
+import { useUmami } from "next-umami";
 
 export default function ModeToggle() {
   const { theme, setTheme } = useTheme();
+  const umami = useUmami();
 
   return (
     <DropdownMenu>
@@ -26,21 +28,30 @@ export default function ModeToggle() {
         <DropdownMenuItem
           disabled={theme === "light"}
           className={theme === "light" ? "bg-accent" : ""}
-          onClick={() => setTheme("light")}
+          onClick={() => {
+            setTheme("light");
+            umami.event("Theme.Light");
+          }}
         >
           <Sun className="h-[1.2rem] w-[1.2rem]" />
         </DropdownMenuItem>
         <DropdownMenuItem
           disabled={theme === "dark"}
           className={theme === "dark" ? "bg-accent" : ""}
-          onClick={() => setTheme("dark")}
+          onClick={() => {
+            setTheme("dark");
+            umami.event("Theme.Dark");
+          }}
         >
           <Moon className="h-[1.2rem] w-[1.2rem]" />
         </DropdownMenuItem>
         <DropdownMenuItem
           disabled={theme === "system"}
           className={theme === "system" ? "bg-accent" : ""}
-          onClick={() => setTheme("system")}
+          onClick={() => {
+            setTheme("system");
+            umami.event("Theme.System");
+          }}
         >
           <MonitorCog className="h-[1.2rem] w-[1.2rem]" />
         </DropdownMenuItem>

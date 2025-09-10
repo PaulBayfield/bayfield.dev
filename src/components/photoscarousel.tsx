@@ -12,8 +12,11 @@ import {
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
+import { useUmami } from "next-umami";
 
 export default function PhotosCarousel() {
+  const umami = useUmami();
+
   return (
     <div className="md:col-span-5">
       <Card className="border-zinc-200 dark:border-zinc-800 shadow-sm py-0">
@@ -43,10 +46,16 @@ export default function PhotosCarousel() {
             ))}
           </CarouselContent>
           <div className="flex justify-center">
-            <CarouselPrevious className="p-2 bg-background rounded-full hover:bg-accent/80 transition dark:bg-zinc-800 dark:hover:bg-zinc-700">
+            <CarouselPrevious
+              className="p-2 bg-background rounded-full hover:bg-accent/80 transition dark:bg-zinc-800 dark:hover:bg-zinc-700"
+              onClick={() => umami.event("Carousel.Previous")}
+            >
               <ArrowRight className="h-4 w-4 rotate-180" />
             </CarouselPrevious>
-            <CarouselNext className="p-2 bg-background rounded-full hover:bg-accent/80 transition dark:bg-zinc-800 dark:hover:bg-zinc-700 ml-2">
+            <CarouselNext
+              className="p-2 bg-background rounded-full hover:bg-accent/80 transition dark:bg-zinc-800 dark:hover:bg-zinc-700 ml-2"
+              onClick={() => umami.event("Carousel.Next")}
+            >
               <ArrowRight className="h-4 w-4" />
             </CarouselNext>
           </div>

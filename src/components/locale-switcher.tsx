@@ -13,11 +13,13 @@ import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { Languages } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
+import { useUmami } from "next-umami";
 
 export default function LocaleToggle() {
   const pathname = usePathname();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const umami = useUmami();
 
   function handleChange(locale: string) {
     startTransition(() => {
@@ -39,6 +41,7 @@ export default function LocaleToggle() {
           className={useLocale() === "fr" ? "bg-accent" : ""}
           onClick={() => {
             handleChange("fr");
+            umami.event("Locale.French");
           }}
         >
           <ReactCountryFlag
@@ -53,6 +56,7 @@ export default function LocaleToggle() {
           className={useLocale() === "en" ? "bg-accent" : ""}
           onClick={() => {
             handleChange("en");
+            umami.event("Locale.English");
           }}
         >
           <ReactCountryFlag

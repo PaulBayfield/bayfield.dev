@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { Github, MapPin, ArrowRight } from "lucide-react";
+import { useUmami } from "next-umami";
 
 const fade = {
   hidden: { opacity: 0, y: 8 },
@@ -17,6 +18,7 @@ const fade = {
 export default function About() {
   const t = useTranslations("About");
   const th = useTranslations("Header");
+  const umami = useUmami();
 
   return (
     <section
@@ -46,7 +48,7 @@ export default function About() {
             {t("description2")}
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Button size="sm">
+            <Button size="sm" onClick={() => umami.event("About.LearnMore")}>
               <Link
                 href="#experience"
                 className="inline-flex items-center gap-2"
@@ -55,7 +57,11 @@ export default function About() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="outline" size="sm">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => umami.event("About.GitHub")}
+            >
               <Link
                 href="https://github.com/PaulBayfield"
                 className="inline-flex items-center gap-2"

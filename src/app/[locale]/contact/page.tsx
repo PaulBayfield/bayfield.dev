@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
+import { useUmami } from "next-umami";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -12,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
   const t = await getTranslations("ContactPage");
+  const umami = useUmami();
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 px-4 md:px-6 h-90svh">
@@ -24,12 +26,20 @@ export default async function ContactPage() {
         <CardContent>
           <p className="text-center text-gray-600 mb-6">{t("description")}</p>
           <div className="space-y-4">
-            <Button asChild variant="default" className="w-full">
-              <Link href="mailto:paul@bayfield.dev">
-                {t("methods.email")}
-              </Link>
+            <Button
+              asChild
+              variant="default"
+              className="w-full"
+              onClick={() => umami.event("Contact.Email")}
+            >
+              <Link href="mailto:paul@bayfield.dev">{t("methods.email")}</Link>
             </Button>
-            <Button asChild variant="outline" className="w-full">
+            <Button
+              asChild
+              variant="outline"
+              className="w-full"
+              onClick={() => umami.event("Contact.LinkedIn")}
+            >
               <Link
                 href="https://github.com/PaulBayfield/bayfield.dev/issues/new"
                 target="_blank"

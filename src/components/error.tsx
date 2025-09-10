@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { CircleAlert } from "lucide-react";
+import { useUmami } from "next-umami";
 
 interface ErrorPageProps {
   statusCode: number;
@@ -11,6 +12,7 @@ interface ErrorPageProps {
 
 export default function ErrorPage({ statusCode }: ErrorPageProps) {
   const t = useTranslations("ErrorPage");
+  const umami = useUmami();
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 px-4 md:px-6 h-90svh">
@@ -22,10 +24,14 @@ export default function ErrorPage({ statusCode }: ErrorPageProps) {
         {t(statusCode.toString() + ".description")}
       </p>
       <div className="flex gap-4 flex-wrap justify-center">
-        <Button asChild>
+        <Button asChild onClick={() => umami.event(`Error.${statusCode}.Home`)}>
           <Link href="/">{t(statusCode.toString() + ".home")}</Link>
         </Button>
-        <Button asChild variant="secondary">
+        <Button
+          asChild
+          variant="secondary"
+          onClick={() => umami.event(`Error.${statusCode}.Report`)}
+        >
           <Link href="/contact">{t(statusCode.toString() + ".report")}</Link>
         </Button>
       </div>

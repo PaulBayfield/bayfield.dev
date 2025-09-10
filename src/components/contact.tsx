@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { Linkedin, Mail } from "lucide-react";
+import { useUmami } from "next-umami";
 
 const fade = {
   hidden: { opacity: 0, y: 8 },
@@ -27,8 +28,10 @@ function IconLink({
   icon: React.ElementType;
   label: string;
 }) {
+  const umami = useUmami();
+
   return (
-    <Button variant="outline" size="sm" asChild className="gap-2">
+    <Button variant="outline" size="sm" asChild className="gap-2" onClick={() => umami.event(`Contact.${label}`)}>
       <Link
         href={href}
         aria-label={label}

@@ -25,9 +25,11 @@ import {
   Users,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { useUmami } from "next-umami";
 
 export default function Projects() {
   const t = useTranslations("Projects");
+  const umami = useUmami();
 
   const messages = useMessages();
   const keys = Object.keys(messages.Projects.list);
@@ -46,6 +48,7 @@ export default function Projects() {
           className="text-sm text-zinc-500 hover:underline inline-flex items-center gap-1"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => umami.event("Projects.ViewAll")}
         >
           {t("view_all")}
           <ExternalLink className="h-4 w-4" />
@@ -140,7 +143,12 @@ export default function Projects() {
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      <Button size="sm" variant="outline" asChild>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        asChild
+                        onClick={() => umami.event(`Projects.Repo.${key}`)}
+                      >
                         <Link
                           href={t(`list.${key}.href`)}
                           className="inline-flex items-center gap-1"
@@ -152,7 +160,11 @@ export default function Projects() {
                         </Link>
                       </Button>
                       {t(`list.${key}.site`) && (
-                        <Button size="sm" asChild>
+                        <Button
+                          size="sm"
+                          asChild
+                          onClick={() => umami.event(`Projects.Site.${key}`)}
+                        >
                           <Link
                             href={t(`list.${key}.site`)}
                             className="inline-flex items-center gap-1"
