@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
-import { useUmami } from "next-umami";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
