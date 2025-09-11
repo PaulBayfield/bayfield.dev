@@ -9,6 +9,7 @@ My personal portfolio website built with Next.js.
 # 📖 • Summary
 
 - [🚀 • Presentation](#--presentation)
+- [💻 • Installation](#--installation)
 - [📃 • Credits](#--credits)
 - [📝 • License](#--license)
 
