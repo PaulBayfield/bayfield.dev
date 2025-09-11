@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿<div align="center">
+<img src="./public/images/avatar.png" alt="logo" width="150" height="150" border-radius="50%" />
+  
+# bayfield.dev
+My personal portfolio website built with Next.js.
 
-## Getting Started
+</div>
+  
+# 📖 • Summary
 
-First, run the development server:
+- [🚀 • Presentation](#--presentation)
+- [📃 • Credits](#--credits)
+- [📝 • License](#--license)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# 🚀 • Presentation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This repository contains the source code for my personal portfolio website, showcasing my projects, skills, and experiences. Built with Next.js, it offers a modern and responsive design.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 💻 • Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To run this project locally, follow these steps:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/PaulBayfield/bayfield.dev.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+    cd bayfield.dev
+    ```
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
+4. Start the development server:
+    ```bash
+    npm run dev
+    ```
+5. Open your browser and go to `http://localhost:3000` to view the website.
 
-## Learn More
+# 📃 • Credits
 
-To learn more about Next.js, take a look at the following resources:
+- [Paul Bayfield](https://github.com/PaulBayfield)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 📝 • License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
