@@ -35,6 +35,9 @@ COPY --from=build /app/.next/standalone /app
 COPY --from=build /app/.next/static /app/.next/static
 COPY --from=build /app/public /app/public
 
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+
 EXPOSE 3000
 
 # Run the app
