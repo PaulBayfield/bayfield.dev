@@ -6,6 +6,7 @@ import About from "@/components/about";
 import Contact from "@/components/contact";
 import Experience from "@/components/experience";
 import Projects from "@/components/projects";
+import Hackathons from "@/components/hackathons";
 import { getKomodoStats } from "@/services/komodo-service";
 import { getWakapiStats } from "@/services/wakapi-service";
 import { getYourSpotifyStats } from "@/services/yourspotify-service";
@@ -24,6 +25,7 @@ export default async function PortfolioPage() {
       <About />
       <Experience />
       <Projects />
+      <Hackathons />
       <Stats
         komodoStats={komodoStats}
         wakapiStats={wakapiStats}
