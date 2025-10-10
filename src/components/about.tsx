@@ -9,6 +9,7 @@ import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { Github, MapPin, ArrowRight } from "lucide-react";
 import { useUmami } from "next-umami";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const fade = {
   hidden: { opacity: 0, y: 8 },
@@ -25,10 +26,22 @@ export default function About() {
       id="about"
       className="scroll-mt-20 max-w-6xl mx-auto px-5 md:px-8 py-14 md:py-20"
     >
-      <Card className="sm:hidden border-zinc-200 dark:border-zinc-800 shadow-sm mb-10">
+      <Card className="md:hidden border-zinc-200 dark:border-zinc-800 shadow-sm mb-10">
         <CardContent className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          <p className="text-lg font-semibold tracking-tight">Paul Bayfield</p>
-          <p className="text-sm text-zinc-500">{th("sub-title")}</p>
+          <div className="flex items-center gap-3">
+            <Avatar className="h-12 w-12 ring-2 ring-zinc-200 dark:ring-zinc-800">
+              <AvatarImage src="/images/avatar.png" alt="Paul Bayfield" />
+              <AvatarFallback>Paul Bayfield</AvatarFallback>
+            </Avatar>
+            <div className="leading-tight">
+              <p className="text-lg font-semibold tracking-tight">
+                Paul Bayfield
+              </p>
+              <p className="text-sm text-zinc-500">
+                {th("sub-title")}
+              </p>
+            </div>
+          </div>
         </CardContent>
       </Card>
       <motion.div

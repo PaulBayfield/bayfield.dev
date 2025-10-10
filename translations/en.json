@@ -4,6 +4,7 @@
         "experience": "Experience",
         "projects": "Projects",
         "data": "Data",
+        "hackathons": "Hackathons",
         "sub-title": "Junior Data Engineer — Studying Data & AI"
     },
     "About": {
@@ -195,6 +196,43 @@
                 "year": "November 2022",
                 "superstar": "",
                 "star": ""
+            }
+        }
+    },
+    "Hackathons": {
+        "title": "Hackathons",
+        "sponsor": "Sponsored by",
+        "list": {
+            "0": {
+                "title": "Retool x Moët Hennessy",
+                "description": "Internal hackathon organised by Retool and Moët Hennessy to create internal applications using Retool. Our team developed an application for managing tastings and berry ratings.",
+                "tech": {
+                    "0": "Retool",
+                    "1": "API",
+                    "2": "GCP",
+                    "3": "BigQuery"
+                },
+                "team": "4 members",
+                "year": "February 2025",
+                "trophy": "Ready to Deploy",
+                "duration": "12 hours",
+                "sponsor": "Retool"
+            },
+            "1": {
+                "title": "LLM x Law",
+                "description": "Paralegal.ai, an application designed to assist law firms in managing intellectual property and contracts. The application uses language models to analyse and summarise legal documents, thereby facilitating decision-making.",
+                "tech": {
+                    "0": "React",
+                    "1": "Next.js",
+                    "2": "Tailwind",
+                    "3": "RAG",
+                    "4": "API"
+                },
+                "team": "5 members",
+                "year": "November 2024",
+                "trophy": "",
+                "duration": "12 hours",
+                "sponsor": "Mistral AI & Station F"
             }
         }
     },

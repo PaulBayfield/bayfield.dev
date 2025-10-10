@@ -3,6 +3,7 @@
         "about": "À propos",
         "experience": "Expérience",
         "projects": "Projets",
+        "hackathons": "Hackathons",
         "data": "Data",
         "sub-title": "Junior Data Engineer — Étudiant en Data & IA"
     },
@@ -195,6 +196,43 @@
                 "year": "novembre 2022",
                 "superstar": "",
                 "star": ""
+            }
+        }
+    },
+    "Hackathons": {
+        "title": "Hackathons",
+        "sponsor": "Sponsorisé par",
+        "list": {
+            "0": {
+                "title": "Retool x Moët Hennessy",
+                "description": "Hackathon interne organisé par Retool et Moët Hennessy pour créer des applications internes en utilisant Retool. Notre équipe a développé une application de gestion des dégustations et de notation des baies.",
+                "tech": {
+                    "0": "Retool",
+                    "1": "API",
+                    "2": "GCP",
+                    "3": "BigQuery"
+                },
+                "team": "4 membres",
+                "year": "février 2025",
+                "trophy": "Ready to Deploy",
+                "duration": "12 heures",
+                "sponsor": "Retool"
+            },
+            "1": {
+                "title": "LLM x Law",
+                "description": "Paralegal.ai, une application conçue pour assister les cabinets d'avocats dans la gestion de la propriété intellectuelle et des contrats. L'application utilise des modèles de langage pour analyser et résumer les documents juridiques, facilitant ainsi la prise de décision.",
+                "tech": {
+                    "0": "React",
+                    "1": "Next.js",
+                    "2": "Tailwind",
+                    "3": "RAG",
+                    "4": "API"
+                },
+                "team": "5 membres",
+                "year": "novembre 2024",
+                "trophy": "",
+                "duration": "12 heures",
+                "sponsor": "Mistral AI, Station F"
             }
         }
     },
