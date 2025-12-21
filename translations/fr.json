@@ -97,6 +97,7 @@
                 },
                 "href": "https://github.com/CROUStillant-Developpement",
                 "site": "https://croustillant.menu",
+                "api": "https://api.croustillant.menu",
                 "role": "Fondateur & Lead dev",
                 "team": "5 membres",
                 "year": "Depuis février 2022",
@@ -119,12 +120,13 @@
                     "9": "Edge Extensions"
                 },
                 "href": "https://github.com/PaulBayfield/Better-IUT-RCC",
-                "site": "https://betteriutrcc.bayfield.dev/",
+                "site": "https://betteriutrcc.bayfield.dev",
+                "api": "https://betteriutrcc.bayfield.dev/docs",
                 "role": "Co-Fondateur & Lead dev",
                 "team": "3 membres",
                 "year": "Depuis février 2023",
                 "superstar": "",
-                "star": "Plus de 1,000 étudiants actifs mensuels"
+                "star": "Plus de 1 000 étudiants actifs mensuels"
             },
             "2": {
                 "title": "inTheAir",
@@ -137,7 +139,8 @@
                     "4": "CI/CD"
                 },
                 "href": "https://github.com/AirFranceCDGStats",
-                "site": "https://airfrance.bayfield.dev",
+                "site": "",
+                "api": "https://airfrance.bayfield.dev",
                 "role": "Co-Fondateur",
                 "team": "2 membres",
                 "year": "juin 2023",
@@ -157,6 +160,7 @@
                 },
                 "href": "https://github.com/DaVyer/Agueran",
                 "site": "",
+                "api": "",
                 "role": "Développeur",
                 "team": "4 membres",
                 "year": "décembre 2023",
@@ -174,6 +178,7 @@
                 },
                 "href": "https://github.com/PaulBayfield/amaZing",
                 "site": "",
+                "api": "",
                 "role": "",
                 "team": "",
                 "year": "décembre 2022",
@@ -191,6 +196,7 @@
                 },
                 "href": "https://github.com/PaulBayfield/maps.bayfield.dev",
                 "site": "https://maps.bayfield.dev",
+                "api": "",
                 "role": "",
                 "team": "",
                 "year": "novembre 2022",
