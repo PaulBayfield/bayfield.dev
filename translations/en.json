@@ -84,6 +84,7 @@
         "view_all": "View all projects",
         "list": {
             "0": {
+                "oss": "true",
                 "title": "CROUStillant",
                 "description": "Menus for all university restaurants in France and overseas. Open-source, free, and ad-free service. Available on web, mobile, via API, and on Discord.",
                 "tech": {
@@ -105,6 +106,7 @@
                 "star": "Thousands of daily users"
             },
             "1": {
+                "oss": "true",
                 "title": "Better IUT RCC",
                 "description": "Open-source extension to enhance the IUT RCC intranet on all browsers. Features include averages, graphs, themes, dark mode, and more.",
                 "tech": {
@@ -129,6 +131,26 @@
                 "star": "Over 1,000 active monthly students"
             },
             "2": {
+                "oss": "true",
+                "title": "vangogh.bayfield.dev",
+                "description": "A website that traces the life of Vincent van Gogh through his major works. Created following a visit to the Musée d'Orsay, to the exhibition: Van Gogh in Auvers-sur-Oise - The Last Months",
+                "tech": {
+                    "0": "Next.js",
+                    "1": "React",
+                    "2": "Tailwind",
+                    "3": "CI/CD"
+                },
+                "href": "https://github.com/PaulBayfield/vangogh.bayfield.dev",
+                "site": "https://vangogh.bayfield.dev",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "May 2024",
+                "superstar": "",
+                "star": "A unique and immersive visual style"
+            },
+            "3": {
+                "oss": "true",
                 "title": "inTheAir",
                 "description": "A service that tracks flights departing from Paris Charles de Gaulle Airport (CDG).",
                 "tech": {
@@ -147,7 +169,31 @@
                 "superstar": "",
                 "star": "Over 85,000 flights tracked in 9 months"
             },
-            "3": {
+            "4": {
+                "oss": "",
+                "title": "dash.bayfield.dev",
+                "description": "My personal dashboard to monitor the status of my servers, services, and projects. Based on my own data warehouse, it displays real-time statistics from my bank, Chess.com, Strava, Spotify, my GPS, photos, and more.",
+                "tech": {
+                    "0": "Next.js",
+                    "1": "React",
+                    "2": "Tailwind",
+                    "3": "CI/CD",
+                    "4": "Python",
+                    "5": "ETL",
+                    "6": "Data Visualisation",
+                    "7": "DataWareHouse"
+                },
+                "href": "",
+                "site": "",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "January 2026",
+                "superstar": "",
+                "star": ""
+            },
+            "5": {
+                "oss": "true",
                 "title": "Agueran",
                 "description": "A fully functional website created for a fictional zoo, as part of a university team project.",
                 "tech": {
@@ -167,7 +213,8 @@
                 "superstar": "",
                 "star": ""
             },
-            "4": {
+            "6": {
+                "oss": "true",
                 "title": "amaZing",
                 "description": "A game developed in Python as part of a university project. The goal is to guide a wizard through a randomly generated maze to collect items.",
                 "tech": {
@@ -185,7 +232,8 @@
                 "superstar": "",
                 "star": ""
             },
-            "5": {
+            "7": {
+                "oss": "true",
                 "title": "Map",
                 "description": "A map based on OpenStreetMap that allows me to track the places I have visited around the world. This site is continuously evolving.",
                 "tech": {

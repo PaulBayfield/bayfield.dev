@@ -84,6 +84,7 @@
         "view_all": "Voir tous les projets",
         "list": {
             "0": {
+                "oss": "true",
                 "title": "CROUStillant",
                 "description": "Menus de tous les restaurants universitaires en France et Outre-Mer. Service open-source, gratuit et sans publicité. Disponible sur le web, mobile, via API et sur Discord.",
                 "tech": {
@@ -105,6 +106,7 @@
                 "star": "Des milliers d'utilisateurs quotidiens"
             },
             "1": {
+                "oss": "true",
                 "title": "Better IUT RCC",
                 "description": "Extension open-source pour améliorer l'intranet IUT RCC sur tous les navigateurs. Moyennes, graphiques, thèmes, dark mode, et plus encore.",
                 "tech": {
@@ -129,6 +131,26 @@
                 "star": "Plus de 1 000 étudiants actifs mensuels"
             },
             "2": {
+                "oss": "true",
+                "title": "vangogh.bayfield.dev",
+                "description": "Un site web qui retrace la vie de Vincent van Gogh à travers ses œuvres majeures. Réalisé à la suite d'une visite au musée d'Orsay, à l’exposition : Van Gogh à Auvers-sur-Oise - Les derniers mois",
+                "tech": {
+                    "0": "Next.js",
+                    "1": "React",
+                    "2": "Tailwind",
+                    "3": "CI/CD"
+                },
+                "href": "https://github.com/PaulBayfield/vangogh.bayfield.dev",
+                "site": "https://vangogh.bayfield.dev",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "mai 2024",
+                "superstar": "",
+                "star": "Un style visuel unique et immersif"
+            },
+            "3": {
+                "oss": "true",
                 "title": "inTheAir",
                 "description": "Une service qui suit les vols au départ de l'aéroport de Paris Charles de Gaulle (CDG).",
                 "tech": {
@@ -147,7 +169,31 @@
                 "superstar": "",
                 "star": "Plus de 85 000 vols suivis en 9 mois"
             },
-            "3": {
+            "4": {
+                "oss": "",
+                "title": "dash.bayfield.dev",
+                "description": "Mon tableau de bord personnel pour surveiller l'état de mes serveurs, services et projets. Basé sur mon propre entrepôt de données, il affiche des statistiques en temps réel les données de ma banque, Chess.com, Strava, Spotify, mon GPS, mes photos, et plus encore.",
+                "tech": {
+                    "0": "Next.js",
+                    "1": "React",
+                    "2": "Tailwind",
+                    "3": "CI/CD",
+                    "4": "Python",
+                    "5": "ETL",
+                    "6": "Data Visualisation",
+                    "7": "DataWareHouse"
+                },
+                "href": "",
+                "site": "",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "janvier 2026",
+                "superstar": "",
+                "star": ""
+            },
+            "5": {
+                "oss": "true",
                 "title": "Agueran",
                 "description": "Un site internet entièrement fonctionnel réalisé pour un zoo fictif, en équipe, dans le cadre d'un projet universitaire.",
                 "tech": {
@@ -167,7 +213,8 @@
                 "superstar": "",
                 "star": ""
             },
-            "4": {
+            "6": {
+                "oss": "true",
                 "title": "amaZing",
                 "description": "Un jeu réalisé en Python dans le cadre d'un projet universitaire. Le but est de guider un sorcier à travers un labyrinthe généré aléatoirement pour collecter des objets.",
                 "tech": {
@@ -185,7 +232,8 @@
                 "superstar": "",
                 "star": ""
             },
-            "5": {
+            "7": {
+                "oss": "true",
                 "title": "Map",
                 "description": "Une carte basée sur OpenStreetMap qui me permet de suivre les endroits que j'ai visités dans le monde. Ce site est en continuelle évolution.",
                 "tech": {

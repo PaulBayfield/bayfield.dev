@@ -136,7 +136,7 @@ export default function Projects() {
                 <div>
                   <CardFooter className="flex items-center justify-between">
                     <div className="flex items-center gap-3 text-sm text-zinc-500">
-                      {t(`list.${key}.href`) && (
+                      {t(`list.${key}.href`) && t(`list.${key}.oss`) && (
                         <span className="inline-flex items-center gap-1">
                           <FolderGit2 className="h-4 w-4" />
                           OSS
@@ -144,22 +144,24 @@ export default function Projects() {
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        asChild
-                        onClick={() => umami.event(`Projects.Repo.${key}`)}
-                      >
-                        <Link
-                          href={t(`list.${key}.href`)}
-                          className="inline-flex items-center gap-1"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                      {t(`list.${key}.href`) && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          asChild
+                          onClick={() => umami.event(`Projects.Repo.${key}`)}
                         >
-                          Repo
-                          <ArrowUpRight className="h-4 w-4" />
-                        </Link>
-                      </Button>
+                          <Link
+                            href={t(`list.${key}.href`)}
+                            className="inline-flex items-center gap-1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Repo
+                            <ArrowUpRight className="h-4 w-4" />
+                          </Link>
+                        </Button>
+                      )}
                       {t(`list.${key}.api`) && (
                         <Button
                           size="sm"
