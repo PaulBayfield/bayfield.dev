@@ -128,7 +128,7 @@
                 "team": "3 members",
                 "year": "Since February 2023",
                 "superstar": "",
-                "star": "Over 1,000 active monthly students"
+                "star": "Over 1,500 active monthly students"
             },
             "2": {
                 "oss": "true",
@@ -162,7 +162,7 @@
                 },
                 "href": "https://github.com/AirFranceCDGStats",
                 "site": "",
-                "api": "https://airfrance.bayfield.dev",
+                "api": "",
                 "role": "Co-creator",
                 "team": "2 members",
                 "year": "June 2023",
@@ -194,6 +194,65 @@
             },
             "5": {
                 "oss": "true",
+                "title": "concerts.bayfield.dev",
+                "description": "A concert tracking web app. It allows me to keep track of all the concerts I've attended, with details about the artists, venues, and more.",
+                "tech": {
+                    "0": "Next.js",
+                    "1": "React",
+                    "2": "Tailwind",
+                    "3": "MapGL",
+                    "4": "CI/CD"
+                },
+                "href": "https://github.com/PaulBayfield/concerts.bayfield.dev",
+                "site": "https://concerts.bayfield.dev",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "March 2026",
+                "superstar": "",
+                "star": ""
+            },
+            "6": {
+                "oss": "true",
+                "title": "ScalarBot",
+                "description": "A Discord bot for the Scalar.com community.",
+                "tech": {
+                    "0": "Python",
+                    "1": "Discord.py",
+                    "2": "API",
+                    "3": "CI/CD"
+                },
+                "href": "https://github.com/scalar/scalar-bot",
+                "site": "https://scalar.com",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "April 2025",
+                "superstar": "",
+                "star": ""
+            },
+            "7": {
+                "oss": "true",
+                "title": "GeoCheat",
+                "description": "A browser extension that allows you to cheat on geolocation-based games. This project is more of a proof of concept.",
+                "tech": {
+                    "0": "JavaScript",
+                    "1": "CI/CD",
+                    "2": "Chrome Extensions",
+                    "3": "Firefox Extensions",
+                    "4": "HTML"
+                },
+                "href": "https://github.com/PaulBayfield/GeoCheat",
+                "site": "",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "January 2025",
+                "superstar": "",
+                "star": ""
+            },
+            "8": {
+                "oss": "true",
                 "title": "Agueran",
                 "description": "A fully functional website created for a fictional zoo, as part of a university team project.",
                 "tech": {
@@ -213,7 +272,7 @@
                 "superstar": "",
                 "star": ""
             },
-            "6": {
+            "9": {
                 "oss": "true",
                 "title": "amaZing",
                 "description": "A game developed in Python as part of a university project. The goal is to guide a wizard through a randomly generated maze to collect items.",
@@ -232,7 +291,7 @@
                 "superstar": "",
                 "star": ""
             },
-            "7": {
+            "10": {
                 "oss": "true",
                 "title": "Map",
                 "description": "A map based on OpenStreetMap that allows me to track the places I have visited around the world. This site is continuously evolving.",
@@ -240,7 +299,8 @@
                     "0": "React",
                     "1": "Next.js",
                     "2": "Tailwind",
-                    "3": "Leaflet"
+                    "3": "MapGL",
+                    "4": "CI/CD"
                 },
                 "href": "https://github.com/PaulBayfield/maps.bayfield.dev",
                 "site": "https://maps.bayfield.dev",

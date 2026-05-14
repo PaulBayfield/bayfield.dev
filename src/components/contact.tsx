@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Linkedin, Mail } from "lucide-react";
 import { useUmami } from "next-umami";
 
 const fade = {
-  hidden: { opacity: 0, y: 8 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
 const links = {
@@ -57,7 +57,8 @@ export default function Contact() {
     >
       <motion.div
         initial="hidden"
-        animate="show"
+        whileInView="show"
+        viewport={{ once: true }}
         variants={fade}
         className="flex flex-col items-center justify-center text-center"
       >

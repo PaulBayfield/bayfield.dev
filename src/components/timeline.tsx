@@ -2,7 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { useTranslations, useMessages } from "next-intl";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function Timeline() {
   const t = useTranslations("Experience");
@@ -16,9 +16,9 @@ export default function Timeline() {
         {keys.map((key, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: idx * 0.1 }}
+            transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
             viewport={{ once: true }}
             className="relative flex flex-col items-center text-center"
           >

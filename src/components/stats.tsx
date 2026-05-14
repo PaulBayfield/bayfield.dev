@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { getLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
+import { AnimatedSection } from "@/components/animated-section";
 import {
   ApiResult,
   DawarichStats,
@@ -69,7 +70,7 @@ export default async function Stats({
       id="data"
       className="scroll-mt-20 py-12 mx-auto max-w-6xl px-5 md:px-8 pb-14 md:pb-20"
     >
-      <div className="grid grid-cols-1 md:grid-cols-8 gap-6 md:gap-10 items-start">
+      <AnimatedSection className="grid grid-cols-1 md:grid-cols-8 gap-6 md:gap-10 items-start">
         <div className="md:col-span-4">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3">
             {t("title")}
@@ -127,8 +128,8 @@ export default async function Stats({
             </CardContent>
           </Card>
         </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-8 gap-6 md:gap-10 items-start mt-10">
+      </AnimatedSection>
+      <AnimatedSection className="grid grid-cols-1 md:grid-cols-8 gap-6 md:gap-10 items-start mt-10" delay={0.1}>
         <div className="md:col-span-4">
           <Card className="border-zinc-200 dark:border-zinc-800">
             <CardHeader>
@@ -222,8 +223,8 @@ export default async function Stats({
             </CardContent>
           </Card>
         </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-8 gap-6 md:gap-10 items-start mt-10">
+      </AnimatedSection>
+      <AnimatedSection className="grid grid-cols-1 md:grid-cols-8 gap-6 md:gap-10 items-start mt-10" delay={0.1}>
         <div className="md:col-span-4">
           <Card className="border-zinc-200 dark:border-zinc-800">
             <CardHeader>
@@ -309,7 +310,7 @@ export default async function Stats({
             </CardContent>
           </Card>
         </div>
-      </div>
+      </AnimatedSection>
     </section>
   );
 }

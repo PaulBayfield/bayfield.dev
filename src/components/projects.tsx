@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useMessages, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   ArrowUpRight,
   ExternalLink,
@@ -62,10 +62,10 @@ export default function Projects() {
           return (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.5, delay: idx * 0.08, ease: "easeOut" }}
             >
               <Card className="group h-full border-zinc-200 dark:border-zinc-800 hover:shadow-md transition-shadow justify-between">
                 <div className="flex flex-col gap-2">

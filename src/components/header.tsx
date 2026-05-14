@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
 import { useUmami } from "next-umami";
+import { motion } from "motion/react";
 
 export default function Header() {
   const pathname = usePathname();
@@ -30,7 +31,12 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/50 dark:supports-[backdrop-filter]:bg-zinc-950/50 bg-white/70 dark:bg-zinc-950/70 border-b border-zinc-200/60 dark:border-zinc-800/60">
+    <motion.header
+      initial={{ opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/50 dark:supports-[backdrop-filter]:bg-zinc-950/50 bg-white/70 dark:bg-zinc-950/70 border-b border-zinc-200/60 dark:border-zinc-800/60"
+    >
       <div className="mx-auto max-w-6xl px-5 md:px-8 py-4 flex items-center justify-center md:justify-between">
         <Link href="/" onClick={() => umami.event("Header.Home")}>
           <div className="hidden md:flex items-center gap-3">
@@ -132,6 +138,6 @@ export default function Header() {
           <LocaleToggle />
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 }

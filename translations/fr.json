@@ -128,7 +128,7 @@
                 "team": "3 membres",
                 "year": "Depuis février 2023",
                 "superstar": "",
-                "star": "Plus de 1 000 étudiants actifs mensuels"
+                "star": "Plus de 1 500 étudiants actifs mensuels"
             },
             "2": {
                 "oss": "true",
@@ -162,7 +162,7 @@
                 },
                 "href": "https://github.com/AirFranceCDGStats",
                 "site": "",
-                "api": "https://airfrance.bayfield.dev",
+                "api": "",
                 "role": "Co-Fondateur",
                 "team": "2 membres",
                 "year": "juin 2023",
@@ -194,6 +194,65 @@
             },
             "5": {
                 "oss": "true",
+                "title": "concerts.bayfield.dev",
+                "description": "Une application web de suivi de concerts. Elle me permet de garder une trace de tous les concerts auxquels j'ai assisté, avec des détails sur les artistes, les lieux, et plus encore.",
+                "tech": {
+                    "0": "Next.js",
+                    "1": "React",
+                    "2": "Tailwind",
+                    "3": "MapGL",
+                    "4": "CI/CD"
+                },
+                "href": "https://github.com/PaulBayfield/concerts.bayfield.dev",
+                "site": "https://concerts.bayfield.dev",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "mars 2026",
+                "superstar": "",
+                "star": ""
+            },
+            "6": {
+                "oss": "true",
+                "title": "ScalarBot",
+                "description": "Un bot Discord pour la communauté de Scalar.com.",
+                "tech": {
+                    "0": "Python",
+                    "1": "Discord.py",
+                    "2": "API",
+                    "3": "CI/CD"
+                },
+                "href": "https://github.com/scalar/scalar-bot",
+                "site": "https://scalar.com",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "April 2025",
+                "superstar": "",
+                "star": ""
+            },
+            "7": {
+                "oss": "true",
+                "title": "GeoCheat",
+                "description": "Une extension de navigateur qui vous permet de tricher dans les jeux basés sur la géolocalisation. Ce projet est plus qu'un POC.",
+                "tech": {
+                    "0": "JavaScript",
+                    "1": "CI/CD",
+                    "2": "Extensions Chrome",
+                    "3": "Extensions Firefox",
+                    "4": "HTML"
+                },
+                "href": "https://github.com/PaulBayfield/GeoCheat",
+                "site": "",
+                "api": "",
+                "role": "",
+                "team": "",
+                "year": "janvier 2025",
+                "superstar": "",
+                "star": ""
+            },
+            "8": {
+                "oss": "true",
                 "title": "Agueran",
                 "description": "Un site internet entièrement fonctionnel réalisé pour un zoo fictif, en équipe, dans le cadre d'un projet universitaire.",
                 "tech": {
@@ -213,7 +272,7 @@
                 "superstar": "",
                 "star": ""
             },
-            "6": {
+            "9": {
                 "oss": "true",
                 "title": "amaZing",
                 "description": "Un jeu réalisé en Python dans le cadre d'un projet universitaire. Le but est de guider un sorcier à travers un labyrinthe généré aléatoirement pour collecter des objets.",
@@ -232,7 +291,7 @@
                 "superstar": "",
                 "star": ""
             },
-            "7": {
+            "10": {
                 "oss": "true",
                 "title": "Map",
                 "description": "Une carte basée sur OpenStreetMap qui me permet de suivre les endroits que j'ai visités dans le monde. Ce site est en continuelle évolution.",
@@ -240,7 +299,8 @@
                     "0": "React",
                     "1": "Next.js",
                     "2": "Tailwind",
-                    "3": "Leaflet"
+                    "3": "MapGL",
+                    "4": "CI/CD"
                 },
                 "href": "https://github.com/PaulBayfield/maps.bayfield.dev",
                 "site": "https://maps.bayfield.dev",
