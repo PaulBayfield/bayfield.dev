@@ -1,5 +1,5 @@
 ﻿<div align="center">
-<img src="./public/images/avatar.png" alt="logo" width="150" height="150" border-radius="50%" />
+<img src="./public/images/avatar.webp" alt="logo" width="150" height="150" border-radius="50%" />
   
 # bayfield.dev
 My personal portfolio website built with Next.js.
