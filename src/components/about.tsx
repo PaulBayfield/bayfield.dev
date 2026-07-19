@@ -7,7 +7,7 @@ import PhotosCarousel from "@/components/photoscarousel";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "motion/react";
-import { Github, MapPin, ArrowRight } from "lucide-react";
+import { Github, MapPin, ArrowRight, Images } from "lucide-react";
 import { useUmami } from "next-umami";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
@@ -41,7 +41,7 @@ export default function About() {
           <CardContent className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             <div className="flex items-center gap-3">
               <Avatar className="h-12 w-12 ring-2 ring-zinc-200 dark:ring-zinc-800">
-                <AvatarImage src="/images/avatar.png" alt="Paul Bayfield" />
+                <AvatarImage src="/images/avatar.webp" alt="Paul Bayfield" />
                 <AvatarFallback>Paul Bayfield</AvatarFallback>
               </Avatar>
               <div className="leading-tight">
@@ -73,7 +73,10 @@ export default function About() {
             {t("description2")}
           </motion.p>
           <motion.div variants={fade} className="mt-6 flex flex-wrap items-center gap-3">
-            <Button size="sm" onClick={() => umami.event("About.LearnMore")}>
+            <Button 
+              size="sm" 
+              onClick={() => umami.event("About.LearnMore")}
+            >
               <Link
                 href="#experience"
                 className="inline-flex items-center gap-2"
@@ -95,6 +98,20 @@ export default function About() {
               >
                 <Github className="h-4 w-4" />
                 GitHub
+              </Link>
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => umami.event("About.LearnMore")}
+            >
+              <Link
+                href="/gallery"
+                className="inline-flex items-center gap-2"
+                onClick={() => umami.event("Carousel.ViewGallery")}
+              >
+                <Images className="h-4 w-4" />
+                {t("view_gallery")}
               </Link>
             </Button>
             <div className="flex items-center gap-2 text-sm text-zinc-500">

@@ -1,11 +1,5 @@
-import { apiRequest } from "./api-requets";
-import {
-  ApiResult,
-  UmamiGetToken,
-  UmamiActiveUsers,
-  UmamiDateRange,
-  UmamiStats,
-} from "./types";
+import { apiRequest } from "./api-request";
+import { ApiResult, UmamiGetToken, UmamiActiveUsers, UmamiDateRange, UmamiStats } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const localCache = new Map<string, { data: any; expiry: number }>();
@@ -32,10 +26,7 @@ const getToken = async (): Promise<ApiResult<UmamiGetToken>> => {
   });
 
   if (res.success) {
-    localCache.set("umami.token", {
-      data: res.data.token,
-      expiry: Date.now() + 1000 * 60 * 60,
-    });
+    localCache.set("umami.token", { data: res.data.token, expiry: Date.now() + 1000 * 60 * 60 });
   } else {
     res.error += " | Failed to get token";
   }
@@ -52,11 +43,7 @@ const getToken = async (): Promise<ApiResult<UmamiGetToken>> => {
  * @param {string} method - The HTTP method to use for the request (e.g., 'GET', 'POST').
  * @returns {Promise<ApiResult<T>>} - A promise that resolves to the result of the API request.
  */
-const requestHandler = async <T>(
-  endpoint: string,
-  method: string,
-  cache: number = 0
-): Promise<ApiResult<T>> => {
+const requestHandler = async <T>(endpoint: string, method: string, cache: number = 0): Promise<ApiResult<T>> => {
   const res = await apiRequest<T>({
     endpoint,
     method,
@@ -84,7 +71,7 @@ const requestHandler = async <T>(
   }
 
   return res;
-};
+}
 
 /**
  * Fetches the date range for the specified Umami website.
@@ -95,14 +82,11 @@ const getDateRange = (): Promise<ApiResult<UmamiDateRange>> => {
   return requestHandler<UmamiDateRange>(
     `api/websites/${process.env.UMAMI_WEBSITE_ID}/daterange`,
     "GET",
-    1000 * 60 * 60 * 24 // cache for 24 hours
+    1000 * 60 * 60 * 24, // cache for 24 hours
   );
-};
+}
 
-export const getStats = async (
-  minDate: Date | null = null,
-  maxDate: Date | null = null
-): Promise<ApiResult<UmamiStats>> => {
+export const getStats = async (minDate: Date | null = null, maxDate: Date | null = null): Promise<ApiResult<UmamiStats>> => {
   if (!minDate || !maxDate) {
     const dateRange = await getDateRange();
     if (!dateRange.success) {
@@ -114,30 +98,26 @@ export const getStats = async (
   }
 
   return requestHandler<UmamiStats>(
-    `api/websites/${
-      process.env.UMAMI_WEBSITE_ID
-    }/stats?startAt=${minDate.getTime()}&endAt=${maxDate.getTime()}&unit=day&timezone=Europe%2FParis&compare=false`, // &host=${process.env.UMAMI_HOSTNAME}
+    `api/websites/${process.env.UMAMI_WEBSITE_ID}/stats?startAt=${minDate.getTime()}&endAt=${maxDate.getTime()}`,
     "GET",
-    1000 * 60 * 60 * 24 // cache for 24 hours
+    1000 * 60 * 60 * 24, // cache for 24 hours
   );
-};
+}
 
 /**
  * Fetches the number of active users from the Umami analytics service.
- *
- * This function makes an API request to the Umami service to retrieve the
+ * 
+ * This function makes an API request to the Umami service to retrieve the 
  * active users for a specific website. If the request is unauthorized (status 401),
  * it attempts to obtain a new token and retries the request.
- *
+ * 
  * @returns {Promise<ApiResult<UmamiActiveUsers>>} A promise that resolves to an ApiResult containing the active users data.
- *
+ * 
  * @throws {Error} If the request fails or if a new token cannot be obtained.
  */
-export const getActiveUsers = async (): Promise<
-  ApiResult<UmamiActiveUsers>
-> => {
+export const getActiveUsers = async (): Promise<ApiResult<UmamiActiveUsers>> => {
   return await requestHandler<UmamiActiveUsers>(
     `api/websites/${process.env.UMAMI_WEBSITE_ID}/active`,
-    "GET"
+    "GET",
   );
-};
+}

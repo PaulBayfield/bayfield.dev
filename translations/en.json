@@ -5,13 +5,15 @@
         "projects": "Projects",
         "data": "Data",
         "hackathons": "Hackathons",
+        "gallery": "Gallery",
         "sub-title": "Junior Data Engineer — Studying Data & AI"
     },
     "About": {
         "title": "Hello, I'm Paul 👋",
         "description": "I am a passionate developer. Currently, I am studying computer science, specialising in Data and AI. I also work as a Junior Data Engineer at Moët Hennessy, in the Champagne division.",
         "description2": "In my free time, I enjoy coding all kinds of side projects. Most are open-source, and you can find them on my GitHub. I also love climbing, horseback riding, running, swimming, and cycling.",
-        "learn_more": "Learn more about me"
+        "learn_more": "Learn more about me",
+        "view_gallery": "View gallery"
     },
     "Contact": {
         "title": "Got a project in mind?",
@@ -436,6 +438,11 @@
         },
         "footer": "I love hearing from you, but not via forms."
     },
+    "GalleryPage": {
+        "title": "Gallery",
+        "description": "A handful of my favourite shots, click on any photo to see it full screen.",
+        "empty": "No photos here yet, come back soon!"
+    },
     "Footer": {
         "description": "Thanks for stopping by ッ",
         "visits": "This site has been visited by <strong>{visitors}</strong> unique visitors, totaling <strong>{pageviews}</strong> page views.",
@@ -446,7 +453,8 @@
                 "about": "About",
                 "experience": "Experience",
                 "projects": "Projects",
-                "data": "Data"
+                "data": "Data",
+                "gallery": "Gallery"
             },
             "projects": {
                 "title": "Projects",

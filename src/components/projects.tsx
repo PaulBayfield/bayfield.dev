@@ -81,7 +81,7 @@ export default function Projects() {
                     <Image
                       src={`/images/projects/${t(`list.${key}.title`)
                         .toLowerCase()
-                        .replace(/ /g, "-")}.png`}
+                        .replace(/ /g, "-")}.webp`}
                       alt={t(`list.${key}.title`)}
                       width={400}
                       height={200}

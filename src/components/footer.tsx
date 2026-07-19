@@ -56,7 +56,7 @@ export default async function Footer() {
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-3">
               <Avatar className="h-12 w-12 ring-2 ring-zinc-200 dark:ring-zinc-800">
-                <AvatarImage src="/images/avatar.png" alt="Paul Bayfield" />
+                <AvatarImage src="/images/avatar.webp" alt="Paul Bayfield" />
                 <AvatarFallback>Paul Bayfield</AvatarFallback>
               </Avatar>
               <h1 className="text-2xl font-bold">bayfield.dev</h1>
@@ -108,6 +108,11 @@ export default async function Footer() {
               <li>
                 <Link href="/#data" className="hover:underline">
                   {t("links.website.data")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/gallery" className="hover:underline">
+                  {t("links.website.gallery")}
                 </Link>
               </li>
             </ul>

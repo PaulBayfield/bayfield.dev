@@ -13,6 +13,7 @@ import {
   FolderCode,
   Database,
   FileCode2,
+  Images,
 } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
 import { useUmami } from "next-umami";
@@ -41,7 +42,7 @@ export default function Header() {
         <Link href="/" onClick={() => umami.event("Header.Home")}>
           <div className="hidden md:flex items-center gap-3">
             <Avatar className="h-12 w-12 ring-2 ring-zinc-200 dark:ring-zinc-800">
-              <AvatarImage src="/images/avatar.png" alt="Paul Bayfield" />
+              <AvatarImage src="/images/avatar.webp" alt="Paul Bayfield" />
               <AvatarFallback>Paul Bayfield</AvatarFallback>
             </Avatar>
             <div className="leading-tight">
@@ -132,6 +133,17 @@ export default function Header() {
           >
             <Link href="/#data">
               {isDesktop ? t("data") : <Database className="h-6 w-6" />}
+            </Link>
+          </Button>
+          <Button
+            size={isDesktop ? "sm" : "icon"}
+            asChild
+            variant={pathname === "/gallery" ? "selected" : "outline"}
+            className="select-none"
+            onClick={() => umami.event("Header.Gallery")}
+          >
+            <Link href="/gallery">
+              {isDesktop ? t("gallery") : <Images className="h-6 w-6" />}
             </Link>
           </Button>
           <ModeToggle />

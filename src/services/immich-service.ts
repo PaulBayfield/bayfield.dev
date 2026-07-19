@@ -1,6 +1,6 @@
 "use server";
 
-import { apiRequest } from "./api-requets";
+import { apiRequest } from "./api-request";
 import { ApiResult, ImmichStats } from "./types";
 
 const requestHandler = async <T>(

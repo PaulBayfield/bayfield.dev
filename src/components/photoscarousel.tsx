@@ -36,7 +36,7 @@ export default function PhotosCarousel() {
             {Array.from({ length: 14 }).map((_, index) => (
               <CarouselItem key={index}>
                 <Image
-                  src={`/images/carousel/carousel_${index + 1}.png`}
+                  src={`/images/carousel/carousel_${index + 1}.webp`}
                   alt={`Image ${index + 1}`}
                   width={1200}
                   height={400}

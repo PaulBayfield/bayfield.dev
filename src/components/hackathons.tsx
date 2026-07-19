@@ -61,7 +61,7 @@ export default function Hackathons() {
                     <Image
                       src={`/images/hackathons/${t(`list.${key}.title`)
                         .toLowerCase()
-                        .replace(/ /g, "-")}.png`}
+                        .replace(/ /g, "-")}.webp`}
                       alt={t(`list.${key}.title`)}
                       width={400}
                       height={200}
