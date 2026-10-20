@@ -368,7 +368,7 @@
             },
             "development": {
                 "title": "Code",
-                "description": "Wakapi — Since December 2024 (outside of working hours)",
+                "description": "DevTime — Since December 2024 (outside of working hours)",
                 "label": {
                     "hours_coded": "hours",
                     "daily_average": "minutes/day",

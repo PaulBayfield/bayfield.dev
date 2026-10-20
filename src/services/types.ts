@@ -42,37 +42,34 @@ export interface KomodoStats {
   totalContainers: number;
 }
 
-export interface WakapiStats {
+/** GET /api/v1/users/:user/stats/all_time. Breakdowns the user doesn't share are missing. */
+export interface DevTimeStats {
   data: {
+    id: string;
     username: string;
-    user_id: string;
+    range: string;
     start: string;
     end: string;
     status: string;
     total_seconds: number;
     daily_average: number;
     days_including_holidays: number;
-    range: string;
-    human_readable_range: string;
     human_readable_total: string;
     human_readable_daily_average: string;
-    is_coding_activity_visible: boolean;
-    is_other_usage_visible: boolean;
-    editors: WakapiStatItem[];
-    languages: WakapiStatItem[];
-    machines: WakapiStatItem[];
-    projects: WakapiStatItem[];
-    operating_systems: WakapiStatItem[];
-    categories: WakapiStatItem[];
-  }
+    editors?: DevTimeStatItem[];
+    languages?: DevTimeStatItem[];
+    machines?: DevTimeStatItem[];
+    projects?: DevTimeStatItem[];
+    operating_systems?: DevTimeStatItem[];
+    categories?: DevTimeStatItem[];
+  };
 }
 
-export interface WakapiStatItem {
+export interface DevTimeStatItem {
   name: string;
   total_seconds: number;
   hours: number;
   minutes: number;
-  seconds: number;
   digital: string;
   text: string;
   percent: number;

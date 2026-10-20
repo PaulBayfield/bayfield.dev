@@ -34,7 +34,7 @@ import {
   DawarichStats,
   ImmichStats,
   KomodoStats,
-  WakapiStats,
+  DevTimeStats,
   YourSpotifySongsCount,
   YourSpotifyListenTime,
   YourSpotifyArtistsCount,
@@ -42,13 +42,13 @@ import {
 
 export default async function Stats({
   komodoStats,
-  wakapiStats,
+  devtimeStats,
   yourspotifyStats,
   dawarichStats,
   immichStats,
 }: {
   komodoStats: KomodoStats | null;
-  wakapiStats: ApiResult<WakapiStats>;
+  devtimeStats: ApiResult<DevTimeStats>;
   yourspotifyStats: {
     songsCount: YourSpotifySongsCount | null;
     listenTime: YourSpotifyListenTime | null;
@@ -153,8 +153,8 @@ export default async function Stats({
               <Badge variant="outline" className="font-normal">
                 <Hourglass className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {Math.floor(
-                  wakapiStats?.success
-                    ? (wakapiStats.data.data.total_seconds ?? 0) / 3600
+                  devtimeStats?.success
+                    ? (devtimeStats.data.data.total_seconds ?? 0) / 3600
                     : 0
                 ).toLocaleString(localeString)}{" "}
                 {t("stat.development.label.hours_coded")}
@@ -162,8 +162,8 @@ export default async function Stats({
               <Badge variant="outline" className="font-normal">
                 <Code className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {Math.floor(
-                  wakapiStats?.success
-                    ? (wakapiStats.data.data.daily_average ?? 0) / 60
+                  devtimeStats?.success
+                    ? (devtimeStats.data.data.daily_average ?? 0) / 60
                     : 0
                 ).toLocaleString(localeString)}{" "}
                 {t("stat.development.label.daily_average")}
@@ -171,8 +171,8 @@ export default async function Stats({
               <Badge variant="outline" className="font-normal">
                 <FileCode className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {t("stat.development.label.top_language")}{" "}
-                {wakapiStats?.success
-                  ? wakapiStats.data.data.languages?.[0]?.name ?? "N/A"
+                {devtimeStats?.success
+                  ? devtimeStats.data.data.languages?.[0]?.name ?? "N/A"
                   : "N/A"}
               </Badge>
             </CardContent>

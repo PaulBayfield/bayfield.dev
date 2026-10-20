@@ -8,14 +8,14 @@ import Experience from "@/components/experience";
 import Projects from "@/components/projects";
 import Hackathons from "@/components/hackathons";
 import { getKomodoStats } from "@/services/komodo-service";
-import { getWakapiStats } from "@/services/wakapi-service";
+import { getDevTimeStats } from "@/services/devtime-service";
 import { getYourSpotifyStats } from "@/services/yourspotify-service";
 import { getDawarichStats } from "@/services/dawarich-service";
 import { getImmichStats } from "@/services/immich-service";
 
 export default async function PortfolioPage() {
   const komodoStats = await getKomodoStats();
-  const wakapiStats = await getWakapiStats();
+  const devtimeStats = await getDevTimeStats();
   const yourspotifyStats = await getYourSpotifyStats();
   const dawarichStats = await getDawarichStats();
   const immichStats = await getImmichStats();
@@ -28,7 +28,7 @@ export default async function PortfolioPage() {
       <Hackathons />
       <Stats
         komodoStats={komodoStats}
-        wakapiStats={wakapiStats}
+        devtimeStats={devtimeStats}
         yourspotifyStats={yourspotifyStats}
         dawarichStats={dawarichStats}
         immichStats={immichStats}
