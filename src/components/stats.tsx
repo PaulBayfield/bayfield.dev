@@ -224,12 +224,12 @@ export default async function Stats({
             <CardContent className="flex flex-wrap gap-2">
               <Badge variant="outline" className="font-normal">
                 <Globe className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(gps?.countries_all ?? gps?.countries ?? 0).toLocaleString(localeString)}{" "}
+                {(gps?.countriesAll ?? gps?.countries ?? 0).toLocaleString(localeString)}{" "}
                 {t("stat.tracking.label.countries")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Building2 className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(gps?.cities_all ?? gps?.cities ?? 0).toLocaleString(localeString)}{" "}
+                {(gps?.citiesAll ?? gps?.cities ?? 0).toLocaleString(localeString)}{" "}
                 {t("stat.tracking.label.cities")}
               </Badge>
               <Badge variant="outline" className="font-normal">

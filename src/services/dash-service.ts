@@ -56,8 +56,8 @@ export const getInfrastructureStats = async (): Promise<
   if (!list.success) return list;
 
   const rows = list.data.rows ?? [];
-  const totalStorageGb = rows.reduce((sum, s) => sum + (s.disk_total ?? 0), 0);
-  const totalMemoryGb = rows.reduce((sum, s) => sum + (s.memory_total ?? 0), 0);
+  const totalStorageGb = rows.reduce((sum, s) => sum + (s.diskTotal ?? 0), 0);
+  const totalMemoryGb = rows.reduce((sum, s) => sum + (s.memoryTotal ?? 0), 0);
 
   return {
     success: true,

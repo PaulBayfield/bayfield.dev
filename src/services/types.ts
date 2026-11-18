@@ -68,8 +68,8 @@ export interface DashMusicSummary {
 /** GET /api/m/gps/summary. */
 export interface DashGpsSummary {
   points: number | null;
-  countries_all: number | null;
-  cities_all: number | null;
+  countriesAll: number | null;
+  citiesAll: number | null;
   countries: number;
   cities: number;
   days: number;
@@ -80,9 +80,9 @@ export interface DashPhotosSummary {
   photos: number;
   videos: number;
   usage: number;
-  disk_size: number;
-  disk_used: number;
-  disk_ratio: number;
+  diskSize: number;
+  diskUsed: number;
+  diskRatio: number;
   users: number;
 }
 
@@ -101,8 +101,8 @@ export interface DashServerList {
     id: string;
     name: string;
     state: string;
-    memory_total: number | null;
-    disk_total: number | null;
+    memoryTotal: number | null;
+    diskTotal: number | null;
   }[];
   total: number;
 }
