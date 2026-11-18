@@ -355,15 +355,16 @@
     "Stats": {
         "title": "Data",
         "description": "Voici quelques chiffres en temps réel qui me représentent.",
+        "source": "Tout provient de mon propre entrepôt de données.",
         "stat": {
             "infrastructure": {
                 "title": "Infrastructure",
-                "description": "Komodo — Serveurs et services privés que je gère et maintiens.",
+                "description": "Komodo — Serveurs privés que je gère et maintiens.",
                 "label": {
                     "servers": "serveurs",
-                    "disk": "Tb de stockage",
-                    "stacks": "applications",
-                    "containers": "services"
+                    "disk": "To de stockage",
+                    "online": "en ligne",
+                    "memory": "Go de RAM"
                 }
             },
             "development": {
@@ -377,7 +378,7 @@
             },
             "music": {
                 "title": "Musique",
-                "description": "Your Spotify — Depuis 2023",
+                "description": "music.bayfield.dev — Depuis 2023",
                 "label": {
                     "tracks": "titres écoutés",
                     "hours": "heures écoutées",
@@ -386,9 +387,10 @@
             },
             "tracking": {
                 "title": "GPS",
-                "description": "Dawarich — Depuis mars 2025",
+                "description": "gps.bayfield.dev — Depuis mars 2025",
                 "label": {
-                    "km": "km parcourus",
+                    "countries": "pays",
+                    "cities": "villes",
                     "points": "points suivis"
                 }
             },
@@ -398,7 +400,7 @@
                 "label": {
                     "photos": "photos",
                     "videos": "vidéos",
-                    "storage": "Gb"
+                    "storage": "Go"
                 }
             }
         }

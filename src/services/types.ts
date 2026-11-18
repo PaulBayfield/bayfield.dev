@@ -35,106 +35,74 @@ export interface UmamiStats {
   }
 }
 
-export interface KomodoStats {
+/** Infrastructure stats, computed from Dash's servers module. */
+export interface InfrastructureStats {
   serverCount: number;
+  onlineCount: number;
+  /** TB */
   totalStorage: number;
-  totalStacks: number;
-  totalContainers: number;
+  /** GB */
+  totalMemory: number;
 }
 
-/** GET /api/v1/users/:user/stats/all_time. Breakdowns the user doesn't share are missing. */
-export interface DevTimeStats {
-  data: {
-    id: string;
-    username: string;
-    range: string;
-    start: string;
-    end: string;
-    status: string;
-    total_seconds: number;
-    daily_average: number;
-    days_including_holidays: number;
-    human_readable_total: string;
-    human_readable_daily_average: string;
-    editors?: DevTimeStatItem[];
-    languages?: DevTimeStatItem[];
-    machines?: DevTimeStatItem[];
-    projects?: DevTimeStatItem[];
-    operating_systems?: DevTimeStatItem[];
-    categories?: DevTimeStatItem[];
-  };
+// Dash (dash.bayfield.dev) API responses: GET /api/m/<module>/...
+
+/** GET /api/m/devtime/summary. Seconds. */
+export interface DashCodeSummary {
+  total: number;
+  days: number;
+  average: number;
+  topLanguage: string | null;
+  topProject: string | null;
 }
 
-export interface DevTimeStatItem {
-  name: string;
-  total_seconds: number;
-  hours: number;
-  minutes: number;
-  digital: string;
-  text: string;
-  percent: number;
+/** GET /api/m/spotify/summary. listening is in seconds. */
+export interface DashMusicSummary {
+  plays: number;
+  listening: number;
+  tracks: number;
+  artists: number;
+  albums: number;
 }
 
-export interface YourSpotifySongsCount {
-  _id: null;
-  count: number;
-  differents: number;
+/** GET /api/m/gps/summary. */
+export interface DashGpsSummary {
+  points: number | null;
+  countries_all: number | null;
+  cities_all: number | null;
+  countries: number;
+  cities: number;
+  days: number;
 }
 
-export interface YourSpotifyListenTime {
-  _id: null;
-  count: number;
-}
-
-export interface YourSpotifyArtistsCount {
-  _id: null;
-  artists: [];
-  differents: number;
-  counts: [];
-}
-
-export interface DawarichStats {
-  totalDistanceKm: number;
-  totalPointsTracked: number;
-  totalReverseGeocodedPoints: number;
-  totalCountriesVisited: number;
-  totalCitiesVisited: number;
-  yearlyStats: {
-    year: number;
-    totalDistanceKm: number;
-    totalCountriesVisited: number;
-    totalCitiesVisited: number;
-    monthlyDistanceKm: {
-      january: number;
-      february: number;
-      march: number;
-      april: number;
-      may: number;
-      june: number;
-      july: number;
-      august: number;
-      september: number;
-      october: number;
-      november: number;
-      december: number;
-    };
-  }[];
-}
-
-export interface ImmichStats {
+/** GET /api/m/immich/summary. Bytes. */
+export interface DashPhotosSummary {
   photos: number;
   videos: number;
   usage: number;
-  usagePhotos: number;
-  usageVideos: number;
-  usageByUser: {
-    userId: string;
-    userName: string;
-    photos: number;
-    videos: number;
-    usage: number;
-    usagePhotos: number;
-    usageVideos: number;
-    quotaSizeInBytes: number | null;
+  disk_size: number;
+  disk_used: number;
+  disk_ratio: number;
+  users: number;
+}
+
+/** GET /api/m/servers/summary. Ratios are 0–1. */
+export interface DashServersSummary {
+  servers: number;
+  online: number;
+  cpu: number | null;
+  memory: number | null;
+  disk: number | null;
+}
+
+/** GET /api/m/servers/servers. Totals are in GB. */
+export interface DashServerList {
+  rows: {
+    id: string;
+    name: string;
+    state: string;
+    memory_total: number | null;
+    disk_total: number | null;
   }[];
+  total: number;
 }

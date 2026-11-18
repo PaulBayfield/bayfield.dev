@@ -7,18 +7,23 @@ import Contact from "@/components/contact";
 import Experience from "@/components/experience";
 import Projects from "@/components/projects";
 import Hackathons from "@/components/hackathons";
-import { getKomodoStats } from "@/services/komodo-service";
-import { getDevTimeStats } from "@/services/devtime-service";
-import { getYourSpotifyStats } from "@/services/yourspotify-service";
-import { getDawarichStats } from "@/services/dawarich-service";
-import { getImmichStats } from "@/services/immich-service";
+import {
+  getCodeStats,
+  getGpsStats,
+  getInfrastructureStats,
+  getMusicStats,
+  getPhotosStats,
+} from "@/services/dash-service";
 
 export default async function PortfolioPage() {
-  const komodoStats = await getKomodoStats();
-  const devtimeStats = await getDevTimeStats();
-  const yourspotifyStats = await getYourSpotifyStats();
-  const dawarichStats = await getDawarichStats();
-  const immichStats = await getImmichStats();
+  const [infrastructureStats, codeStats, musicStats, gpsStats, photosStats] =
+    await Promise.all([
+      getInfrastructureStats(),
+      getCodeStats(),
+      getMusicStats(),
+      getGpsStats(),
+      getPhotosStats(),
+    ]);
 
   return (
     <div className="mx-auto">
@@ -27,11 +32,11 @@ export default async function PortfolioPage() {
       <Projects />
       <Hackathons />
       <Stats
-        komodoStats={komodoStats}
-        devtimeStats={devtimeStats}
-        yourspotifyStats={yourspotifyStats}
-        dawarichStats={dawarichStats}
-        immichStats={immichStats}
+        infrastructureStats={infrastructureStats}
+        codeStats={codeStats}
+        musicStats={musicStats}
+        gpsStats={gpsStats}
+        photosStats={photosStats}
       />
       <Contact />
     </div>

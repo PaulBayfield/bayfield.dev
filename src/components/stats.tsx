@@ -9,11 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
-  Car,
   Server,
-  Box,
   HardDrive,
-  Layers,
+  MemoryStick,
+  Wifi,
+  Globe,
+  Building2,
   Camera,
   Video,
   MousePointer2Icon,
@@ -31,33 +32,33 @@ import { getTranslations } from "next-intl/server";
 import { AnimatedSection } from "@/components/animated-section";
 import {
   ApiResult,
-  DawarichStats,
-  ImmichStats,
-  KomodoStats,
-  DevTimeStats,
-  YourSpotifySongsCount,
-  YourSpotifyListenTime,
-  YourSpotifyArtistsCount,
+  DashCodeSummary,
+  DashGpsSummary,
+  DashMusicSummary,
+  DashPhotosSummary,
+  InfrastructureStats,
 } from "@/services/types";
 
 export default async function Stats({
-  komodoStats,
-  devtimeStats,
-  yourspotifyStats,
-  dawarichStats,
-  immichStats,
+  infrastructureStats,
+  codeStats,
+  musicStats,
+  gpsStats,
+  photosStats,
 }: {
-  komodoStats: KomodoStats | null;
-  devtimeStats: ApiResult<DevTimeStats>;
-  yourspotifyStats: {
-    songsCount: YourSpotifySongsCount | null;
-    listenTime: YourSpotifyListenTime | null;
-    artistsCount: YourSpotifyArtistsCount | null;
-  }
-  dawarichStats: ApiResult<DawarichStats>;
-  immichStats: ApiResult<ImmichStats>;
+  infrastructureStats: ApiResult<InfrastructureStats>;
+  codeStats: ApiResult<DashCodeSummary>;
+  musicStats: ApiResult<DashMusicSummary>;
+  gpsStats: ApiResult<DashGpsSummary>;
+  photosStats: ApiResult<DashPhotosSummary>;
 }) {
   const t = await getTranslations("Stats");
+
+  const infra = infrastructureStats.success ? infrastructureStats.data : null;
+  const code = codeStats.success ? codeStats.data : null;
+  const music = musicStats.success ? musicStats.data : null;
+  const gps = gpsStats.success ? gpsStats.data : null;
+  const photos = photosStats.success ? photosStats.data : null;
 
   const locale = await getLocale();
   let localeString = "fr-FR";
@@ -77,6 +78,9 @@ export default async function Stats({
           </h2>
           <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
             {t("description")}
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mt-2">
+            {t("source")}
           </p>
         </div>
         <div className="md:col-span-4">
@@ -101,29 +105,23 @@ export default async function Stats({
             <CardContent className="flex flex-wrap gap-2">
               <Badge variant="outline" className="font-normal">
                 <Server className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(komodoStats?.serverCount ?? 0).toLocaleString(
-                  localeString
-                )}{" "}
+                {(infra?.serverCount ?? 0).toLocaleString(localeString)}{" "}
                 {t("stat.infrastructure.label.servers")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <HardDrive className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
-                {(komodoStats?.totalStorage ?? 0).toLocaleString(localeString)}{"+ "}
+                {(infra?.totalStorage ?? 0).toLocaleString(localeString)}{"+ "}
                 {t("stat.infrastructure.label.disk")}
               </Badge>
               <Badge variant="outline" className="font-normal">
-                <Layers className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
-                {(komodoStats?.totalStacks ?? 0).toLocaleString(
-                  localeString
-                )}{" "}
-                {t("stat.infrastructure.label.stacks")}
+                <Wifi className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
+                {(infra?.onlineCount ?? 0).toLocaleString(localeString)}{" "}
+                {t("stat.infrastructure.label.online")}
               </Badge>
               <Badge variant="outline" className="font-normal">
-                <Box className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
-                {(komodoStats?.totalContainers ?? 0).toLocaleString(
-                  localeString
-                )}{" "}
-                {t("stat.infrastructure.label.containers")}
+                <MemoryStick className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
+                {(infra?.totalMemory ?? 0).toLocaleString(localeString)}{" "}
+                {t("stat.infrastructure.label.memory")}
               </Badge>
             </CardContent>
           </Card>
@@ -152,28 +150,18 @@ export default async function Stats({
             <CardContent className="flex flex-wrap gap-2">
               <Badge variant="outline" className="font-normal">
                 <Hourglass className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {Math.floor(
-                  devtimeStats?.success
-                    ? (devtimeStats.data.data.total_seconds ?? 0) / 3600
-                    : 0
-                ).toLocaleString(localeString)}{" "}
+                {Math.floor((code?.total ?? 0) / 3600).toLocaleString(localeString)}{" "}
                 {t("stat.development.label.hours_coded")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Code className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {Math.floor(
-                  devtimeStats?.success
-                    ? (devtimeStats.data.data.daily_average ?? 0) / 60
-                    : 0
-                ).toLocaleString(localeString)}{" "}
+                {Math.floor((code?.average ?? 0) / 60).toLocaleString(localeString)}{" "}
                 {t("stat.development.label.daily_average")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <FileCode className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
                 {t("stat.development.label.top_language")}{" "}
-                {devtimeStats?.success
-                  ? devtimeStats.data.data.languages?.[0]?.name ?? "N/A"
-                  : "N/A"}
+                {code?.topLanguage ?? "N/A"}
               </Badge>
             </CardContent>
           </Card>
@@ -197,27 +185,18 @@ export default async function Stats({
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               <Badge variant="outline" className="font-normal">
-                <Music className="h-4 w-4 text-zinc-90 dark:text-zinc-100" />
-                {(
-                  yourspotifyStats?.songsCount?.count ?? 0
-                ).toLocaleString(localeString)}{" "}
+                <Music className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
+                {(music?.plays ?? 0).toLocaleString(localeString)}{" "}
                 {t("stat.music.label.tracks")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Clock className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {Math.floor(
-                  (yourspotifyStats?.listenTime?.count ?? 0) /
-                    1000 /
-                    60 /
-                    60
-                ).toLocaleString(localeString)}{" "}
+                {Math.floor((music?.listening ?? 0) / 3600).toLocaleString(localeString)}{" "}
                 {t("stat.music.label.hours")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <UserRound className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(
-                  yourspotifyStats?.artistsCount?.differents ?? 0
-                ).toLocaleString(localeString)}{" "}
+                {(music?.artists ?? 0).toLocaleString(localeString)}{" "}
                 {t("stat.music.label.artists")}
               </Badge>
             </CardContent>
@@ -244,19 +223,18 @@ export default async function Stats({
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               <Badge variant="outline" className="font-normal">
-                <Car className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(dawarichStats?.success
-                  ? dawarichStats.data.totalDistanceKm ?? 0
-                  : 0
-                ).toLocaleString(localeString)}{" "}
-                {t("stat.tracking.label.km")}
+                <Globe className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
+                {(gps?.countries_all ?? gps?.countries ?? 0).toLocaleString(localeString)}{" "}
+                {t("stat.tracking.label.countries")}
+              </Badge>
+              <Badge variant="outline" className="font-normal">
+                <Building2 className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
+                {(gps?.cities_all ?? gps?.cities ?? 0).toLocaleString(localeString)}{" "}
+                {t("stat.tracking.label.cities")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <MousePointer2Icon className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(dawarichStats?.success
-                  ? dawarichStats.data.totalPointsTracked ?? 0
-                  : 0
-                ).toLocaleString(localeString)}{" "}
+                {(gps?.points ?? 0).toLocaleString(localeString)}{" "}
                 {t("stat.tracking.label.points")}
               </Badge>
             </CardContent>
@@ -282,29 +260,17 @@ export default async function Stats({
             <CardContent className="flex flex-wrap gap-2">
               <Badge variant="outline" className="font-normal">
                 <Camera className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(immichStats?.success
-                  ? immichStats.data.photos ?? 0
-                  : 0
-                ).toLocaleString(localeString)}{" "}
+                {(photos?.photos ?? 0).toLocaleString(localeString)}{" "}
                 {t("stat.photos.label.photos")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Video className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {(immichStats?.success
-                  ? immichStats.data.videos ?? 0
-                  : 0
-                ).toLocaleString(localeString)}{" "}
+                {(photos?.videos ?? 0).toLocaleString(localeString)}{" "}
                 {t("stat.photos.label.videos")}
               </Badge>
               <Badge variant="outline" className="font-normal">
                 <Save className="h-4 w-4 text-zinc-900 dark:text-zinc-100" />
-                {Math.floor(
-                  immichStats?.success && immichStats.data.usage
-                    ? immichStats.data.usage / 1024 ** 3
-                    : 0
-                ).toLocaleString(localeString, {
-                  maximumFractionDigits: 2,
-                })}{" "}
+                {Math.floor((photos?.usage ?? 0) / 1024 ** 3).toLocaleString(localeString)}{" "}
                 {t("stat.photos.label.storage")}
               </Badge>
             </CardContent>
